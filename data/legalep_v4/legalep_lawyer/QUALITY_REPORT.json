@@ -1,0 +1,33 @@
+{
+  "dataset": "legalep_lawyer",
+  "protocol": "LegalEp-v4",
+  "generated_at": "2026-07-21T00:53:19",
+  "seed": 42,
+  "definition": "Each episode is a natural consultation Q+A pair (2 turns). Not claimed as multi-turn dialogue; use CAIL for multi-turn.",
+  "funnel": {
+    "raw": 14476,
+    "pass_gate": 8792,
+    "drop_a_len": 336,
+    "drop_no_legal_signal": 459,
+    "drop_q_len": 217,
+    "drop_qa_leak": 35,
+    "drop_exact_dup": 4637,
+    "pass_near_dup": 3500
+  },
+  "n_needles": 500,
+  "n_distractors": 2500,
+  "n_episodes_total": 3000,
+  "n_turns_total": 6000,
+  "needle_answer_length_bins": {
+    "ans_short": 120,
+    "ans_long": 52,
+    "ans_mid": 328
+  },
+  "query_channels": [
+    "exact",
+    "advice_recall",
+    "u_para"
+  ],
+  "audit_sample_n": 50,
+  "audit_instructions": "Human raters label audit_axes as yes/no; report agreement (kappa) in paper."
+}

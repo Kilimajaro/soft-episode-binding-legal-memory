@@ -1,0 +1,82 @@
+{
+  "dataset_key": "disc_law",
+  "n_corpus": 400,
+  "n_queries": 300,
+  "top_k": 10,
+  "seed": 42,
+  "protocols": {
+    "exact": {
+      "configs": {
+        "bm25_turn": {
+          "session_hit@k": 1.0,
+          "answer_hit@k": 0.97,
+          "episode_completeness@k": 0.985,
+          "ndcg@k": 0.8412509155146821,
+          "mrr@k": 1.0,
+          "n": 300,
+          "elapsed_seconds": 1.6,
+          "config": "bm25_turn"
+        },
+        "bm25_joint": {
+          "session_hit@k": 1.0,
+          "answer_hit@k": 1.0,
+          "episode_completeness@k": 1.0,
+          "ndcg@k": 0.8562959311911424,
+          "mrr@k": 0.9933333333333333,
+          "n": 300,
+          "elapsed_seconds": 0.6,
+          "config": "bm25_joint"
+        }
+      }
+    },
+    "paraphrase": {
+      "configs": {
+        "bm25_turn": {
+          "session_hit@k": 0.8633333333333333,
+          "answer_hit@k": 0.8066666666666666,
+          "episode_completeness@k": 0.7366666666666667,
+          "ndcg@k": 0.6603611776466444,
+          "mrr@k": 0.6809841269841269,
+          "n": 300,
+          "elapsed_seconds": 1.3,
+          "config": "bm25_turn"
+        },
+        "bm25_joint": {
+          "session_hit@k": 0.7733333333333333,
+          "answer_hit@k": 0.7733333333333333,
+          "episode_completeness@k": 0.7733333333333333,
+          "ndcg@k": 0.5920241460061385,
+          "mrr@k": 0.6388994708994709,
+          "n": 300,
+          "elapsed_seconds": 0.8,
+          "config": "bm25_joint"
+        }
+      }
+    },
+    "followup": {
+      "configs": {
+        "bm25_turn": {
+          "session_hit@k": 0.27,
+          "answer_hit@k": 0.25333333333333335,
+          "episode_completeness@k": 0.25166666666666665,
+          "ndcg@k": 0.2135847061398299,
+          "mrr@k": 0.2289761904761905,
+          "n": 300,
+          "elapsed_seconds": 0.8,
+          "config": "bm25_turn"
+        },
+        "bm25_joint": {
+          "session_hit@k": 0.26,
+          "answer_hit@k": 0.26,
+          "episode_completeness@k": 0.26,
+          "ndcg@k": 0.20132051766352077,
+          "mrr@k": 0.2193862433862434,
+          "n": 300,
+          "elapsed_seconds": 0.5,
+          "config": "bm25_joint"
+        }
+      }
+    }
+  },
+  "generated_at": "2026-07-20T07:04:13.664397"
+}

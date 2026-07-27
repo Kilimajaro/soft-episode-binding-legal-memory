@@ -1,0 +1,31 @@
+{
+  "generated_at": "2026-07-20T12:30:25.645769",
+  "model": "qwen3:14b",
+  "max_retrieved_items": 10,
+  "datasets": [
+    {
+      "dataset_key": "disc_law",
+      "dataset_name": "DISC-Law-SFT (复旦 DISC-LawLLM · 法律问答)",
+      "model": "qwen3:14b",
+      "total_instances": 120,
+      "max_retrieved_items": 10,
+      "avg_retrieval_recall": 0.9916666666666667,
+      "avg_qa_correctness": 0.8358333333333333,
+      "success_rate": 1.0,
+      "elapsed_seconds": 921.9,
+      "output_dir": "results/legal_qa_n270/p1/disc_law"
+    },
+    {
+      "dataset_key": "lawyer_llama",
+      "dataset_name": "Lawyer-LLaMA (北大 · 法律咨询)",
+      "model": "qwen3:14b",
+      "total_instances": 120,
+      "max_retrieved_items": 10,
+      "avg_retrieval_recall": 1.0,
+      "avg_qa_correctness": 0.845,
+      "success_rate": 1.0,
+      "elapsed_seconds": 806.6,
+      "output_dir": "results/legal_qa_n270/p1/lawyer_llama"
+    }
+  ]
+}
