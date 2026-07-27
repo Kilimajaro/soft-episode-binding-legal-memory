@@ -1,7 +1,7 @@
 # IPM legal revision — result index
 
 **Tag:** `ipm-legal-revision-20260720`  
-**Repo:** https://github.com/Kilimajaro/Vector-Memory-Is-All-You-Need  
+**Repo:** https://github.com/Kilimajaro/soft-episode-binding-legal-memory  
 **Bundled JSON:** `release/ipm-legal-revision-20260720/`
 
 ## Soft O2 V4 (cache-fixed; primary manuscript numbers)
