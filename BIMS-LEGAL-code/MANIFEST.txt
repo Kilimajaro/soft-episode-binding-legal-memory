@@ -40,8 +40,8 @@
 7051	./eval/prepare_benchmarks.py
 4292	./eval/quick_eval.py
 96034	./memory_manager.py
-278855	./paper/ipm/figures/fig1_architecture.jpg
-743994	./paper/ipm/figures/fig1_architecture.png
+1458873	./paper/ipm/figures/fig1_architecture.jpg
+1458873	./paper/ipm/figures/fig1_architecture.png
 1122252	./paper/ipm/figures/fig2_benchmark_protocol.png
 27785	./paper/ipm/figures/fig3_cail_main.pdf
 144202	./paper/ipm/figures/fig3_cail_main.png
