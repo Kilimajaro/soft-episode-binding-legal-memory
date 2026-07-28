@@ -1,0 +1,98 @@
+{
+  "generated_at": "2026-06-18T20:16:02.825939",
+  "config": {
+    "datasets": [
+      "disc_law",
+      "lawyer_llama"
+    ],
+    "model": "qwen3:8b",
+    "n_corpus": 400,
+    "n_queries": 300,
+    "n_qa": 15,
+    "top_k": 10,
+    "seed": 42,
+    "output_root": "/workspace/results/legal_scaled"
+  },
+  "datasets": [
+    {
+      "dataset_key": "disc_law",
+      "dataset_name": "DISC-Law-SFT (复旦 DISC-LawLLM · 法律问答)",
+      "model": "qwen3:8b",
+      "n_corpus": 400,
+      "top_k": 10,
+      "seed": 42,
+      "configs": [
+        {
+          "config": "baseline",
+          "n_queries_evaluated": 300,
+          "session_recall@k": 0.77,
+          "answer_recall@k": 0.54,
+          "precision@k": 0.15425925925925926,
+          "ndcg@k": 0.7819403958064756,
+          "qa_correctness": 0.7999999999999999,
+          "n_qa_evaluated": 15
+        },
+        {
+          "config": "exact_index",
+          "n_queries_evaluated": 300,
+          "session_recall@k": 0.7816666666666666,
+          "answer_recall@k": 0.5666666666666667,
+          "precision@k": 0.15655555555555556,
+          "ndcg@k": 0.7903684736175203,
+          "qa_correctness": null,
+          "n_qa_evaluated": 0
+        },
+        {
+          "config": "optimized",
+          "n_queries_evaluated": 300,
+          "session_recall@k": 0.8883333333333333,
+          "answer_recall@k": 0.78,
+          "precision@k": 0.17829629629629626,
+          "ndcg@k": 0.889344525648424,
+          "qa_correctness": 0.7999999999999999,
+          "n_qa_evaluated": 15
+        }
+      ]
+    },
+    {
+      "dataset_key": "lawyer_llama",
+      "dataset_name": "Lawyer-LLaMA (北大 · 法律咨询)",
+      "model": "qwen3:8b",
+      "n_corpus": 400,
+      "top_k": 10,
+      "seed": 42,
+      "configs": [
+        {
+          "config": "baseline",
+          "n_queries_evaluated": 300,
+          "session_recall@k": 0.6983333333333334,
+          "answer_recall@k": 0.39666666666666667,
+          "precision@k": 0.13985185185185187,
+          "ndcg@k": 0.7325698527281622,
+          "qa_correctness": 0.7799999999999997,
+          "n_qa_evaluated": 15
+        },
+        {
+          "config": "exact_index",
+          "n_queries_evaluated": 300,
+          "session_recall@k": 0.6983333333333334,
+          "answer_recall@k": 0.39666666666666667,
+          "precision@k": 0.13985185185185187,
+          "ndcg@k": 0.7325698527281622,
+          "qa_correctness": null,
+          "n_qa_evaluated": 0
+        },
+        {
+          "config": "optimized",
+          "n_queries_evaluated": 300,
+          "session_recall@k": 0.84,
+          "answer_recall@k": 0.68,
+          "precision@k": 0.16940740740740742,
+          "ndcg@k": 0.8564609498969795,
+          "qa_correctness": 0.7133333333333332,
+          "n_qa_evaluated": 15
+        }
+      ]
+    }
+  ]
+}

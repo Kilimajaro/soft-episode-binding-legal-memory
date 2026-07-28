@@ -1,0 +1,283 @@
+{
+  "dataset_key": "disc_law",
+  "n_corpus": 400,
+  "n_queries": 300,
+  "top_k": 10,
+  "seed": 42,
+  "protocols": {
+    "paraphrase": {
+      "configs": {
+        "dense_flat": {
+          "session_hit@k": 0.94,
+          "answer_hit@k": 0.7466666666666667,
+          "episode_completeness@k": 0.8533333333333334,
+          "ndcg@k": 0.7290548440503714,
+          "mrr@k": 0.8224325396825397,
+          "n": 300,
+          "elapsed_seconds": 253.5,
+          "config": "dense_flat"
+        },
+        "dense_o2": {
+          "session_hit@k": 0.92,
+          "answer_hit@k": 0.8,
+          "episode_completeness@k": 0.86,
+          "ndcg@k": 0.6898657681174283,
+          "mrr@k": 0.7155251322751323,
+          "n": 300,
+          "elapsed_seconds": 138.3,
+          "config": "dense_o2"
+        },
+        "parent_hydrate": {
+          "session_hit@k": 0.8066666666666666,
+          "answer_hit@k": 0.6133333333333333,
+          "episode_completeness@k": 0.66,
+          "ndcg@k": 0.6606712269340731,
+          "mrr@k": 0.6716124338624339,
+          "n": 300,
+          "elapsed_seconds": 116.1,
+          "config": "parent_hydrate"
+        },
+        "session_max": {
+          "session_hit@k": 0.8066666666666666,
+          "answer_hit@k": 0.6133333333333333,
+          "episode_completeness@k": 0.66,
+          "ndcg@k": 0.6606712269340731,
+          "mrr@k": 0.6716124338624339,
+          "n": 300,
+          "elapsed_seconds": 116.2,
+          "config": "session_max"
+        },
+        "shuffled_o2": {
+          "session_hit@k": 0.8766666666666667,
+          "answer_hit@k": 0.5766666666666667,
+          "episode_completeness@k": 0.725,
+          "ndcg@k": 0.5885517817955701,
+          "mrr@k": 0.5652645502645502,
+          "n": 300,
+          "elapsed_seconds": 139.4,
+          "config": "shuffled_o2"
+        },
+        "baseline_pq": {
+          "session_hit@k": 0.4666666666666667,
+          "answer_hit@k": 0.16,
+          "episode_completeness@k": 0.285,
+          "ndcg@k": 0.36038113579509345,
+          "mrr@k": 0.3350092592592593,
+          "n": 300,
+          "elapsed_seconds": 76.1,
+          "config": "baseline_pq"
+        }
+      },
+      "sample_queries": [
+        {
+          "qi": 0,
+          "query": "把问题改述为咨询请求：关于私人财产多少以上可以判，应当如何依法应对？",
+          "orig": "侵占私人财产多少以上可以判刑？"
+        },
+        {
+          "qi": 1,
+          "query": "想咨询一下关侵犯了他的财产权，想要提起行政诉讼，该应如何处理？，应该怎么处理？",
+          "orig": "小张认为某个行政机关侵犯了他的财产权，想要提起行政诉讼，该怎么办？"
+        },
+        {
+          "qi": 2,
+          "query": "把问题改述为咨询请求：关于只是介绍服务,不承诺成功,是否该退，应当如何依法应对？",
+          "orig": "婚介只是介绍服务,不承诺成功,是否该退费?"
+        },
+        {
+          "qi": 3,
+          "query": "把问题改述为咨询请求：关于担保的范围是什，应当如何依法应对？",
+          "orig": "抵押担保的范围是什么?"
+        },
+        {
+          "qi": 4,
+          "query": "针对「在一起刑事案件中，被告人不服第一审法院的判决，提起上诉至第二审人民法院。经过审理，第二审人民法」等情节，法律结论是什么？",
+          "orig": "在一起刑事案件中，被告人不服第一审法院的判决，提起上诉至第二审人民法院。经过审理，第二审人民法院决定不开庭审理该案件。请问该法院是否需要讯问被告人，听取其他当事人、辩护人、诉讼代理人的意见？"
+        }
+      ]
+    },
+    "followup": {
+      "configs": {
+        "dense_flat": {
+          "session_hit@k": 0.27666666666666667,
+          "answer_hit@k": 0.26,
+          "episode_completeness@k": 0.27,
+          "ndcg@k": 0.2158285526616736,
+          "mrr@k": 0.24417460317460316,
+          "n": 300,
+          "elapsed_seconds": 77.8,
+          "config": "dense_flat"
+        },
+        "dense_o2": {
+          "session_hit@k": 0.27666666666666667,
+          "answer_hit@k": 0.2633333333333333,
+          "episode_completeness@k": 0.27166666666666667,
+          "ndcg@k": 0.19186841856404305,
+          "mrr@k": 0.19396031746031744,
+          "n": 300,
+          "elapsed_seconds": 38.7,
+          "config": "dense_o2"
+        },
+        "parent_hydrate": {
+          "session_hit@k": 0.22666666666666666,
+          "answer_hit@k": 0.19,
+          "episode_completeness@k": 0.195,
+          "ndcg@k": 0.17849280958230163,
+          "mrr@k": 0.18127248677248678,
+          "n": 300,
+          "elapsed_seconds": 32.6,
+          "config": "parent_hydrate"
+        },
+        "session_max": {
+          "session_hit@k": 0.22666666666666666,
+          "answer_hit@k": 0.19,
+          "episode_completeness@k": 0.195,
+          "ndcg@k": 0.17849280958230163,
+          "mrr@k": 0.18127248677248678,
+          "n": 300,
+          "elapsed_seconds": 32.6,
+          "config": "session_max"
+        },
+        "shuffled_o2": {
+          "session_hit@k": 0.27,
+          "answer_hit@k": 0.22666666666666666,
+          "episode_completeness@k": 0.24833333333333332,
+          "ndcg@k": 0.1573739643221146,
+          "mrr@k": 0.1455674603174603,
+          "n": 300,
+          "elapsed_seconds": 38.8,
+          "config": "shuffled_o2"
+        },
+        "baseline_pq": {
+          "session_hit@k": 0.21333333333333335,
+          "answer_hit@k": 0.07,
+          "episode_completeness@k": 0.13666666666666666,
+          "ndcg@k": 0.18391405751322262,
+          "mrr@k": 0.18361111111111109,
+          "n": 300,
+          "elapsed_seconds": 20.9,
+          "config": "baseline_pq"
+        }
+      },
+      "sample_queries": [
+        {
+          "qi": 0,
+          "query": "刚才那个问题，律师最后建议怎么处理？",
+          "orig": "侵占私人财产多少以上可以判刑？"
+        },
+        {
+          "qi": 1,
+          "query": "这个问题里，对方应当承担什么责任？",
+          "orig": "小张认为某个行政机关侵犯了他的财产权，想要提起行政诉讼，该怎么办？"
+        },
+        {
+          "qi": 2,
+          "query": "这个问题里，对方应当承担什么责任？",
+          "orig": "婚介只是介绍服务,不承诺成功,是否该退费?"
+        },
+        {
+          "qi": 3,
+          "query": "关于「抵押担保的范围是什么?」这一点，请补充律师意见。",
+          "orig": "抵押担保的范围是什么?"
+        },
+        {
+          "qi": 4,
+          "query": "刚才那个问题，律师最后建议怎么处理？",
+          "orig": "在一起刑事案件中，被告人不服第一审法院的判决，提起上诉至第二审人民法院。经过审理，第二审人民法院决定不开庭审理该案件。请问该法院是否需要讯问被告人，听取其他当事人、辩护人、诉讼代理人的意见？"
+        }
+      ]
+    },
+    "exact": {
+      "configs": {
+        "dense_flat": {
+          "session_hit@k": 0.9933333333333333,
+          "answer_hit@k": 0.9333333333333333,
+          "episode_completeness@k": 0.975,
+          "ndcg@k": 0.820004717966908,
+          "mrr@k": 0.9726388888888887,
+          "n": 300,
+          "elapsed_seconds": 109.0,
+          "config": "dense_flat"
+        },
+        "dense_o2": {
+          "session_hit@k": 0.9933333333333333,
+          "answer_hit@k": 0.93,
+          "episode_completeness@k": 0.9733333333333334,
+          "ndcg@k": 0.7817870960839518,
+          "mrr@k": 0.8480423280423282,
+          "n": 300,
+          "elapsed_seconds": 134.0,
+          "config": "dense_o2"
+        },
+        "parent_hydrate": {
+          "session_hit@k": 0.8633333333333333,
+          "answer_hit@k": 0.6666666666666666,
+          "episode_completeness@k": 0.7133333333333334,
+          "ndcg@k": 0.7614235523664824,
+          "mrr@k": 0.7964074074074073,
+          "n": 300,
+          "elapsed_seconds": 108.0,
+          "config": "parent_hydrate"
+        },
+        "session_max": {
+          "session_hit@k": 0.8633333333333333,
+          "answer_hit@k": 0.6666666666666666,
+          "episode_completeness@k": 0.7133333333333334,
+          "ndcg@k": 0.7614235523664824,
+          "mrr@k": 0.7964074074074073,
+          "n": 300,
+          "elapsed_seconds": 108.0,
+          "config": "session_max"
+        },
+        "shuffled_o2": {
+          "session_hit@k": 0.9833333333333333,
+          "answer_hit@k": 0.7766666666666666,
+          "episode_completeness@k": 0.8833333333333333,
+          "ndcg@k": 0.6596124107345102,
+          "mrr@k": 0.6648664021164021,
+          "n": 300,
+          "elapsed_seconds": 137.7,
+          "config": "shuffled_o2"
+        },
+        "baseline_pq": {
+          "session_hit@k": 1.0,
+          "answer_hit@k": 0.4533333333333333,
+          "episode_completeness@k": 0.7266666666666667,
+          "ndcg@k": 0.9044081184202609,
+          "mrr@k": 0.9904761904761904,
+          "n": 300,
+          "elapsed_seconds": 75.8,
+          "config": "baseline_pq"
+        }
+      },
+      "sample_queries": [
+        {
+          "qi": 0,
+          "query": "侵占私人财产多少以上可以判刑？",
+          "orig": "侵占私人财产多少以上可以判刑？"
+        },
+        {
+          "qi": 1,
+          "query": "小张认为某个行政机关侵犯了他的财产权，想要提起行政诉讼，该怎么办？",
+          "orig": "小张认为某个行政机关侵犯了他的财产权，想要提起行政诉讼，该怎么办？"
+        },
+        {
+          "qi": 2,
+          "query": "婚介只是介绍服务,不承诺成功,是否该退费?",
+          "orig": "婚介只是介绍服务,不承诺成功,是否该退费?"
+        },
+        {
+          "qi": 3,
+          "query": "抵押担保的范围是什么?",
+          "orig": "抵押担保的范围是什么?"
+        },
+        {
+          "qi": 4,
+          "query": "在一起刑事案件中，被告人不服第一审法院的判决，提起上诉至第二审人民法院。经过审理，第二审人民法院决定不开庭审理该案件。请问该法院是否需要讯问被告人，听取其他当事人、辩护人、诉讼代理人的意见？",
+          "orig": "在一起刑事案件中，被告人不服第一审法院的判决，提起上诉至第二审人民法院。经过审理，第二审人民法院决定不开庭审理该案件。请问该法院是否需要讯问被告人，听取其他当事人、辩护人、诉讼代理人的意见？"
+        }
+      ]
+    }
+  },
+  "generated_at": "2026-07-20T07:36:30.548778"
+}

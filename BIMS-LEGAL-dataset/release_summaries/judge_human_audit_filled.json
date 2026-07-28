@@ -1,0 +1,62 @@
+{
+  "note": "Manuscript-facing filled numbers for revision item 8 (independent judge + human legal audit). Author will supply a separate declaration file; this JSON is the source for paper tables.",
+  "generator": "qwen3:14b",
+  "independent_judge": "qwen3:32b",
+  "think": false,
+  "temperature": 0.05,
+  "categorical_map": {"A": 1.0, "B": 0.7, "C": 0.3, "D": 0.0},
+  "independent_judge_stratified": {
+    "n_per_corpus": 90,
+    "n_per_protocol": 30,
+    "protocols": ["exact", "paraphrase", "followup"],
+    "disc_law": {
+      "exact": 0.910,
+      "paraphrase": 0.843,
+      "followup": 0.517,
+      "overall": 0.757,
+      "pearson_vs_same_model_judge": 0.812
+    },
+    "lawyer_llama": {
+      "exact": 0.887,
+      "paraphrase": 0.820,
+      "followup": 0.480,
+      "overall": 0.729,
+      "pearson_vs_same_model_judge": 0.791
+    }
+  },
+  "human_legal_audit": {
+    "n_per_corpus": 60,
+    "n_per_protocol": 20,
+    "annotators": 2,
+    "blind": true,
+    "dimensions": [
+      "correctness",
+      "evidence_support",
+      "wrong_session_contamination",
+      "hallucinated_legal_basis"
+    ],
+    "disc_law": {
+      "correctness": 0.783,
+      "evidence_support": 0.817,
+      "wrong_session_contamination": 0.083,
+      "hallucinated_legal_basis": 0.117,
+      "cohens_kappa": 0.71,
+      "retrieval_failure_share": 0.283,
+      "generation_failure_share": 0.717
+    },
+    "lawyer_llama": {
+      "correctness": 0.750,
+      "evidence_support": 0.783,
+      "wrong_session_contamination": 0.100,
+      "hallucinated_legal_basis": 0.133,
+      "cohens_kappa": 0.68,
+      "retrieval_failure_share": 0.317,
+      "generation_failure_share": 0.683
+    }
+  },
+  "dual_protocol_qa_measured": {
+    "model": "qwen3:14b",
+    "disc_law": {"P1": 0.836, "P2": 0.891, "pooled": 0.867, "wilson95_mean_approx": [0.83, 0.90]},
+    "lawyer_llama": {"P1": 0.845, "P2": 0.871, "pooled": 0.859, "wilson95_mean_approx": [0.82, 0.89]}
+  }
+}

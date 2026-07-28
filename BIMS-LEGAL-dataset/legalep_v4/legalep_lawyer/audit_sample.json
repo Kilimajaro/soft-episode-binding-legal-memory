@@ -1,0 +1,502 @@
+[
+  {
+    "session_id": "legalep_lawyer_needle_00022",
+    "question": "遗产继承案。父亲有200万，有两个小孩（一个原配，一个二婚）能分到多少钱？",
+    "answer_head": "根据《民法典》第一千一百三十条规定，同一顺序继承人继承遗产的份额，一般应当均等。因此，无论是原配还是二婚子女，父亲的200万遗产应当被平均分配，每个子女各得100万元。\n\n另外，根据同一法条的规定，如果有生活上的特殊困难，照顾这些继承人需要额外的帮助，可以适当地给予他们较多的遗产份额。但是对于这个案例而言，并未提及子女是否存在特殊困难，因此在平等分配的原则下，两个子女各得100万元。\n\n需要注意的",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00065",
+    "question": "农村窑洞。上世纪五六十年代建造。现在仍然使用居住。历史建筑原因。窑洞间距较宽他们是否合法？",
+    "answer_head": "根据中国的《城乡规划法》和《建筑法》，所有建筑都必须符合国家的建筑规范和安全标准。如果这些农村窑洞在建造时符合了当时的建筑规范和安全标准，那么它们就是合法的。但是，如果这些窑洞在建造时没有遵守规范和标准，或者现在已经存在安全隐患，那么它们就是不合法的。\n\n此外，如果这些窑洞是历史建筑，那么它们可能受到保护法律的保护。在这种情况下，当地政府可能会采取措施保护这些建筑，并确保它们的安全和合法性。\n\n总",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00255",
+    "question": "不租满一年，扣押金一月五十合法吗？",
+    "answer_head": "根据中国《合同法》的规定，如果租赁合同中没有明确规定租赁期限不足一年的情况下，租赁期限应当视为一年。因此，如果租赁合同规定租赁期限不足一年，那么扣押金一月五十元可能是合法的，但需要具体看租赁合同的约定。如果租赁合同中没有明确规定扣除押金的具体标准，那么扣除押金的金额应当合理，并且需要提供相应的证据。如果扣除押金的金额过高或者没有提供相应的证据，那么租户可以向法院提起诉讼要求返还押金。",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00446",
+    "question": "个人的农转非安置房属于夫妻共同财产吗？",
+    "answer_head": "根据《中华人民共和国婚姻法》的规定，夫妻共同财产包括婚前财产增值部分、婚期中所得的工资、奖金、津贴、福利、知识产权收益等，以及婚期中所购置的房产、车辆、存款、股票等财产。因此，个人的农转非安置房如果是在婚期中购置的，且在婚姻关系存续期间内，应属于夫妻共同财产。但如果该房屋是在婚前购置的，或者是在离婚后购置的，那么就不属于夫妻共同财产。",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00498",
+    "question": "在微信买狗花费5000，卖家发的不是我要的狗，而且还是很差的，最多值2000报警有用吗？",
+    "answer_head": "作为律师，我建议您先尝试通过与卖家沟通解决问题。您可以向卖家提出退货或者更换狗的要求，并要求卖家承担相关的费用。如果卖家拒绝解决问题，您可以考虑向微信投诉或者通过法律途径解决。\n\n如果您决定通过法律途径解决，您可以向法院提起民事诉讼，要求卖家退还您的5000元，并承担相关的赔偿责任。在此过程中，您需要提供证据证明卖家发的不是您要的狗，并且该狗的价值远低于5000元。\n\n总之，您需要根据具体情况来决",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00427",
+    "question": "主动脉夹层是否属于意外险赔付范围内",
+    "answer_head": "主动脉夹层通常被认为是一种突发疾病，而不是意外伤害。因此，根据保险合同的具体条款，主动脉夹层可能不属于意外险赔付范围内。但是，如果保险合同中明确规定主动脉夹层属于意外险赔付范围内，那么保险公司应该会对此进行赔付。建议您查看保险合同的具体条款，以确定主动脉夹层是否属于意外险赔付范围内。",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00143",
+    "question": "你好律师，我现在需要办理仲裁，请问一下怎么办理，都需要什么手续，请问律师帮助，谢谢",
+    "answer_head": "您好，办理仲裁需要以下步骤：\n\n1.选择仲裁机构：根据您的案件性质和地理位置选择合适的仲裁机构，比如中国国际经济贸易仲裁委员会、北京仲裁委员会等。\n\n2.提交仲裁申请：填写仲裁申请书并提交给选定的仲裁机构，申请书中需要详细说明案件的事实、证据和请求。\n\n3.支付仲裁费用：根据仲裁机构的规定，需要支付一定的仲裁费用，包括仲裁费、调解费、证据鉴定费等。\n\n4.组建仲裁庭：仲裁机构会根据案件性质和当事人",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00382",
+    "question": "我和对方一直都有争执，我觉得我更有能力照顾孩子，但对方却不同意，现在也没有达成任何协议。",
+    "answer_head": "我了解了您的情况。如果双方无法达成协议，首先可以考虑通过调解、仲裁等方式解决争议。如果这些方法无法解决争议，也可以向人民法院提起诉讼，通过司法程序处理。\n\n但是，作为父母，您和对方应该以孩子的利益为重，尽量通过协商解决问题。您是否可以考虑寻求专业人士的帮助，如心理咨询师或者家庭律师，帮助您和对方有效地进行沟通，解决争议呢？\n\n最后需要提醒的是，无论通过哪种方式解决争议，都需要根据最有利于未成年子女",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00184",
+    "question": "组装电动自行车有工商执照算三无产品么？",
+    "answer_head": "根据《中华人民共和国产品质量法》的规定，三无产品是指没有生产许可证、没有产品质量认证、没有产品标识的产品。因此，如果您组装的电动自行车没有相应的生产许可证、产品质量认证和产品标识，那么就可以被认定为三无产品。但是，如果您有工商执照，说明您已经注册了一家企业，这可以证明您的组装行为是合法的，但是仍需要遵守相关的法律法规，确保产品的质量和安全性。建议您在组装电动自行车时，遵循相关的标准和规范，确保产品",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00474",
+    "question": "[律师] 是的，根据《中华人民共和国婚姻法》规定，父母都有抚养、教育、保护子女的义务。离婚后，父母应该共同承担子女的抚养、教育、保护责任。所以，如果离婚，父亲应该为孩子支付抚养费，直到孩子成年。",
+    "answer_head": "对于孩子抚养问题，如果夫妻双方协议不成，由人民法院根据双方的具体情况，按照最有利于未成年子女的原则判决。如果您需要，我可以帮您联系一位专业的离婚律师进行详细的咨询和帮助您解决问题。",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00220",
+    "question": "茶庄是外公给妈妈的嫁妆，妈妈走后，茶庄是在爸爸名下的，后来 生意忙，没时间打理",
+    "answer_head": "，就把茶庄租给了一个人经营。现在，租约即将到期，你的父亲想要重新经营茶庄，但是租户不愿意离开。作为律师，你需要帮助你的父亲解决这个问题。\n\n首先，你需要检查租约的具体条款，看看是否有关于续租或者解约的规定。如果有，你需要根据租约的规定来处理这个问题。\n\n如果租约没有相关规定，你需要与租户进行谈判，尽量达成双方都能接受的协议。你可以考虑给予租户一些优惠或者补偿，以便他们愿意离开茶庄。\n\n如果谈判无果",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00144",
+    "question": "我姥姥今年98岁了  老家有民房三间   想赠与我姐姐  （立遗嘱）但我姥姥不能亲自书写  我作为外孙能否代笔  我姥姥按手印  谢谢",
+    "answer_head": "作为律师，我可以告诉你，根据《中华人民共和国继承法》的规定，赠与需要采取书面形式，由赠与人亲笔签名或者指定代理人代笔，并由受赠人签收或者加盖印章。因此，你可以代笔，但必须在赠与书上注明是代笔，并由你姥姥在书面上按手印。同时，为了保证赠与的有效性，建议你姥姥在赠与书上注明自己的意愿和理由，并在赠与书上签字或按手印。最后，为了避免赠与产生争议，建议你姥姥在赠与书上注明赠与的财产种类、数量、价值等详细信",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00462",
+    "question": "事故责任认定书认定完之后还需要做什么",
+    "answer_head": "事故责任认定书是交通事故处理的重要文件，认定完之后需要根据具体情况进行以下工作：\n\n1. 根据事故责任认定书的结果，及时向保险公司报案，进行理赔申请。\n\n2. 如果认定书中有不合理之处，可以向交通管理部门提出异议，要求重新认定。\n\n3. 如果认定书中涉及到法律责任，需要根据法律规定进行相应的法律程序，如起诉、调解等。\n\n4. 如果认定书中涉及到赔偿问题，需要与对方当事人或保险公司进行协商，达成赔偿",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00448",
+    "question": "全家福集团是否真实，老年人投资25600元只购买保健品，他们集团返利，是否国家承认这全家福集团？",
+    "answer_head": "我不知道全家福集团是否真实，也不知道老年人投资25600元只购买保健品的情况。但是，我可以告诉你的是，任何投资都需要谨慎，特别是对于老年人来说更是如此。如果你有任何疑问或担忧，建议你咨询专业的投资顾问或律师，以确保你的权益得到保护。至于全家福集团是否被国家承认，你可以查询相关的政府部门或机构的官方网站或咨询电话，以获取更准确的信息。",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00134",
+    "question": "在没有预售许可证时碧桂园就开始销售 而且还叫三天内付首付款 是不是违规操作 强制付团购费 旅游费 这比钱能否退",
+    "answer_head": "根据《商品房销售管理办法》的规定，房地产开发企业在销售商品房前，必须取得预售许可证。如果开发商在没有取得预售许可证的情况下开始销售，就属于违规操作。\n\n此外，开发商不能强制购房者支付团购费、旅游费等费用，这些费用应该是自愿选择支付的。如果购房者已经支付了这些费用，但是因为开发商的原因导致无法购房，购房者有权要求退还这些费用。\n\n如果您遇到了这样的问题，建议您及时咨询专业律师，了解自己的权利和维权途",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00313",
+    "question": "我39岁了，未婚，农村的股权证没有的，怎么办",
+    "answer_head": "如果您想要获得农村的股权证，您可以按照以下步骤进行：\n\n1. 首先，您需要确认您所持有的农村土地是否有股权证。如果没有，您需要联系当地的农村土地管理部门，了解如何申请股权证。\n\n2. 根据当地的规定，您可能需要提供一些证明文件，例如土地证、身份证、户口簿等。\n\n3. 您需要填写申请表格，并缴纳相关的费用。\n\n4. 在提交申请后，您需要等待当地农村土地管理部门的审批和颁发股权证。\n\n需要注意的是，不",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00424",
+    "question": "小女九岁，在初二晚上玩烟花的时候，因质量问题从后面冲出来了，应该提供些什么？",
+    "answer_head": "如果小女九岁，那么她还未达到法定年龄，因此她无法对自己的行为负责。在这种情况下，您应该考虑以下几个方面：\n\n1. 确保小女得到及时的医疗救治，包括对伤口进行清洁和处理，以及对任何可能的烟花爆炸引起的其他伤害进行检查。\n\n2. 保留现场证据，包括烟花残骸、烟花包装、烟花使用地点的照片等，以便后续调查和证据收集。\n\n3. 如果小女的伤害是由于烟花质量问题引起的，您可以考虑联系相关的消费者保护组织或律师",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00389",
+    "question": "结婚两年。流产一次，因为家暴一直无子女，现在想离婚，但他不同意",
+    "answer_head": "据您提供的情况，您可以向法院提出离婚诉讼，但需注意《民法典》第一千零八十二条的规定，如果您目前还处于终止妊娠后六个月内，法院可能会不予受理您的离婚请求，除非有一些特殊原因。此外，根据《民法典》第一千零九十一条的规定，因为实施家庭暴力而导致的离婚，无过错方有权请求损害赔偿，您可以考虑在离婚诉讼中增加请求赔偿的内容。同时，《民法典》第一千零八十八条规定了在离婚的情况下，一方因子女抚育、老人照料等负担较",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00135",
+    "question": "丢失财政非税收入票据，未使用，会受到什么处罚，处罚是给单位还是个人",
+    "answer_head": "根据《中华人民共和国行政处罚法》的规定，丢失财政非税收入票据属于行政违法行为，可能会受到行政处罚。具体的处罚措施根据情况而定，可能包括罚款、责令停业整顿、吊销许可证等。处罚对象是单位，而非个人。因此，如果单位丢失了财政非税收入票据，单位可能会受到行政处罚。",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00264",
+    "question": "我邮寄错了一个包裹，对方签收了，本人签收的我有快递底单拍照，但是对方不承认我该怎么办？",
+    "answer_head": "如果您有快递底单的照片作为证据，您可以联系快递公司，提供相关证据并要求快递公司进行调查。如果快递公司确认您的证据属实，他们可能会与收件人联系并解决问题。如果快递公司无法解决问题，您可以考虑向当地法院提起诉讼，要求对方退还包裹或赔偿损失。在此过程中，您需要保留所有相关证据，包括快递底单照片、快递公司的调查结果等。建议您咨询专业律师的意见，以便更好地保护自己的权益。",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00160",
+    "question": "我父亲78岁2018年1月16日去世，能领多少丧葬费",
+    "answer_head": "根据《中华人民共和国殡葬管理条例》规定，符合条件的家庭可以领取一定的丧葬补助。根据最新的标准，丧葬补助标准为：\n\n1. 城市居民家庭：丧葬补助标准为1.2万元；\n2. 农村居民家庭：丧葬补助标准为8000元。\n\n具体领取标准还需要根据当地政策和规定来确定，您可以咨询当地殡葬服务机构或民政部门了解具体情况。同时，需要提供相关证明材料，如死亡证明、户口簿等。",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00223",
+    "question": "以公司名义买车法人可以将车转到个人名下吗",
+    "answer_head": "一般情况下，公司购买的车辆应该是属于公司资产的，因此车辆的所有权应该归公司所有。如果法人想将车辆转到个人名下，需要遵循相关法律法规的规定，例如需要进行车辆所有权转移手续，并且需要支付相关的税费。此外，如果公司的车辆是用于公司业务的，那么将车辆转到个人名下可能会涉及到公司资产的转移和使用问题，需要谨慎处理。建议您咨询专业律师的意见，以确保操作的合法性和合规性。",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00457",
+    "question": "你好！！！请问现在闯红灯几天可以查到？？？？",
+    "answer_head": "你好，具体的查处时间可能因地区和情况而异。一般来说，交通违法行为会被记录在交通违法记录系统中，警方或交通管理部门会定期对这些记录进行审核和处理。如果你违反了交通规则，最好尽快主动承认错误并接受处罚，以避免更严重的后果。",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00084",
+    "question": "金融公司片经销商存在恶意套现行为，片区负责人没有收钱的情况下会受牵连吗连吗？",
+    "answer_head": "如果片区负责人没有参与恶意套现行为，没有收受任何贿赂或非法收益，那么他们不应该受到牵连。然而，如果他们知道这种行为正在发生，但没有采取任何措施来阻止它，那么他们可能会被视为共谋或纵容这种行为，从而可能会受到牵连。此外，如果他们在公司内部拥有管理职位，他们可能会被视为公司的代表，因此可能会对公司的违法行为负有责任。最好的做法是及时向公司高层报告这种行为，并采取适当的措施来防止它发生。",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00161",
+    "question": "在村委换届中出现了严重的违规操作和程序错误，并且有村民联名的诉求现在我们该怎么办？",
+    "answer_head": "作为律师，您可以向当地政府或者相关部门提出申诉，要求对违规操作和程序错误进行调查和处理。同时，您可以协助村民起草诉讼材料，向法院提起诉讼，要求撤销违规换届决定，并追究相关责任人的法律责任。在此过程中，您需要了解相关法律法规和程序，为村民提供法律咨询和帮助，维护他们的合法权益。",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00377",
+    "question": "新车在异地能买交强险吗?开回老家影响上牌吗?，需要注意哪些方面?",
+    "answer_head": "新车在异地购买交强险是可以的，但需要注意以下几点：\n\n1. 选择正规保险公司：在异地购买交强险时，要选择正规的保险公司，以确保保险的有效性和权益的保障。\n\n2. 核实车辆信息：在购买交强险时，要核实车辆的信息是否准确，包括车辆型号、车架号、发动机号等，以免出现保险索赔时出现问题。\n\n3. 注意保险期限：购买交强险时要注意保险期限，确保保险有效期内车辆上路行驶。\n\n4. 影响上牌：在异地购买交强险后",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00251",
+    "question": "我女儿办了身份证.还没拿到.他离家出走了联系不上.可以叫派出所扣押身份证吗证吗？",
+    "answer_head": "作为律师，我建议您先尝试通过其他途径寻找女儿的下落，例如联系她的朋友、同学或者其他亲戚。如果您已经尽力寻找了，仍然无法联系到女儿，您可以向当地派出所报案，并说明情况，请求协助寻找女儿。但是，派出所不会扣押身份证，因为身份证是个人合法证件，只有在特定情况下才能被扣押，例如涉及刑事案件或者行政处罚等。如果女儿的身份证已经发放，您可以向公安机关申请挂失，以避免身份证被他人滥用。",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00391",
+    "question": "我想买个二手楼房。房主说我还需要支付15000元的更名费！这样合理吗",
+    "answer_head": "根据中国的法律规定，房屋买卖双方应当按照约定承担各自应当承担的费用。如果在合同中没有明确约定，那么按照《中华人民共和国合同法》的规定，应当按照习惯或者公平原则确定。\n\n一般来说，房屋的过户费用由买卖双方按照约定分摊，如果没有约定，则按照当地的习惯或者公平原则来确定。如果房主要求你支付15000元的更名费，你可以要求房主提供相关的证明文件，证明这个费用的合理性和必要性。如果房主无法提供证明，或者证明",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00486",
+    "question": "强制执行申请后，我的资金被冻结，但是后来撤案了，对个人征信有什么影响吗？",
+    "answer_head": "如果您的资金被冻结是因为法院对您进行了强制执行，那么这个信息会被记录在您的个人信用报告中，可能会对您的信用评分产生一定的影响。但是如果您后来撤回了申请，那么这个记录会被更新为“执行申请已撤回”，这样对您的信用评分的影响会相对较小。不过，具体影响还需要根据您的个人信用情况和信用评分模型来判断。建议您可以向信用报告机构查询自己的信用报告，了解自己的信用状况。",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00077",
+    "question": "我们结婚有8年多了，很少联系通电话也过几分钟就挂了，我跟他提了好多次，其实的都是在外打工从来都不问家里的事情对孩子从来都不关心在我和孩子身上都不舍得花一分钱我可以起诉离婚吗？",
+    "answer_head": "根据你的咨询，你提到你们夫妻之间存在长期不联系、不关心家庭和孩子、不愿意负担家庭开支等问题，这可能导致你们之间感情破裂，如果你想离婚，可以直接向人民法院提起离婚诉讼，并说明你们之间的情况。根据《民法典》第一千零七十九条规定，如果经过调解感情确已破裂，则应准予离婚。\n\n但是在你提起离婚诉讼之前，建议你与你的配偶协商解决问题，如果能够协商解决，也是最好的结果。如果协商困难可以聘请专业的律师进行协助。需",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00284",
+    "question": "网购下订单支付成功，商家推迟不发货已超过72小时，怎么办",
+    "answer_head": "如果商家推迟发货已经超过72小时，你可以采取以下措施：\n\n1. 联系商家：首先，你可以尝试联系商家，询问订单的发货情况。如果商家没有合理的解释或者拒绝发货，你可以要求退款。\n\n2. 申请退款：如果商家无法提供合理的解释或者拒绝发货，你可以申请退款。你可以通过网站或者支付平台的客服渠道申请退款，或者直接联系银行或者信用卡公司申请退款。\n\n3. 投诉商家：如果商家拒绝退款或者无法解决问题，你可以向相关",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00436",
+    "question": "人法网显示的执行立案是什么意思，是指被执行了，还是刚刚立案准备执行",
+    "answer_head": "执行立案是指法院已经受理了执行申请，并对该案件进行了立案登记。这意味着执行程序已经开始，但并不意味着已经执行完成。在执行立案后，法院将会对被执行人的财产进行查封、冻结、扣押等措施，以保障执行的顺利进行。因此，执行立案是指已经开始执行程序，但并不代表执行已经完成。",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00472",
+    "question": "我是2012年买的期房房子，说是两年后兑现房子，到现在没有给房子，说是被政府收购了我该怎么办？",
+    "answer_head": "首先，您需要查看您购买的期房合同中是否有关于政府收购的条款。如果合同中有相关条款，您需要仔细阅读并了解您的权利和义务。\n\n如果合同中没有相关条款，您可以向开发商或房地产公司咨询情况，并要求他们提供相关证明文件。如果确实是政府收购导致您无法兑现房子，您可以要求开发商或房地产公司退还您已经支付的款项，并与他们协商解决方案。\n\n如果开发商或房地产公司不愿意退还您的款项，您可以考虑向相关部门投诉或寻求法律",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00336",
+    "question": "我的孩子在上体活课的时候把胳膊摔断了，这些医疗费用有谁来承担",
+    "answer_head": "如果您的孩子在学校上体育课时受伤，通常情况下，学校应该承担医疗费用。这是因为学校有责任确保学生在校园内的安全。您可以与学校联系，了解他们的保险政策和医疗费用承担情况。如果学校不愿意承担医疗费用，您可以考虑寻求法律帮助，以确保您的孩子得到应有的赔偿。",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00325",
+    "question": "根据50年代国家颁发的土地房产所有权证能否要求开发商给予补偿",
+    "answer_head": "根据中国法律，50年代国家颁发的土地房产所有权证是合法有效的产权证明文件。如果开发商在未经产权所有人同意的情况下侵犯了该产权，产权所有人可以要求开发商给予补偿。具体的补偿标准和程序需要根据具体情况进行判断，建议您咨询专业律师以获取更详细的法律意见。",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00408",
+    "question": "现有大洼村7社李将自家土地0.62公顷，坐落于学田地，与下洼子7社机动1这样写行不行？",
+    "answer_head": "作为律师，我需要更多的信息才能回答这个问题。请提供以下信息：\n\n1. 这是一个什么样的文件？是土地转让合同还是其他类型的文件？\n\n2. “下洼子7社机动1”是什么意思？请提供更详细的描述或背景信息。\n\n3. 这个文件的目的是什么？是为了记录土地所有权的转移还是其他目的？\n\n根据提供的信息，我可以更准确地回答你的问题。",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00225",
+    "question": "一个精神分裂症者把家里财产让外人保管可以？精神分裂症者要求离婚可以离？在她患精神分裂症时家人可以把财产权夺回来？",
+    "answer_head": "这些问题需要根据具体情况来判断。一般来说，精神分裂症患者在病情稳定期间是有能力做出自己的决定的，包括财产管理和离婚等。但如果患者的病情严重影响了其判断能力，可能需要家人或法院介入保护其权益。此外，如果患者在病情不稳定期间做出的决定可能存在风险，家人也可以考虑采取措施保护其权益。总之，需要根据具体情况进行判断和处理。建议您咨询专业律师或相关机构的意见。",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00027",
+    "question": "我想请问一下，关于强制戒毒，如果没有钱交戒毒费，法律会怎么处理。",
+    "answer_head": "根据中国的《戒毒管理条例》，强制戒毒的费用由戒毒人员自行承担。如果戒毒人员无力支付戒毒费用，可以向当地政府申请救助。政府会根据戒毒人员的经济状况和实际情况，给予相应的救助。如果戒毒人员拒绝支付戒毒费用，可能会被视为违反戒毒规定，需要承担相应的法律责任。作为律师，我建议您在遇到此类问题时，及时咨询当地的法律援助机构或律师，以便得到更具体的法律建议。",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00096",
+    "question": "我在农村里面跟私人包工头干活一年多了现在还没有拿到工钱我应该怎么办可以到法院起诉吗",
+    "answer_head": "如果您已经与包工头协商过，但仍未能收到工资，您可以考虑采取法律行动。您可以向当地法院提起民事诉讼，要求包工头支付您的工资。在起诉之前，您需要准备好相关证据，例如工作合同、工作记录、工资单等。如果您没有这些证据，您可以尝试联系其他工人或证人来证明您的工作和未支付的工资。\n\n在起诉之前，您也可以尝试通过调解或仲裁来解决争议。您可以向当地劳动仲裁委员会申请仲裁，或者与包工头协商达成和解协议。如果这些方法",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00076",
+    "question": "我己婚20年，三年前和初恋相遇，有一小孩，己满一岁，现在怎么办",
+    "answer_head": "根据您提供的情况，您已经结婚20年，三年前因与初恋相遇产生了一段婚外情，且有一名小孩出生。根据法律规定，您与您的配偶均有责任抚养年幼的孩子。根据《民法典》第一千零七十一条，非婚生子女和婚生子女一样享有同等的权利，没有任何组织或个人可以侵犯或歧视非婚生子的权利。如果您作为孩子的亲生父亲不直接抚养您的孩子，则有责任支付抚养费，根据《民法典》第一千零七十一条规定有关非婚生子女的抚养问题。\n\n另一方面，婚",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00117",
+    "question": "父母60多，可以和儿子可以分户吗？儿子以结婚",
+    "answer_head": "根据中国的《物权法》规定，父母和子女之间的住房关系属于家庭成员之间的关系，应当由家庭成员自行协商解决。如果父母和儿子之间达成了协议，可以进行分户。但是需要注意的是，分户后，父母和儿子之间的住房关系会发生变化，需要重新确定住房权益和义务。此外，如果父母和儿子之间存在财产纠纷或其他法律问题，需要咨询专业律师进行法律分析和解决。",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00093",
+    "question": "我在电视广告上买了一套美芝品洗发和喷发液，电视广告上说是天天一洗一喷，我该怎么样投诉该方？",
+    "answer_head": "首先，您可以联系该产品的生产商或销售商，向他们提出您的投诉。您可以说明您购买的产品与电视广告所描述的不符，要求退款或替换产品。如果您无法联系到生产商或销售商，您可以向当地的消费者保护机构或律师咨询，了解您的权利和可行的投诉途径。如果您认为该广告存在虚假宣传，您也可以向相关的监管机构或律师咨询，了解您的权利和可行的投诉途径。",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00018",
+    "question": "夫妻要离婚财产都是在父母名下夫妻怎么分财产",
+    "answer_head": "根据您的咨询，夫妻离婚时财产都在父母名下，具体情况需要了解夫妻的婚姻财产制度、财产来源和具体权属情况。如果夫妻在婚姻关系存续期间都未曾改变过婚姻财产制度，根据我国《民法典》的规定，夫妻在婚姻关系存续期间所得的财产，包括工资、奖金、劳务报酬、生产、经营、投资的收益、知识产权的收益、继承或者受赠的财产以及其他应当归共同所有的财产，均为夫妻共同财产。因为在离婚时，夫妻的共同财产应由双方协议处理；协议不成",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00240",
+    "question": "监护人甲监护无民事行为能力人乙多年，甲去世时在丙不愿意成为监护人的情况下单方面通过遗嘱指定丙为乙的监护人此时丙是否具有对乙的监护责任？",
+    "answer_head": "根据《中华人民共和国民法典》的规定，监护人应当是具有完全民事行为能力的公民。如果监护人甲去世，丙不愿意成为乙的监护人，那么丙并不具备对乙的监护责任。即使甲在遗嘱中指定丙为乙的监护人，也需要经过法院的确认才能生效。如果法院认为丙不适合担任乙的监护人，那么法院可以根据实际情况指定其他人担任乙的监护人。",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00133",
+    "question": "本店卖一瓶6元一得阁墨汁，它告我侵权要我赔2??万元",
+    "answer_head": "作为律师，我需要了解更多的情况才能给出具体的建议。以下是一些可能需要考虑的问题：\n\n1. 你是否有使用得阁墨汁的授权或许可证？\n\n2. 得阁墨汁是否是受到法律保护的商标或专利？\n\n3. 得阁墨汁的生产和销售是否符合相关的法律法规？\n\n4. 对方是如何得知你在销售得阁墨汁的？\n\n5. 对方提出的2??万元赔偿是否合理？\n\n基于以上问题，我建议你尽快联系一位专业的知识产权律师，让他们帮助你评估你的情况",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00083",
+    "question": "请问分家析产的诉讼请律师需要的费用 \n谢谢",
+    "answer_head": "律师的收费标准因地区、律师资历、案件复杂程度等因素而异，因此无法给出具体的数字。通常，律师的收费方式有按小时计费、按案件计费、按比例计费等。在选择律师时，您可以先咨询律师的收费标准，并与律师协商达成一致的收费方式和金额。同时，您也可以考虑选择一些公益法律援助机构或者法律服务平台，他们提供的服务可能会更加经济实惠。",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00361",
+    "question": "我在流产后一个月内办理了离婚当时是老公出轨提出离婚的，后来我才知道中止妊娠期间不能提出离婚我该如何？",
+    "answer_head": "根据《民法典》第一千零八十二条的规定，女方在终止妊娠后六个月内，男方不得提出离婚，但女方可以提出离婚或者人民法院认为确有必要受理男方离婚请求的除外。您在终止妊娠后的一个月内提出离婚，虽然不符合法律规定，但如果您的丈夫同意离婚并签订了书面离婚协议，就可以进行离婚登记。\n\n如果您的丈夫不同意离婚，您也可以考虑向法院提起离婚诉讼。在离婚诉讼中，您需要提供终止妊娠的相关证明材料，以证明您提出离婚的时间符合",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00239",
+    "question": "演出过程中音响不好用，客户不给结款，而且要求精神损失费，我该怎么办？",
+    "answer_head": "首先，你需要与客户进行沟通，了解他们对音响问题的具体反馈和不满。如果问题确实存在，你可以考虑与音响公司协商解决问题，或者寻求其他专业人士的帮助来解决音响问题。\n\n如果客户仍然拒绝支付费用，并要求精神损失费，你需要了解相关法律法规和合同条款，以确定你的权利和责任。如果客户的要求是合理的，你可以考虑与他们协商达成妥协，或者寻求法律援助来解决争议。\n\n最重要的是，你需要保持冷静和专业，与客户进行有效的沟",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00059",
+    "question": "您好，我的车有九年了，脱审3年，现在去注销，能不能申请补贴？？",
+    "answer_head": "很抱歉，根据我所在的国家/地区的法律法规，通常情况下，车辆脱审后无法享受任何补贴。此外，车辆的年限也可能会影响是否能够享受补贴。建议您咨询当地交通管理部门或相关机构，以了解更详细的信息。",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  },
+  {
+    "session_id": "legalep_lawyer_needle_00458",
+    "question": "缓刑法院判好，公安取保金什么时候可以退",
+    "answer_head": "一般来说，取保候审金是在案件结案后退还的。如果被取保人被判缓刑，那么取保金可能会被用于缓刑期间的监管和管理费用，如果缓刑期满后没有违法犯罪行为，取保金就会被退还。具体退还时间可能会因地区和案件性质而有所不同，建议您咨询当地公安机关或律师事务所以获取更准确的信息。",
+    "audit_axes": {
+      "is_legal_consultation": null,
+      "answer_substantive": null,
+      "safe_for_research_use": null
+    }
+  }
+]

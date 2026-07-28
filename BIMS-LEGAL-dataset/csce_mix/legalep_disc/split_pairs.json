@@ -1,0 +1,2452 @@
+{
+  "legalep_disc_needle_00000": {
+    "sa": "legalep_disc_needle_00000__Sa",
+    "sb": "legalep_disc_needle_00000__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00001": {
+    "sa": "legalep_disc_needle_00001__Sa",
+    "sb": "legalep_disc_needle_00001__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00002": {
+    "sa": "legalep_disc_needle_00002__Sa",
+    "sb": "legalep_disc_needle_00002__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00004": {
+    "sa": "legalep_disc_needle_00004__Sa",
+    "sb": "legalep_disc_needle_00004__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00005": {
+    "sa": "legalep_disc_needle_00005__Sa",
+    "sb": "legalep_disc_needle_00005__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00006": {
+    "sa": "legalep_disc_needle_00006__Sa",
+    "sb": "legalep_disc_needle_00006__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00007": {
+    "sa": "legalep_disc_needle_00007__Sa",
+    "sb": "legalep_disc_needle_00007__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00008": {
+    "sa": "legalep_disc_needle_00008__Sa",
+    "sb": "legalep_disc_needle_00008__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00009": {
+    "sa": "legalep_disc_needle_00009__Sa",
+    "sb": "legalep_disc_needle_00009__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00010": {
+    "sa": "legalep_disc_needle_00010__Sa",
+    "sb": "legalep_disc_needle_00010__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00011": {
+    "sa": "legalep_disc_needle_00011__Sa",
+    "sb": "legalep_disc_needle_00011__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00014": {
+    "sa": "legalep_disc_needle_00014__Sa",
+    "sb": "legalep_disc_needle_00014__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00017": {
+    "sa": "legalep_disc_needle_00017__Sa",
+    "sb": "legalep_disc_needle_00017__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00018": {
+    "sa": "legalep_disc_needle_00018__Sa",
+    "sb": "legalep_disc_needle_00018__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00019": {
+    "sa": "legalep_disc_needle_00019__Sa",
+    "sb": "legalep_disc_needle_00019__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00020": {
+    "sa": "legalep_disc_needle_00020__Sa",
+    "sb": "legalep_disc_needle_00020__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00021": {
+    "sa": "legalep_disc_needle_00021__Sa",
+    "sb": "legalep_disc_needle_00021__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00024": {
+    "sa": "legalep_disc_needle_00024__Sa",
+    "sb": "legalep_disc_needle_00024__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00025": {
+    "sa": "legalep_disc_needle_00025__Sa",
+    "sb": "legalep_disc_needle_00025__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00026": {
+    "sa": "legalep_disc_needle_00026__Sa",
+    "sb": "legalep_disc_needle_00026__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00027": {
+    "sa": "legalep_disc_needle_00027__Sa",
+    "sb": "legalep_disc_needle_00027__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00029": {
+    "sa": "legalep_disc_needle_00029__Sa",
+    "sb": "legalep_disc_needle_00029__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00030": {
+    "sa": "legalep_disc_needle_00030__Sa",
+    "sb": "legalep_disc_needle_00030__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00031": {
+    "sa": "legalep_disc_needle_00031__Sa",
+    "sb": "legalep_disc_needle_00031__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00032": {
+    "sa": "legalep_disc_needle_00032__Sa",
+    "sb": "legalep_disc_needle_00032__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00034": {
+    "sa": "legalep_disc_needle_00034__Sa",
+    "sb": "legalep_disc_needle_00034__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00037": {
+    "sa": "legalep_disc_needle_00037__Sa",
+    "sb": "legalep_disc_needle_00037__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00038": {
+    "sa": "legalep_disc_needle_00038__Sa",
+    "sb": "legalep_disc_needle_00038__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00039": {
+    "sa": "legalep_disc_needle_00039__Sa",
+    "sb": "legalep_disc_needle_00039__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00041": {
+    "sa": "legalep_disc_needle_00041__Sa",
+    "sb": "legalep_disc_needle_00041__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00042": {
+    "sa": "legalep_disc_needle_00042__Sa",
+    "sb": "legalep_disc_needle_00042__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00043": {
+    "sa": "legalep_disc_needle_00043__Sa",
+    "sb": "legalep_disc_needle_00043__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00045": {
+    "sa": "legalep_disc_needle_00045__Sa",
+    "sb": "legalep_disc_needle_00045__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00048": {
+    "sa": "legalep_disc_needle_00048__Sa",
+    "sb": "legalep_disc_needle_00048__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00050": {
+    "sa": "legalep_disc_needle_00050__Sa",
+    "sb": "legalep_disc_needle_00050__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00053": {
+    "sa": "legalep_disc_needle_00053__Sa",
+    "sb": "legalep_disc_needle_00053__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00054": {
+    "sa": "legalep_disc_needle_00054__Sa",
+    "sb": "legalep_disc_needle_00054__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00055": {
+    "sa": "legalep_disc_needle_00055__Sa",
+    "sb": "legalep_disc_needle_00055__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00056": {
+    "sa": "legalep_disc_needle_00056__Sa",
+    "sb": "legalep_disc_needle_00056__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00058": {
+    "sa": "legalep_disc_needle_00058__Sa",
+    "sb": "legalep_disc_needle_00058__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00059": {
+    "sa": "legalep_disc_needle_00059__Sa",
+    "sb": "legalep_disc_needle_00059__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00060": {
+    "sa": "legalep_disc_needle_00060__Sa",
+    "sb": "legalep_disc_needle_00060__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00061": {
+    "sa": "legalep_disc_needle_00061__Sa",
+    "sb": "legalep_disc_needle_00061__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00062": {
+    "sa": "legalep_disc_needle_00062__Sa",
+    "sb": "legalep_disc_needle_00062__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00064": {
+    "sa": "legalep_disc_needle_00064__Sa",
+    "sb": "legalep_disc_needle_00064__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00065": {
+    "sa": "legalep_disc_needle_00065__Sa",
+    "sb": "legalep_disc_needle_00065__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00066": {
+    "sa": "legalep_disc_needle_00066__Sa",
+    "sb": "legalep_disc_needle_00066__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00067": {
+    "sa": "legalep_disc_needle_00067__Sa",
+    "sb": "legalep_disc_needle_00067__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00068": {
+    "sa": "legalep_disc_needle_00068__Sa",
+    "sb": "legalep_disc_needle_00068__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00069": {
+    "sa": "legalep_disc_needle_00069__Sa",
+    "sb": "legalep_disc_needle_00069__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00072": {
+    "sa": "legalep_disc_needle_00072__Sa",
+    "sb": "legalep_disc_needle_00072__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00074": {
+    "sa": "legalep_disc_needle_00074__Sa",
+    "sb": "legalep_disc_needle_00074__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00075": {
+    "sa": "legalep_disc_needle_00075__Sa",
+    "sb": "legalep_disc_needle_00075__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00076": {
+    "sa": "legalep_disc_needle_00076__Sa",
+    "sb": "legalep_disc_needle_00076__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00077": {
+    "sa": "legalep_disc_needle_00077__Sa",
+    "sb": "legalep_disc_needle_00077__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00078": {
+    "sa": "legalep_disc_needle_00078__Sa",
+    "sb": "legalep_disc_needle_00078__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00080": {
+    "sa": "legalep_disc_needle_00080__Sa",
+    "sb": "legalep_disc_needle_00080__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00082": {
+    "sa": "legalep_disc_needle_00082__Sa",
+    "sb": "legalep_disc_needle_00082__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00084": {
+    "sa": "legalep_disc_needle_00084__Sa",
+    "sb": "legalep_disc_needle_00084__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00085": {
+    "sa": "legalep_disc_needle_00085__Sa",
+    "sb": "legalep_disc_needle_00085__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00086": {
+    "sa": "legalep_disc_needle_00086__Sa",
+    "sb": "legalep_disc_needle_00086__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00088": {
+    "sa": "legalep_disc_needle_00088__Sa",
+    "sb": "legalep_disc_needle_00088__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00089": {
+    "sa": "legalep_disc_needle_00089__Sa",
+    "sb": "legalep_disc_needle_00089__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00090": {
+    "sa": "legalep_disc_needle_00090__Sa",
+    "sb": "legalep_disc_needle_00090__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00091": {
+    "sa": "legalep_disc_needle_00091__Sa",
+    "sb": "legalep_disc_needle_00091__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00092": {
+    "sa": "legalep_disc_needle_00092__Sa",
+    "sb": "legalep_disc_needle_00092__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00093": {
+    "sa": "legalep_disc_needle_00093__Sa",
+    "sb": "legalep_disc_needle_00093__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00094": {
+    "sa": "legalep_disc_needle_00094__Sa",
+    "sb": "legalep_disc_needle_00094__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00095": {
+    "sa": "legalep_disc_needle_00095__Sa",
+    "sb": "legalep_disc_needle_00095__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00096": {
+    "sa": "legalep_disc_needle_00096__Sa",
+    "sb": "legalep_disc_needle_00096__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00097": {
+    "sa": "legalep_disc_needle_00097__Sa",
+    "sb": "legalep_disc_needle_00097__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00099": {
+    "sa": "legalep_disc_needle_00099__Sa",
+    "sb": "legalep_disc_needle_00099__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00100": {
+    "sa": "legalep_disc_needle_00100__Sa",
+    "sb": "legalep_disc_needle_00100__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00102": {
+    "sa": "legalep_disc_needle_00102__Sa",
+    "sb": "legalep_disc_needle_00102__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00103": {
+    "sa": "legalep_disc_needle_00103__Sa",
+    "sb": "legalep_disc_needle_00103__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00104": {
+    "sa": "legalep_disc_needle_00104__Sa",
+    "sb": "legalep_disc_needle_00104__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00105": {
+    "sa": "legalep_disc_needle_00105__Sa",
+    "sb": "legalep_disc_needle_00105__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00106": {
+    "sa": "legalep_disc_needle_00106__Sa",
+    "sb": "legalep_disc_needle_00106__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00109": {
+    "sa": "legalep_disc_needle_00109__Sa",
+    "sb": "legalep_disc_needle_00109__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00113": {
+    "sa": "legalep_disc_needle_00113__Sa",
+    "sb": "legalep_disc_needle_00113__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00115": {
+    "sa": "legalep_disc_needle_00115__Sa",
+    "sb": "legalep_disc_needle_00115__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00118": {
+    "sa": "legalep_disc_needle_00118__Sa",
+    "sb": "legalep_disc_needle_00118__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00120": {
+    "sa": "legalep_disc_needle_00120__Sa",
+    "sb": "legalep_disc_needle_00120__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00121": {
+    "sa": "legalep_disc_needle_00121__Sa",
+    "sb": "legalep_disc_needle_00121__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00122": {
+    "sa": "legalep_disc_needle_00122__Sa",
+    "sb": "legalep_disc_needle_00122__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00123": {
+    "sa": "legalep_disc_needle_00123__Sa",
+    "sb": "legalep_disc_needle_00123__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00124": {
+    "sa": "legalep_disc_needle_00124__Sa",
+    "sb": "legalep_disc_needle_00124__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00127": {
+    "sa": "legalep_disc_needle_00127__Sa",
+    "sb": "legalep_disc_needle_00127__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00128": {
+    "sa": "legalep_disc_needle_00128__Sa",
+    "sb": "legalep_disc_needle_00128__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00129": {
+    "sa": "legalep_disc_needle_00129__Sa",
+    "sb": "legalep_disc_needle_00129__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00130": {
+    "sa": "legalep_disc_needle_00130__Sa",
+    "sb": "legalep_disc_needle_00130__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00131": {
+    "sa": "legalep_disc_needle_00131__Sa",
+    "sb": "legalep_disc_needle_00131__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00132": {
+    "sa": "legalep_disc_needle_00132__Sa",
+    "sb": "legalep_disc_needle_00132__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00133": {
+    "sa": "legalep_disc_needle_00133__Sa",
+    "sb": "legalep_disc_needle_00133__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00139": {
+    "sa": "legalep_disc_needle_00139__Sa",
+    "sb": "legalep_disc_needle_00139__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00141": {
+    "sa": "legalep_disc_needle_00141__Sa",
+    "sb": "legalep_disc_needle_00141__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00143": {
+    "sa": "legalep_disc_needle_00143__Sa",
+    "sb": "legalep_disc_needle_00143__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00144": {
+    "sa": "legalep_disc_needle_00144__Sa",
+    "sb": "legalep_disc_needle_00144__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00145": {
+    "sa": "legalep_disc_needle_00145__Sa",
+    "sb": "legalep_disc_needle_00145__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00146": {
+    "sa": "legalep_disc_needle_00146__Sa",
+    "sb": "legalep_disc_needle_00146__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00147": {
+    "sa": "legalep_disc_needle_00147__Sa",
+    "sb": "legalep_disc_needle_00147__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00149": {
+    "sa": "legalep_disc_needle_00149__Sa",
+    "sb": "legalep_disc_needle_00149__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00151": {
+    "sa": "legalep_disc_needle_00151__Sa",
+    "sb": "legalep_disc_needle_00151__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00152": {
+    "sa": "legalep_disc_needle_00152__Sa",
+    "sb": "legalep_disc_needle_00152__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00153": {
+    "sa": "legalep_disc_needle_00153__Sa",
+    "sb": "legalep_disc_needle_00153__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00154": {
+    "sa": "legalep_disc_needle_00154__Sa",
+    "sb": "legalep_disc_needle_00154__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00155": {
+    "sa": "legalep_disc_needle_00155__Sa",
+    "sb": "legalep_disc_needle_00155__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00156": {
+    "sa": "legalep_disc_needle_00156__Sa",
+    "sb": "legalep_disc_needle_00156__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00157": {
+    "sa": "legalep_disc_needle_00157__Sa",
+    "sb": "legalep_disc_needle_00157__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00158": {
+    "sa": "legalep_disc_needle_00158__Sa",
+    "sb": "legalep_disc_needle_00158__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00159": {
+    "sa": "legalep_disc_needle_00159__Sa",
+    "sb": "legalep_disc_needle_00159__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00160": {
+    "sa": "legalep_disc_needle_00160__Sa",
+    "sb": "legalep_disc_needle_00160__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00162": {
+    "sa": "legalep_disc_needle_00162__Sa",
+    "sb": "legalep_disc_needle_00162__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00163": {
+    "sa": "legalep_disc_needle_00163__Sa",
+    "sb": "legalep_disc_needle_00163__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00164": {
+    "sa": "legalep_disc_needle_00164__Sa",
+    "sb": "legalep_disc_needle_00164__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00165": {
+    "sa": "legalep_disc_needle_00165__Sa",
+    "sb": "legalep_disc_needle_00165__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00167": {
+    "sa": "legalep_disc_needle_00167__Sa",
+    "sb": "legalep_disc_needle_00167__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00168": {
+    "sa": "legalep_disc_needle_00168__Sa",
+    "sb": "legalep_disc_needle_00168__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00169": {
+    "sa": "legalep_disc_needle_00169__Sa",
+    "sb": "legalep_disc_needle_00169__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00170": {
+    "sa": "legalep_disc_needle_00170__Sa",
+    "sb": "legalep_disc_needle_00170__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00171": {
+    "sa": "legalep_disc_needle_00171__Sa",
+    "sb": "legalep_disc_needle_00171__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00173": {
+    "sa": "legalep_disc_needle_00173__Sa",
+    "sb": "legalep_disc_needle_00173__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00175": {
+    "sa": "legalep_disc_needle_00175__Sa",
+    "sb": "legalep_disc_needle_00175__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00177": {
+    "sa": "legalep_disc_needle_00177__Sa",
+    "sb": "legalep_disc_needle_00177__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00178": {
+    "sa": "legalep_disc_needle_00178__Sa",
+    "sb": "legalep_disc_needle_00178__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00179": {
+    "sa": "legalep_disc_needle_00179__Sa",
+    "sb": "legalep_disc_needle_00179__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00180": {
+    "sa": "legalep_disc_needle_00180__Sa",
+    "sb": "legalep_disc_needle_00180__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00182": {
+    "sa": "legalep_disc_needle_00182__Sa",
+    "sb": "legalep_disc_needle_00182__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00184": {
+    "sa": "legalep_disc_needle_00184__Sa",
+    "sb": "legalep_disc_needle_00184__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00187": {
+    "sa": "legalep_disc_needle_00187__Sa",
+    "sb": "legalep_disc_needle_00187__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00188": {
+    "sa": "legalep_disc_needle_00188__Sa",
+    "sb": "legalep_disc_needle_00188__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00190": {
+    "sa": "legalep_disc_needle_00190__Sa",
+    "sb": "legalep_disc_needle_00190__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00191": {
+    "sa": "legalep_disc_needle_00191__Sa",
+    "sb": "legalep_disc_needle_00191__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00192": {
+    "sa": "legalep_disc_needle_00192__Sa",
+    "sb": "legalep_disc_needle_00192__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00195": {
+    "sa": "legalep_disc_needle_00195__Sa",
+    "sb": "legalep_disc_needle_00195__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00196": {
+    "sa": "legalep_disc_needle_00196__Sa",
+    "sb": "legalep_disc_needle_00196__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00197": {
+    "sa": "legalep_disc_needle_00197__Sa",
+    "sb": "legalep_disc_needle_00197__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00198": {
+    "sa": "legalep_disc_needle_00198__Sa",
+    "sb": "legalep_disc_needle_00198__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00199": {
+    "sa": "legalep_disc_needle_00199__Sa",
+    "sb": "legalep_disc_needle_00199__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00200": {
+    "sa": "legalep_disc_needle_00200__Sa",
+    "sb": "legalep_disc_needle_00200__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00201": {
+    "sa": "legalep_disc_needle_00201__Sa",
+    "sb": "legalep_disc_needle_00201__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00203": {
+    "sa": "legalep_disc_needle_00203__Sa",
+    "sb": "legalep_disc_needle_00203__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00206": {
+    "sa": "legalep_disc_needle_00206__Sa",
+    "sb": "legalep_disc_needle_00206__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00207": {
+    "sa": "legalep_disc_needle_00207__Sa",
+    "sb": "legalep_disc_needle_00207__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00208": {
+    "sa": "legalep_disc_needle_00208__Sa",
+    "sb": "legalep_disc_needle_00208__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00209": {
+    "sa": "legalep_disc_needle_00209__Sa",
+    "sb": "legalep_disc_needle_00209__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00210": {
+    "sa": "legalep_disc_needle_00210__Sa",
+    "sb": "legalep_disc_needle_00210__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00211": {
+    "sa": "legalep_disc_needle_00211__Sa",
+    "sb": "legalep_disc_needle_00211__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00212": {
+    "sa": "legalep_disc_needle_00212__Sa",
+    "sb": "legalep_disc_needle_00212__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00213": {
+    "sa": "legalep_disc_needle_00213__Sa",
+    "sb": "legalep_disc_needle_00213__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00215": {
+    "sa": "legalep_disc_needle_00215__Sa",
+    "sb": "legalep_disc_needle_00215__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00217": {
+    "sa": "legalep_disc_needle_00217__Sa",
+    "sb": "legalep_disc_needle_00217__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00218": {
+    "sa": "legalep_disc_needle_00218__Sa",
+    "sb": "legalep_disc_needle_00218__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00220": {
+    "sa": "legalep_disc_needle_00220__Sa",
+    "sb": "legalep_disc_needle_00220__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00221": {
+    "sa": "legalep_disc_needle_00221__Sa",
+    "sb": "legalep_disc_needle_00221__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00222": {
+    "sa": "legalep_disc_needle_00222__Sa",
+    "sb": "legalep_disc_needle_00222__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00223": {
+    "sa": "legalep_disc_needle_00223__Sa",
+    "sb": "legalep_disc_needle_00223__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00224": {
+    "sa": "legalep_disc_needle_00224__Sa",
+    "sb": "legalep_disc_needle_00224__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00225": {
+    "sa": "legalep_disc_needle_00225__Sa",
+    "sb": "legalep_disc_needle_00225__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00226": {
+    "sa": "legalep_disc_needle_00226__Sa",
+    "sb": "legalep_disc_needle_00226__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00227": {
+    "sa": "legalep_disc_needle_00227__Sa",
+    "sb": "legalep_disc_needle_00227__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00228": {
+    "sa": "legalep_disc_needle_00228__Sa",
+    "sb": "legalep_disc_needle_00228__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00230": {
+    "sa": "legalep_disc_needle_00230__Sa",
+    "sb": "legalep_disc_needle_00230__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00231": {
+    "sa": "legalep_disc_needle_00231__Sa",
+    "sb": "legalep_disc_needle_00231__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00233": {
+    "sa": "legalep_disc_needle_00233__Sa",
+    "sb": "legalep_disc_needle_00233__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00237": {
+    "sa": "legalep_disc_needle_00237__Sa",
+    "sb": "legalep_disc_needle_00237__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00238": {
+    "sa": "legalep_disc_needle_00238__Sa",
+    "sb": "legalep_disc_needle_00238__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00239": {
+    "sa": "legalep_disc_needle_00239__Sa",
+    "sb": "legalep_disc_needle_00239__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00240": {
+    "sa": "legalep_disc_needle_00240__Sa",
+    "sb": "legalep_disc_needle_00240__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00241": {
+    "sa": "legalep_disc_needle_00241__Sa",
+    "sb": "legalep_disc_needle_00241__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00242": {
+    "sa": "legalep_disc_needle_00242__Sa",
+    "sb": "legalep_disc_needle_00242__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00243": {
+    "sa": "legalep_disc_needle_00243__Sa",
+    "sb": "legalep_disc_needle_00243__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00244": {
+    "sa": "legalep_disc_needle_00244__Sa",
+    "sb": "legalep_disc_needle_00244__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00245": {
+    "sa": "legalep_disc_needle_00245__Sa",
+    "sb": "legalep_disc_needle_00245__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00246": {
+    "sa": "legalep_disc_needle_00246__Sa",
+    "sb": "legalep_disc_needle_00246__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00247": {
+    "sa": "legalep_disc_needle_00247__Sa",
+    "sb": "legalep_disc_needle_00247__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00248": {
+    "sa": "legalep_disc_needle_00248__Sa",
+    "sb": "legalep_disc_needle_00248__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00249": {
+    "sa": "legalep_disc_needle_00249__Sa",
+    "sb": "legalep_disc_needle_00249__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00250": {
+    "sa": "legalep_disc_needle_00250__Sa",
+    "sb": "legalep_disc_needle_00250__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00251": {
+    "sa": "legalep_disc_needle_00251__Sa",
+    "sb": "legalep_disc_needle_00251__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00253": {
+    "sa": "legalep_disc_needle_00253__Sa",
+    "sb": "legalep_disc_needle_00253__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00254": {
+    "sa": "legalep_disc_needle_00254__Sa",
+    "sb": "legalep_disc_needle_00254__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00256": {
+    "sa": "legalep_disc_needle_00256__Sa",
+    "sb": "legalep_disc_needle_00256__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00257": {
+    "sa": "legalep_disc_needle_00257__Sa",
+    "sb": "legalep_disc_needle_00257__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00259": {
+    "sa": "legalep_disc_needle_00259__Sa",
+    "sb": "legalep_disc_needle_00259__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00261": {
+    "sa": "legalep_disc_needle_00261__Sa",
+    "sb": "legalep_disc_needle_00261__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00262": {
+    "sa": "legalep_disc_needle_00262__Sa",
+    "sb": "legalep_disc_needle_00262__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00263": {
+    "sa": "legalep_disc_needle_00263__Sa",
+    "sb": "legalep_disc_needle_00263__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00264": {
+    "sa": "legalep_disc_needle_00264__Sa",
+    "sb": "legalep_disc_needle_00264__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00265": {
+    "sa": "legalep_disc_needle_00265__Sa",
+    "sb": "legalep_disc_needle_00265__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00266": {
+    "sa": "legalep_disc_needle_00266__Sa",
+    "sb": "legalep_disc_needle_00266__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00267": {
+    "sa": "legalep_disc_needle_00267__Sa",
+    "sb": "legalep_disc_needle_00267__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00268": {
+    "sa": "legalep_disc_needle_00268__Sa",
+    "sb": "legalep_disc_needle_00268__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00269": {
+    "sa": "legalep_disc_needle_00269__Sa",
+    "sb": "legalep_disc_needle_00269__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00270": {
+    "sa": "legalep_disc_needle_00270__Sa",
+    "sb": "legalep_disc_needle_00270__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00271": {
+    "sa": "legalep_disc_needle_00271__Sa",
+    "sb": "legalep_disc_needle_00271__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00272": {
+    "sa": "legalep_disc_needle_00272__Sa",
+    "sb": "legalep_disc_needle_00272__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00276": {
+    "sa": "legalep_disc_needle_00276__Sa",
+    "sb": "legalep_disc_needle_00276__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00277": {
+    "sa": "legalep_disc_needle_00277__Sa",
+    "sb": "legalep_disc_needle_00277__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00278": {
+    "sa": "legalep_disc_needle_00278__Sa",
+    "sb": "legalep_disc_needle_00278__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00280": {
+    "sa": "legalep_disc_needle_00280__Sa",
+    "sb": "legalep_disc_needle_00280__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00281": {
+    "sa": "legalep_disc_needle_00281__Sa",
+    "sb": "legalep_disc_needle_00281__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00283": {
+    "sa": "legalep_disc_needle_00283__Sa",
+    "sb": "legalep_disc_needle_00283__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00284": {
+    "sa": "legalep_disc_needle_00284__Sa",
+    "sb": "legalep_disc_needle_00284__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00286": {
+    "sa": "legalep_disc_needle_00286__Sa",
+    "sb": "legalep_disc_needle_00286__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00288": {
+    "sa": "legalep_disc_needle_00288__Sa",
+    "sb": "legalep_disc_needle_00288__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00289": {
+    "sa": "legalep_disc_needle_00289__Sa",
+    "sb": "legalep_disc_needle_00289__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00291": {
+    "sa": "legalep_disc_needle_00291__Sa",
+    "sb": "legalep_disc_needle_00291__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00292": {
+    "sa": "legalep_disc_needle_00292__Sa",
+    "sb": "legalep_disc_needle_00292__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00293": {
+    "sa": "legalep_disc_needle_00293__Sa",
+    "sb": "legalep_disc_needle_00293__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00294": {
+    "sa": "legalep_disc_needle_00294__Sa",
+    "sb": "legalep_disc_needle_00294__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00296": {
+    "sa": "legalep_disc_needle_00296__Sa",
+    "sb": "legalep_disc_needle_00296__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00297": {
+    "sa": "legalep_disc_needle_00297__Sa",
+    "sb": "legalep_disc_needle_00297__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00300": {
+    "sa": "legalep_disc_needle_00300__Sa",
+    "sb": "legalep_disc_needle_00300__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00303": {
+    "sa": "legalep_disc_needle_00303__Sa",
+    "sb": "legalep_disc_needle_00303__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00304": {
+    "sa": "legalep_disc_needle_00304__Sa",
+    "sb": "legalep_disc_needle_00304__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00305": {
+    "sa": "legalep_disc_needle_00305__Sa",
+    "sb": "legalep_disc_needle_00305__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00306": {
+    "sa": "legalep_disc_needle_00306__Sa",
+    "sb": "legalep_disc_needle_00306__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00307": {
+    "sa": "legalep_disc_needle_00307__Sa",
+    "sb": "legalep_disc_needle_00307__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00310": {
+    "sa": "legalep_disc_needle_00310__Sa",
+    "sb": "legalep_disc_needle_00310__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00312": {
+    "sa": "legalep_disc_needle_00312__Sa",
+    "sb": "legalep_disc_needle_00312__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00313": {
+    "sa": "legalep_disc_needle_00313__Sa",
+    "sb": "legalep_disc_needle_00313__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00314": {
+    "sa": "legalep_disc_needle_00314__Sa",
+    "sb": "legalep_disc_needle_00314__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00315": {
+    "sa": "legalep_disc_needle_00315__Sa",
+    "sb": "legalep_disc_needle_00315__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00317": {
+    "sa": "legalep_disc_needle_00317__Sa",
+    "sb": "legalep_disc_needle_00317__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00318": {
+    "sa": "legalep_disc_needle_00318__Sa",
+    "sb": "legalep_disc_needle_00318__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00319": {
+    "sa": "legalep_disc_needle_00319__Sa",
+    "sb": "legalep_disc_needle_00319__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00320": {
+    "sa": "legalep_disc_needle_00320__Sa",
+    "sb": "legalep_disc_needle_00320__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00322": {
+    "sa": "legalep_disc_needle_00322__Sa",
+    "sb": "legalep_disc_needle_00322__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00323": {
+    "sa": "legalep_disc_needle_00323__Sa",
+    "sb": "legalep_disc_needle_00323__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00324": {
+    "sa": "legalep_disc_needle_00324__Sa",
+    "sb": "legalep_disc_needle_00324__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00326": {
+    "sa": "legalep_disc_needle_00326__Sa",
+    "sb": "legalep_disc_needle_00326__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00328": {
+    "sa": "legalep_disc_needle_00328__Sa",
+    "sb": "legalep_disc_needle_00328__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00330": {
+    "sa": "legalep_disc_needle_00330__Sa",
+    "sb": "legalep_disc_needle_00330__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00333": {
+    "sa": "legalep_disc_needle_00333__Sa",
+    "sb": "legalep_disc_needle_00333__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00334": {
+    "sa": "legalep_disc_needle_00334__Sa",
+    "sb": "legalep_disc_needle_00334__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00336": {
+    "sa": "legalep_disc_needle_00336__Sa",
+    "sb": "legalep_disc_needle_00336__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00337": {
+    "sa": "legalep_disc_needle_00337__Sa",
+    "sb": "legalep_disc_needle_00337__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00339": {
+    "sa": "legalep_disc_needle_00339__Sa",
+    "sb": "legalep_disc_needle_00339__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00340": {
+    "sa": "legalep_disc_needle_00340__Sa",
+    "sb": "legalep_disc_needle_00340__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00341": {
+    "sa": "legalep_disc_needle_00341__Sa",
+    "sb": "legalep_disc_needle_00341__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00342": {
+    "sa": "legalep_disc_needle_00342__Sa",
+    "sb": "legalep_disc_needle_00342__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00344": {
+    "sa": "legalep_disc_needle_00344__Sa",
+    "sb": "legalep_disc_needle_00344__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00345": {
+    "sa": "legalep_disc_needle_00345__Sa",
+    "sb": "legalep_disc_needle_00345__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00347": {
+    "sa": "legalep_disc_needle_00347__Sa",
+    "sb": "legalep_disc_needle_00347__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00348": {
+    "sa": "legalep_disc_needle_00348__Sa",
+    "sb": "legalep_disc_needle_00348__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00351": {
+    "sa": "legalep_disc_needle_00351__Sa",
+    "sb": "legalep_disc_needle_00351__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00353": {
+    "sa": "legalep_disc_needle_00353__Sa",
+    "sb": "legalep_disc_needle_00353__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00354": {
+    "sa": "legalep_disc_needle_00354__Sa",
+    "sb": "legalep_disc_needle_00354__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00355": {
+    "sa": "legalep_disc_needle_00355__Sa",
+    "sb": "legalep_disc_needle_00355__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00356": {
+    "sa": "legalep_disc_needle_00356__Sa",
+    "sb": "legalep_disc_needle_00356__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00358": {
+    "sa": "legalep_disc_needle_00358__Sa",
+    "sb": "legalep_disc_needle_00358__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00361": {
+    "sa": "legalep_disc_needle_00361__Sa",
+    "sb": "legalep_disc_needle_00361__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00362": {
+    "sa": "legalep_disc_needle_00362__Sa",
+    "sb": "legalep_disc_needle_00362__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00363": {
+    "sa": "legalep_disc_needle_00363__Sa",
+    "sb": "legalep_disc_needle_00363__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00364": {
+    "sa": "legalep_disc_needle_00364__Sa",
+    "sb": "legalep_disc_needle_00364__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00365": {
+    "sa": "legalep_disc_needle_00365__Sa",
+    "sb": "legalep_disc_needle_00365__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00368": {
+    "sa": "legalep_disc_needle_00368__Sa",
+    "sb": "legalep_disc_needle_00368__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00369": {
+    "sa": "legalep_disc_needle_00369__Sa",
+    "sb": "legalep_disc_needle_00369__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00370": {
+    "sa": "legalep_disc_needle_00370__Sa",
+    "sb": "legalep_disc_needle_00370__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00371": {
+    "sa": "legalep_disc_needle_00371__Sa",
+    "sb": "legalep_disc_needle_00371__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00372": {
+    "sa": "legalep_disc_needle_00372__Sa",
+    "sb": "legalep_disc_needle_00372__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00374": {
+    "sa": "legalep_disc_needle_00374__Sa",
+    "sb": "legalep_disc_needle_00374__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00375": {
+    "sa": "legalep_disc_needle_00375__Sa",
+    "sb": "legalep_disc_needle_00375__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00378": {
+    "sa": "legalep_disc_needle_00378__Sa",
+    "sb": "legalep_disc_needle_00378__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00381": {
+    "sa": "legalep_disc_needle_00381__Sa",
+    "sb": "legalep_disc_needle_00381__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00382": {
+    "sa": "legalep_disc_needle_00382__Sa",
+    "sb": "legalep_disc_needle_00382__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00383": {
+    "sa": "legalep_disc_needle_00383__Sa",
+    "sb": "legalep_disc_needle_00383__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00384": {
+    "sa": "legalep_disc_needle_00384__Sa",
+    "sb": "legalep_disc_needle_00384__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00385": {
+    "sa": "legalep_disc_needle_00385__Sa",
+    "sb": "legalep_disc_needle_00385__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00387": {
+    "sa": "legalep_disc_needle_00387__Sa",
+    "sb": "legalep_disc_needle_00387__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00389": {
+    "sa": "legalep_disc_needle_00389__Sa",
+    "sb": "legalep_disc_needle_00389__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00391": {
+    "sa": "legalep_disc_needle_00391__Sa",
+    "sb": "legalep_disc_needle_00391__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00392": {
+    "sa": "legalep_disc_needle_00392__Sa",
+    "sb": "legalep_disc_needle_00392__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00393": {
+    "sa": "legalep_disc_needle_00393__Sa",
+    "sb": "legalep_disc_needle_00393__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00394": {
+    "sa": "legalep_disc_needle_00394__Sa",
+    "sb": "legalep_disc_needle_00394__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00396": {
+    "sa": "legalep_disc_needle_00396__Sa",
+    "sb": "legalep_disc_needle_00396__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00397": {
+    "sa": "legalep_disc_needle_00397__Sa",
+    "sb": "legalep_disc_needle_00397__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00398": {
+    "sa": "legalep_disc_needle_00398__Sa",
+    "sb": "legalep_disc_needle_00398__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00399": {
+    "sa": "legalep_disc_needle_00399__Sa",
+    "sb": "legalep_disc_needle_00399__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00400": {
+    "sa": "legalep_disc_needle_00400__Sa",
+    "sb": "legalep_disc_needle_00400__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00401": {
+    "sa": "legalep_disc_needle_00401__Sa",
+    "sb": "legalep_disc_needle_00401__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00402": {
+    "sa": "legalep_disc_needle_00402__Sa",
+    "sb": "legalep_disc_needle_00402__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00403": {
+    "sa": "legalep_disc_needle_00403__Sa",
+    "sb": "legalep_disc_needle_00403__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00404": {
+    "sa": "legalep_disc_needle_00404__Sa",
+    "sb": "legalep_disc_needle_00404__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00405": {
+    "sa": "legalep_disc_needle_00405__Sa",
+    "sb": "legalep_disc_needle_00405__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00406": {
+    "sa": "legalep_disc_needle_00406__Sa",
+    "sb": "legalep_disc_needle_00406__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00407": {
+    "sa": "legalep_disc_needle_00407__Sa",
+    "sb": "legalep_disc_needle_00407__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00408": {
+    "sa": "legalep_disc_needle_00408__Sa",
+    "sb": "legalep_disc_needle_00408__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00410": {
+    "sa": "legalep_disc_needle_00410__Sa",
+    "sb": "legalep_disc_needle_00410__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00415": {
+    "sa": "legalep_disc_needle_00415__Sa",
+    "sb": "legalep_disc_needle_00415__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00416": {
+    "sa": "legalep_disc_needle_00416__Sa",
+    "sb": "legalep_disc_needle_00416__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00417": {
+    "sa": "legalep_disc_needle_00417__Sa",
+    "sb": "legalep_disc_needle_00417__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00418": {
+    "sa": "legalep_disc_needle_00418__Sa",
+    "sb": "legalep_disc_needle_00418__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00419": {
+    "sa": "legalep_disc_needle_00419__Sa",
+    "sb": "legalep_disc_needle_00419__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00420": {
+    "sa": "legalep_disc_needle_00420__Sa",
+    "sb": "legalep_disc_needle_00420__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00421": {
+    "sa": "legalep_disc_needle_00421__Sa",
+    "sb": "legalep_disc_needle_00421__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00422": {
+    "sa": "legalep_disc_needle_00422__Sa",
+    "sb": "legalep_disc_needle_00422__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00423": {
+    "sa": "legalep_disc_needle_00423__Sa",
+    "sb": "legalep_disc_needle_00423__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00425": {
+    "sa": "legalep_disc_needle_00425__Sa",
+    "sb": "legalep_disc_needle_00425__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00426": {
+    "sa": "legalep_disc_needle_00426__Sa",
+    "sb": "legalep_disc_needle_00426__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00428": {
+    "sa": "legalep_disc_needle_00428__Sa",
+    "sb": "legalep_disc_needle_00428__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00429": {
+    "sa": "legalep_disc_needle_00429__Sa",
+    "sb": "legalep_disc_needle_00429__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00430": {
+    "sa": "legalep_disc_needle_00430__Sa",
+    "sb": "legalep_disc_needle_00430__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00431": {
+    "sa": "legalep_disc_needle_00431__Sa",
+    "sb": "legalep_disc_needle_00431__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00432": {
+    "sa": "legalep_disc_needle_00432__Sa",
+    "sb": "legalep_disc_needle_00432__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00434": {
+    "sa": "legalep_disc_needle_00434__Sa",
+    "sb": "legalep_disc_needle_00434__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00435": {
+    "sa": "legalep_disc_needle_00435__Sa",
+    "sb": "legalep_disc_needle_00435__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00436": {
+    "sa": "legalep_disc_needle_00436__Sa",
+    "sb": "legalep_disc_needle_00436__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00437": {
+    "sa": "legalep_disc_needle_00437__Sa",
+    "sb": "legalep_disc_needle_00437__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00439": {
+    "sa": "legalep_disc_needle_00439__Sa",
+    "sb": "legalep_disc_needle_00439__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00440": {
+    "sa": "legalep_disc_needle_00440__Sa",
+    "sb": "legalep_disc_needle_00440__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00442": {
+    "sa": "legalep_disc_needle_00442__Sa",
+    "sb": "legalep_disc_needle_00442__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00443": {
+    "sa": "legalep_disc_needle_00443__Sa",
+    "sb": "legalep_disc_needle_00443__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00446": {
+    "sa": "legalep_disc_needle_00446__Sa",
+    "sb": "legalep_disc_needle_00446__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00448": {
+    "sa": "legalep_disc_needle_00448__Sa",
+    "sb": "legalep_disc_needle_00448__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00449": {
+    "sa": "legalep_disc_needle_00449__Sa",
+    "sb": "legalep_disc_needle_00449__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00450": {
+    "sa": "legalep_disc_needle_00450__Sa",
+    "sb": "legalep_disc_needle_00450__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00451": {
+    "sa": "legalep_disc_needle_00451__Sa",
+    "sb": "legalep_disc_needle_00451__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00452": {
+    "sa": "legalep_disc_needle_00452__Sa",
+    "sb": "legalep_disc_needle_00452__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00453": {
+    "sa": "legalep_disc_needle_00453__Sa",
+    "sb": "legalep_disc_needle_00453__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00455": {
+    "sa": "legalep_disc_needle_00455__Sa",
+    "sb": "legalep_disc_needle_00455__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00457": {
+    "sa": "legalep_disc_needle_00457__Sa",
+    "sb": "legalep_disc_needle_00457__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00458": {
+    "sa": "legalep_disc_needle_00458__Sa",
+    "sb": "legalep_disc_needle_00458__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00459": {
+    "sa": "legalep_disc_needle_00459__Sa",
+    "sb": "legalep_disc_needle_00459__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00460": {
+    "sa": "legalep_disc_needle_00460__Sa",
+    "sb": "legalep_disc_needle_00460__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00461": {
+    "sa": "legalep_disc_needle_00461__Sa",
+    "sb": "legalep_disc_needle_00461__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00462": {
+    "sa": "legalep_disc_needle_00462__Sa",
+    "sb": "legalep_disc_needle_00462__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00465": {
+    "sa": "legalep_disc_needle_00465__Sa",
+    "sb": "legalep_disc_needle_00465__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00466": {
+    "sa": "legalep_disc_needle_00466__Sa",
+    "sb": "legalep_disc_needle_00466__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00468": {
+    "sa": "legalep_disc_needle_00468__Sa",
+    "sb": "legalep_disc_needle_00468__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00469": {
+    "sa": "legalep_disc_needle_00469__Sa",
+    "sb": "legalep_disc_needle_00469__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00471": {
+    "sa": "legalep_disc_needle_00471__Sa",
+    "sb": "legalep_disc_needle_00471__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00472": {
+    "sa": "legalep_disc_needle_00472__Sa",
+    "sb": "legalep_disc_needle_00472__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00473": {
+    "sa": "legalep_disc_needle_00473__Sa",
+    "sb": "legalep_disc_needle_00473__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00475": {
+    "sa": "legalep_disc_needle_00475__Sa",
+    "sb": "legalep_disc_needle_00475__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00476": {
+    "sa": "legalep_disc_needle_00476__Sa",
+    "sb": "legalep_disc_needle_00476__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00477": {
+    "sa": "legalep_disc_needle_00477__Sa",
+    "sb": "legalep_disc_needle_00477__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00479": {
+    "sa": "legalep_disc_needle_00479__Sa",
+    "sb": "legalep_disc_needle_00479__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00481": {
+    "sa": "legalep_disc_needle_00481__Sa",
+    "sb": "legalep_disc_needle_00481__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00484": {
+    "sa": "legalep_disc_needle_00484__Sa",
+    "sb": "legalep_disc_needle_00484__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00485": {
+    "sa": "legalep_disc_needle_00485__Sa",
+    "sb": "legalep_disc_needle_00485__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00487": {
+    "sa": "legalep_disc_needle_00487__Sa",
+    "sb": "legalep_disc_needle_00487__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00488": {
+    "sa": "legalep_disc_needle_00488__Sa",
+    "sb": "legalep_disc_needle_00488__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00489": {
+    "sa": "legalep_disc_needle_00489__Sa",
+    "sb": "legalep_disc_needle_00489__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00491": {
+    "sa": "legalep_disc_needle_00491__Sa",
+    "sb": "legalep_disc_needle_00491__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00493": {
+    "sa": "legalep_disc_needle_00493__Sa",
+    "sb": "legalep_disc_needle_00493__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00495": {
+    "sa": "legalep_disc_needle_00495__Sa",
+    "sb": "legalep_disc_needle_00495__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00497": {
+    "sa": "legalep_disc_needle_00497__Sa",
+    "sb": "legalep_disc_needle_00497__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  },
+  "legalep_disc_needle_00498": {
+    "sa": "legalep_disc_needle_00498__Sa",
+    "sb": "legalep_disc_needle_00498__Sb",
+    "n_sa_turns": 1,
+    "n_sb_turns": 1,
+    "evidence_scope": "cross_session"
+  }
+}

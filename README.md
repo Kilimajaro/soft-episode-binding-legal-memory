@@ -1,39 +1,38 @@
-# Soft Episode Binding for Legal Consultation Memory
+# BIMS-LEGAL Publication Release
 
-Reproduction package for the paper:
+Companion release for the IPM manuscript:
 
-**Soft Episode Binding for Consultation Memory Retrieval: Recovering Prior Legal Advice under Same-Domain Interference**
+> **BIMS-LEGAL: Dual-Store Soft Binding for Recovering Prior Legal Advice under Same-Domain Interference**
 
-This repository provides the code, evaluation corpora, and primary result files used in the manuscript.
+**Authors:** Linrui Xu (University of Winnipeg); Linrui Han (CUPL Data Law Lab / Institute for Data Law; corresponding author)
 
-## Contents
+**Repository:** https://github.com/Kilimajaro/soft-episode-binding-legal-memory
 
-| Path | Description |
-|------|-------------|
-| `memory_manager.py` | BIMS dual-store memory and Soft O2 scoring |
-| `eval/legal/` | LegalEp / CAIL preparation and evaluation scripts |
-| `data/` | Processed CAIL, LegalEp, oracle JSON, and primary `results.json` cells |
-| `paper/scripts/` | Table/figure regeneration helpers |
-| `requirements.txt` | Python dependencies |
+## Packages
 
-## Setup
+| Folder | Purpose |
+|--------|---------|
+| [`BIMS-LEGAL-code/`](BIMS-LEGAL-code/) | Reproducible code: BIMS core, O1–O3, Soft O2 / Soft O2-C, eval scripts, table/figure generators |
+| [`BIMS-LEGAL-dataset/`](BIMS-LEGAL-dataset/) | Evaluation corpora, Mix manifests, and primary `results.json` artifacts |
+
+Rebuild both packages from the development checkout:
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+bash scripts/build_publication_packages.sh
+bash scripts/publish_to_github.sh   # sync to soft-episode-binding-legal-memory
 ```
 
-Embeddings and optional generation use a local [Ollama](https://ollama.com) server. Default model names are set in `config.py`.
+## Manuscript alignment (2026-07)
 
-## Reproduce (outline)
-
-1. Point data paths to `data/` (or symlink as `../data/legal` from a full checkout layout).
-2. Run Soft O2 / FlatIP / hard-expansion / BM25 / CE controls via `eval/legal/` and `scripts/`.
-3. Regenerate manuscript tables/figures with `paper/scripts/fill_v4_tables.py` and `paper/scripts/draw_ipm_figures.py`.
-
-Upstream corpora remain under their original licenses (CAIL2024; Hugging Face `ShengbinYue/DISC-Law-SFT`, `Skepsun/lawyer_llama_data`).
+| Claim | Primary artifact |
+|-------|------------------|
+| O1+O2 ablation ($M{=}400$) | `primary_results/legal_scaled_o1o2/` |
+| Soft O2 on CAIL / LegalEp ($M{\approx}3000$) | `primary_results/bims_legal_v4/` |
+| Same-store Soft O2 vs Soft O2-C | `primary_results/bims_legal_cluster_o2/` |
+| Fair Mix Soft O2-C / Hybrid | `primary_results/bims_legal_csce_mix/` + `csce_mix/` |
+| QA audit ($N{=}270$) | `release_summaries/qa/` |
+| Scale curve | `primary_results/scale_curve.json` |
 
 ## Citation
 
-Please cite the paper when using this code or data.
+If you use this release, please cite the IPM manuscript and attribute upstream corpora (CAIL2024, DISC-Law-SFT, Lawyer-LLaMA) under their original licenses.
