@@ -1,0 +1,51 @@
+%% Separate title page for IPM submission (not for blind manuscript)
+\documentclass[preprint,12pt,authoryear]{elsarticle}
+\usepackage{hyperref}
+\usepackage{xurl}
+\journal{Information Processing \& Management}
+\begin{document}
+\begin{frontmatter}
+\title{BIMS-LEGAL: Dual-Store Soft Binding for Recovering Prior Legal Advice under Same-Domain Interference}
+
+%% Author order: first author Linrui Xu; corresponding author Linrui Han.
+\author[uw]{Linrui Xu}
+\ead{xu-l81@webmail.uwinnipeg.ca}
+
+\author[lab,idl]{Linrui Han\corref{cor1}}
+\ead{linrui_han@163.com}
+\cortext[cor1]{Corresponding author.}
+
+\affiliation[uw]{organization={University of Winnipeg},
+            city={Winnipeg},
+            state={Manitoba},
+            country={Canada}}
+
+\affiliation[lab]{organization={Ministry of Education Laboratory of Philosophy and Social Sciences -- The CUPL Data Law Lab, China University of Political Science and Law},
+            city={Beijing},
+            country={China}}
+
+\affiliation[idl]{organization={The Institute for Data Law, China University of Political Science and Law},
+            city={Beijing},
+            country={China}}
+
+\begin{abstract}
+Title-page abstract omitted; see blind manuscript.
+\end{abstract}
+\end{frontmatter}
+
+\section*{CRediT authorship contribution statement}
+\textbf{Linrui Xu:} Conceptualization, Methodology, Software, Investigation, Writing -- original draft, Writing -- review \& editing.
+\textbf{Linrui Han:} Methodology, Writing -- review \& editing, Supervision.
+
+\section*{Declaration of competing interest}
+The authors declare that they have no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
+
+\section*{Data availability}
+Code, processed evaluation corpora, and primary result files are publicly available at
+\url{https://github.com/Kilimajaro/soft-episode-binding-legal-memory}.
+Upstream legal corpora remain under their original licenses: CAIL2024 consultation tracks; Hugging Face \texttt{ShengbinYue/DISC-Law-SFT} and \texttt{Skepsun/lawyer\_llama\_data}.
+
+\section*{Declaration of generative AI use}
+LLM-as-judge QA uses documented Ollama models as generator and judge in the reported dual-protocol sample ($N{=}270$); prompts and settings are documented in the manuscript. No generative AI was used to fabricate experimental numbers.
+
+\end{document}
