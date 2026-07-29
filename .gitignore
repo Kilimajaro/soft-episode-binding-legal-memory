@@ -5,3 +5,5 @@ __pycache__/
 .venv/
 data/embed_cache/
 *.log
+results/
+BIMS-LEGAL-code/data/

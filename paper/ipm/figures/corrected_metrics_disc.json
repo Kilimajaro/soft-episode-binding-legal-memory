@@ -1,0 +1,59 @@
+{
+  "manifest": "BIMS-LEGAL-dataset/legalep_v4/legalep_disc/corpus_manifest_M.json",
+  "workdir": "/home/cdll/llm-dev/THU/lora/soft-episode-binding-legal-memory/results/bims_recompute/disc_flatip",
+  "data_root": "/home/cdll/llm-dev/THU/lora/soft-episode-binding-legal-memory/results/bims_recompute/disc_flatip",
+  "channels": {
+    "u_para": {
+      "dense_flat": {
+        "answer_hit@k": 0.716297786720322,
+        "episode_completeness@k": 0.8460764587525151,
+        "ndcg@k": 0.6810951068683011,
+        "failure_taxonomy": {
+          "complete": 0.7082494969818913,
+          "incomplete": 0.2676056338028169,
+          "answer_only": 0.008048289738430584,
+          "session_miss": 0.01609657947686117
+        },
+        "n": 497
+      },
+      "dense_o2": {
+        "answer_hit@k": 0.8953722334004024,
+        "episode_completeness@k": 0.9366197183098591,
+        "ndcg@k": 0.759487177228309,
+        "failure_taxonomy": {
+          "complete": 0.8913480885311871,
+          "incomplete": 0.08651911468812877,
+          "answer_only": 0.004024144869215292,
+          "session_miss": 0.018108651911468814
+        },
+        "n": 497
+      }
+    },
+    "advice_recall": {
+      "dense_flat": {
+        "answer_hit@k": 0.48,
+        "episode_completeness@k": 0.565,
+        "ndcg@k": 0.4655506361570681,
+        "failure_taxonomy": {
+          "complete": 0.48,
+          "incomplete": 0.17,
+          "answer_only": 0.0,
+          "session_miss": 0.35
+        },
+        "n": 500
+      },
+      "dense_o2": {
+        "answer_hit@k": 0.608,
+        "episode_completeness@k": 0.627,
+        "ndcg@k": 0.5243519816515966,
+        "failure_taxonomy": {
+          "complete": 0.608,
+          "incomplete": 0.038,
+          "answer_only": 0.0,
+          "session_miss": 0.354
+        },
+        "n": 500
+      }
+    }
+  }
+}
