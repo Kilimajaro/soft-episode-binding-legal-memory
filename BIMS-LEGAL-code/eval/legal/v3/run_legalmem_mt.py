@@ -120,7 +120,7 @@ def apply_cfg(mgr: VectorMemoryManager, name: str, beta: float = 0.98):
         raise ValueError(name)
 
 
-def index_turn_store(sessions: List[dict]) -> tuple[VectorMemoryManager, dict]:
+def index_turn_store(sessions: List[dict], *, skip_finalize: bool = False) -> tuple[VectorMemoryManager, dict]:
     """Index every turn; return mgr and maps session_id -> {all_tids, ans_tids}."""
     mgr = VectorMemoryManager()
     mgr.reset(use_pq=False)
@@ -157,20 +157,24 @@ def index_turn_store(sessions: List[dict]) -> tuple[VectorMemoryManager, dict]:
     meta = {}
     for i, s in enumerate(sessions):
         sid = s["session_id"]
-        all_tids, ans_tids = [], []
+        all_tids, ans_tids, user_tids = [], [], []
         for t in s["turns"]:
             tid = mgr.add_dialog(t["role"], t["content"], session_id=sid)
             all_tids.append(tid)
             if t["role"] == "assistant":
                 ans_tids.append(tid)
+            elif t["role"] == "user":
+                user_tids.append(tid)
         meta[sid] = {
             "all_tids": all_tids,
             "ans_tids": ans_tids or all_tids[-1:],
+            "user_tids": user_tids or all_tids[:1],
             "role": s["role"],
         }
         if (i + 1) % 500 == 0:
             print(f"[index] sessions {i+1}/{len(sessions)}", flush=True)
-    mgr.finalize_bulk_load()
+    if not skip_finalize:
+        mgr.finalize_bulk_load()
     mgr._bulk_load = False
     print(f"[index] turn store done sessions={len(sessions)}", flush=True)
     return mgr, meta
@@ -353,6 +357,7 @@ def eval_config(
 
     metric_keys = ["session_hit@k", "answer_hit@k", "episode_completeness@k", "ndcg@k", "mrr@k"]
     acc = {k: [] for k in metric_keys}
+    failure_modes = []
     t0 = time.time()
     for n, q in enumerate(queries):
         sid = q["session_id"]
@@ -361,6 +366,7 @@ def eval_config(
             ans = gold["ans_tids"][q["user_idx"] :]
         else:
             ans = gold["ans_tids"]
+        q_tids = gold.get("user_tids") or gold["all_tids"][:1]
 
         if config == "bm25_turn":
             assert bm25_pack is not None
@@ -385,9 +391,11 @@ def eval_config(
             else:
                 retrieved = retrieved[:top_k]
 
-        m = metrics_at_k(retrieved, gold["all_tids"], ans, top_k)
+        m = metrics_at_k(retrieved, gold["all_tids"], ans, top_k, gold_q_tids=q_tids)
         for k in metric_keys:
             acc[k].append(m[k])
+        if m.get("failure_mode"):
+            failure_modes.append(m["failure_mode"])
         if (n + 1) % 50 == 0:
             print(f"  [{config}] {n+1}/{len(queries)} AH={np.mean(acc['answer_hit@k']):.3f}", flush=True)
 
@@ -395,7 +403,9 @@ def eval_config(
         mgr._tid_to_session, mgr._session_members = orig
 
     hits = [int(x) for x in acc["answer_hit@k"]]
-    return {
+    from legal_metrics import aggregate_failure_counts
+
+    out = {
         "config": config,
         "beta": beta,
         "n": len(queries),
@@ -409,6 +419,10 @@ def eval_config(
         "elapsed_seconds": round(time.time() - t0, 1),
         "ce_model": ce_model if config == "dense_ce" else None,
     }
+    if failure_modes:
+        out["failure_taxonomy"] = aggregate_failure_counts(failure_modes)
+        out["per_query_failure"] = failure_modes
+    return out
 
 
 def resolve_queries(man: dict, args) -> List[dict]:

@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 from pathlib import Path
 from typing import Dict, List, Tuple
@@ -129,8 +130,10 @@ def main():
         "--workdir",
         type=Path,
         default=Path(
-            "/home/cdll/llm-dev/THU/lora/Vector-Memory-Is-All-You-Need-cursor-motify-legal-eval-7556/"
-            "results/bims_legal_v4/workdir_disc_para0"
+            os.environ.get(
+                "BIMS_BETA_WORKDIR",
+                str(REPO / "BIMS-LEGAL-dataset/workdirs/legalep_disc_para0"),
+            )
         ),
     )
     ap.add_argument(

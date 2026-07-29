@@ -99,35 +99,18 @@ def _ids(retrieved) -> List[str]:
     return [str(r.get("tid", "")) for r in retrieved if r.get("tid")]
 
 
-def metrics_at_k(retrieved, gold_sess_tids, gold_ans_tids, k: int) -> dict:
-    top = retrieved[:k]
-    tids = set(_ids(top))
-    g_s = set(gold_sess_tids)
-    g_a = set(gold_ans_tids)
-    sess_hit = 1.0 if (tids & g_s) else 0.0
-    ans_hit = 1.0 if (tids & g_a) else 0.0
-    ep_comp = len(tids & g_s) / len(g_s) if g_s else 0.0
-    # nDCG over answer relevance (binary on gold answer tids)
-    rel = [1.0 if t in g_a else (0.5 if t in g_s else 0.0) for t in _ids(top)]
-    if rel:
-        dcg = sum(r / np.log2(i + 2) for i, r in enumerate(rel))
-        ideal = sorted(rel, reverse=True)
-        idcg = sum(r / np.log2(i + 2) for i, r in enumerate(ideal)) or 1.0
-        ndcg = dcg / idcg
-    else:
-        ndcg = 0.0
-    mrr = 0.0
-    for i, t in enumerate(_ids(top)):
-        if t in g_a or t in g_s:
-            mrr = 1.0 / (i + 1)
-            break
-    return {
-        "session_hit@k": sess_hit,
-        "answer_hit@k": ans_hit,
-        "episode_completeness@k": ep_comp,
-        "ndcg@k": float(ndcg),
-        "mrr@k": float(mrr),
-    }
+from legal_metrics import metrics_at_k as _graded_metrics_at_k  # noqa: E402
+
+
+def metrics_at_k(retrieved, gold_sess_tids, gold_ans_tids, k: int, gold_q_tids=None) -> dict:
+    """Graded nDCG with fixed gold IDCG (see legal_metrics.py)."""
+    q_tids = gold_q_tids
+    if q_tids is None and gold_sess_tids:
+        # Two-turn LegalEp default: first session tid treated as question proxy.
+        q_tids = [gold_sess_tids[0]]
+    return _graded_metrics_at_k(
+        retrieved, gold_sess_tids, gold_ans_tids, k, gold_q_tids=q_tids
+    )
 
 
 def parent_hydrate(mgr, retrieved, top_k: int):

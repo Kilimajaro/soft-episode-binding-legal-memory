@@ -19,7 +19,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 TEX = ROOT / "paper" / "ipm" / "ipm-article.tex"
-RES = ROOT / "results" / "bims_legal_v4"
+RES = ROOT / "BIMS-LEGAL-dataset" / "primary_results" / "bims_legal_v4"
+if not RES.exists():
+    RES = ROOT / "results" / "bims_legal_v4"
 sys.path.insert(0, str(ROOT / "eval" / "legal" / "v3"))
 
 # Main turn-level systems shown in CAIL / LegalEp grids (no Session-max duplicate).
