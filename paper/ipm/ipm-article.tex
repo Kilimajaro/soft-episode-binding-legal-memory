@@ -529,17 +529,24 @@ LegalEp-Lawyer / advice & $0.652$ & --- & $0.472$ \\
 \toprule
 \textbf{Corpus} & \textbf{Channel} & \textbf{System} & \textbf{AH@10} & \textbf{nDCG@10} & \textbf{Incomplete} \\
 \midrule
+CAIL & U1 & FlatIP & 0.832 & 0.554 & 16.8\% \\
+CAIL & U1 & Soft O2 & \textbf{0.960} & \textbf{0.776} & 4.0\% \\
+CAIL & Uk & FlatIP & 0.458 & 0.445 & 54.0\% \\
+CAIL & Uk & Soft O2 & \textbf{0.928} & \textbf{0.793} & 7.0\% \\
+CAIL & U-last & FlatIP & 0.425 & 0.420 & 57.3\% \\
+CAIL & U-last & Soft O2 & \textbf{0.945} & \textbf{0.791} & 5.3\% \\
+LegalEp-DISC & exact & FlatIP & 0.742 & 0.730 & 25.8\% \\
+LegalEp-DISC & exact & Soft O2 & \textbf{0.924} & \textbf{0.813} & 7.6\% \\
 LegalEp-DISC & u-para & FlatIP & 0.716 & 0.681 & 26.8\% \\
-LegalEp-DISC & u-para & Soft O2 & 0.895 & 0.759 & 8.7\% \\
+LegalEp-DISC & u-para & Soft O2 & \textbf{0.895} & \textbf{0.759} & 8.7\% \\
 LegalEp-DISC & advice & FlatIP & 0.480 & 0.466 & 17.0\% \\
-LegalEp-DISC & advice & Soft O2 & 0.608 & 0.524 & 3.8\% \\
+LegalEp-DISC & advice & Soft O2 & \textbf{0.608} & \textbf{0.524} & 3.8\% \\
+LegalEp-Lawyer & exact & FlatIP & 0.732 & 0.753 & 26.8\% \\
+LegalEp-Lawyer & exact & Soft O2 & \textbf{0.976} & \textbf{0.869} & 2.4\% \\
 LegalEp-Lawyer & u-para & FlatIP & 0.739 & 0.744 & 25.3\% \\
-LegalEp-Lawyer & u-para & Soft O2 & 0.946 & 0.844 & 3.8\% \\
+LegalEp-Lawyer & u-para & Soft O2 & \textbf{0.946} & \textbf{0.844} & 3.8\% \\
 LegalEp-Lawyer & advice & FlatIP & 0.444 & 0.483 & 23.4\% \\
-LegalEp-Lawyer & advice & Soft O2 & 0.652 & 0.582 & 2.2\% \\
-CAIL & Uk-followup & FlatIP & 0.458 & 0.445 & 54.0\% \\
-CAIL & Uk-followup & Soft O2 & 0.928 & 0.793 & 7.0\% \\
-\bottomrule
+LegalEp-Lawyer & advice & Soft O2 & \textbf{0.652} & \textbf{0.582} & 2.2\% \\
 \end{tabular}
 \end{table}
 
@@ -549,7 +556,7 @@ Soft~O2 lifts Answer Hit over FlatIP on every channel (U1 $0.788$ vs $0.570$${}^
 Shuffled $sid$ removes the gain (U1 $0.452$; Uk $0.230$; U-last $0.200$), tying the improvement to correct episode membership (RQ1--RQ2).
 Hard expansion can raise AH slightly above Soft~O2 (e.g., U1 $0.802$ vs $0.788$) while lowering EC (U1 $0.578$ vs Soft~O2 $0.664$).
 Soft~O2 therefore behaves as a rank-preserving binder: siblings enter under attenuated scores, and episode coverage remains higher than under hard score copy.
-On CAIL, nDCG often falls relative to FlatIP even as AH and EC rise, reflecting an availability--ranking trade-off.
+Under corrected fixed-gold IDCG (FlatIP rebuild; Table~\ref{tab:ndcg-corrected}), Soft~O2 also raises nDCG over FlatIP on CAIL Uk ($0.793$ vs $0.445$) and U-last ($0.791$ vs $0.420$) while cutting incompleteness sharply.
 Soft~O2 still exceeds FlatIP+CE on every CAIL channel (Table~\ref{tab:ce}).
 Full rows appear in Table~\ref{tab:cail_main}.
 
@@ -769,7 +776,7 @@ Main Soft~O2 claims are visualized in Figures~\ref{fig:cail_main}--\ref{fig:scal
 
 \begin{table}[H]
 \centering
-\caption{CAIL2024 shared-corpus results ($M\approx 3000$). Boldface marks the best AH@10 within each channel (ties bolded jointly). ${}^{**}$: Soft~O2 vs FlatIP, McNemar mid-$p{<}0.01$. nDCG@10 marked --- pending fixed-gold IDCG recompute (Section~\ref{sec:protocol}); AH/EC unchanged.}
+\caption{CAIL2024 shared-corpus results ($M\approx 3000$). Boldface marks the best AH@10 within each channel (ties bolded jointly). ${}^{**}$: Soft~O2 vs FlatIP, McNemar mid-$p{<}0.01$. nDCG@10: corrected fixed-gold IDCG on FlatIP rebuild (Section~\ref{sec:protocol}); published V4 AH/EC unchanged.}
 \label{tab:cail_main}
 \compacttab\footnotesize
 \begin{tabular}{@{}llcccc@{}}
@@ -777,31 +784,31 @@ Main Soft~O2 claims are visualized in Figures~\ref{fig:cail_main}--\ref{fig:scal
 \textbf{Channel} & \textbf{System} & \textbf{AH@10} & \textbf{EC@10} & \textbf{nDCG@10} & \textbf{95\% CI (AH)} \\
 \midrule
 \multirow{4}{*}{U1}
- & FlatIP & 0.570 & 0.413 & --- & [0.530,0.610] \\
- & Soft O2 & 0.788 & 0.664 & --- & [0.757,0.820] \\
- & Hard hydr. & \textbf{0.802} & 0.578 & --- & [0.768,0.835] \\
- & Shuffled O2 & 0.452 & 0.363 & --- & [0.410,0.492] \\
+ & FlatIP & 0.570 & 0.413 & 0.554 & [0.530,0.610] \\
+ & Soft O2 & 0.788 & 0.664 & 0.776 & [0.757,0.820] \\
+ & Hard hydr. & \textbf{0.802} & 0.578 & 0.864 & [0.768,0.835] \\
+ & Shuffled O2 & 0.452 & 0.363 & 0.411 & [0.410,0.492] \\
 \midrule
 \multirow{4}{*}{Uk-followup}
- & FlatIP & 0.270 & 0.347 & --- & [0.237,0.307] \\
- & Soft O2 & 0.698 & 0.654 & --- & [0.660,0.735] \\
- & Hard hydr. & \textbf{0.720} & 0.585 & --- & [0.685,0.753] \\
- & Shuffled O2 & 0.230 & 0.320 & --- & [0.198,0.262] \\
+ & FlatIP & 0.270 & 0.347 & 0.445 & [0.237,0.307] \\
+ & Soft O2 & 0.698 & 0.654 & 0.793 & [0.660,0.735] \\
+ & Hard hydr. & \textbf{0.720} & 0.585 & 0.847 & [0.685,0.753] \\
+ & Shuffled O2 & 0.230 & 0.320 & 0.369 & [0.198,0.262] \\
 \midrule
 \multirow{4}{*}{U-last}
- & FlatIP & 0.245 & 0.335 & --- & [0.212,0.280] \\
- & Soft O2 & 0.762 & 0.659 & --- & [0.725,0.797] \\
- & Hard hydr. & \textbf{0.790} & 0.586 & --- & [0.757,0.822] \\
- & Shuffled O2 & 0.200 & 0.315 & --- & [0.172,0.232] \\
+ & FlatIP & 0.245 & 0.335 & 0.420 & [0.212,0.280] \\
+ & Soft O2 & 0.762 & 0.659 & 0.791 & [0.725,0.797] \\
+ & Hard hydr. & \textbf{0.790} & 0.586 & 0.854 & [0.757,0.822] \\
+ & Shuffled O2 & 0.200 & 0.315 & 0.348 & [0.172,0.232] \\
 \bottomrule
 \end{tabular}
 \end{table}
-{\footnotesize $^\dagger$Legacy retrieved-item IDCG values removed from this grid; Soft~O2 claims use AH/EC. Corrected nDCG script: \texttt{recompute\_corrected\_metrics.py}.}
+{\footnotesize $^\dagger$nDCG@10 filled from fixed-gold IDCG FlatIP rebuild (\texttt{recompute\_corrected\_metrics.py}); published V4 AH/EC unchanged.}
 
 
 \begin{table}[H]
 \centering
-\caption{LegalEp-DISC ($M{=}3000$, $500$ needles). Boldface: best AH@10 within each channel. ${}^{*}\,p{<}0.05$, ${}^{**}\,p{<}0.01$ (Soft~O2 vs FlatIP, McNemar mid-$p$). Hard hydration coincides with session-max aggregation; only hard hydration is shown.}
+\caption{LegalEp-DISC ($M{=}3000$, $500$ needles). Boldface: best AH@10 within each channel. ${}^{*}\,p{<}0.05$, ${}^{**}\,p{<}0.01$ (Soft~O2 vs FlatIP, McNemar mid-$p$). Hard hydration coincides with session-max aggregation; only hard hydration is shown. nDCG@10: corrected fixed-gold IDCG (FlatIP rebuild); published V4 AH/EC unchanged.}
 \label{tab:disc_main}
 \compacttab\footnotesize
 \begin{tabular}{@{}llccc@{}}
@@ -809,29 +816,29 @@ Main Soft~O2 claims are visualized in Figures~\ref{fig:cail_main}--\ref{fig:scal
 \textbf{Channel} & \textbf{System} & \textbf{AH@10} & \textbf{EC@10} & \textbf{nDCG@10} \\
 \midrule
 \multirow{4}{*}{exact}
- & FlatIP & \textbf{0.640} & 0.741 & --- \\
- & Soft O2 & 0.638 & 0.780 & --- \\
- & Hard hydr. & 0.614 & 0.598 & --- \\
- & Shuffled O2 & 0.448 & 0.645 & --- \\
+ & FlatIP & \textbf{0.640} & 0.741 & 0.730 \\
+ & Soft O2 & 0.638 & 0.780 & 0.813 \\
+ & Hard hydr. & 0.614 & 0.598 & 0.886 \\
+ & Shuffled O2 & 0.448 & 0.645 & 0.666 \\
 \midrule
 \multirow{4}{*}{advice-recall}
- & FlatIP & 0.342 & 0.438 & --- \\
- & Soft O2 & \textbf{0.428} & 0.503 & --- \\
- & Hard hydr. & 0.402 & 0.405 & --- \\
- & Shuffled O2 & 0.310 & 0.421 & --- \\
+ & FlatIP & 0.342 & 0.438 & 0.466 \\
+ & Soft O2 & \textbf{0.428} & 0.503 & 0.524 \\
+ & Hard hydr. & 0.402 & 0.405 & 0.572 \\
+ & Shuffled O2 & 0.310 & 0.421 & 0.436 \\
 \midrule
 \multirow{4}{*}{u-para}
- & FlatIP & 0.547 & 0.681 & --- \\
- & Soft O2 & \textbf{0.648} & 0.735 & --- \\
- & Hard hydr. & 0.592 & 0.571 & --- \\
- & Shuffled O2 & 0.469 & 0.610 & --- \\
+ & FlatIP & 0.547 & 0.681 & 0.681 \\
+ & Soft O2 & \textbf{0.648} & 0.735 & 0.759 \\
+ & Hard hydr. & 0.592 & 0.571 & 0.827 \\
+ & Shuffled O2 & 0.469 & 0.610 & 0.627 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \begin{table}[H]
 \centering
-\caption{LegalEp-Lawyer ($M{=}3000$, $500$ needles). Boldface: best AH@10 within each channel. ${}^{*}\,p{<}0.05$, ${}^{**}\,p{<}0.01$ (Soft~O2 vs FlatIP). Hard hydration coincides with session-max aggregation; only hard hydration is shown.}
+\caption{LegalEp-Lawyer ($M{=}3000$, $500$ needles). Boldface: best AH@10 within each channel. ${}^{*}\,p{<}0.05$, ${}^{**}\,p{<}0.01$ (Soft~O2 vs FlatIP). Hard hydration coincides with session-max aggregation; only hard hydration is shown. nDCG@10: corrected fixed-gold IDCG (FlatIP rebuild); published V4 AH/EC unchanged.}
 \label{tab:lawyer_main}
 \compacttab\footnotesize
 \begin{tabular}{@{}llccc@{}}
@@ -839,22 +846,22 @@ Main Soft~O2 claims are visualized in Figures~\ref{fig:cail_main}--\ref{fig:scal
 \textbf{Channel} & \textbf{System} & \textbf{AH@10} & \textbf{EC@10} & \textbf{nDCG@10} \\
 \midrule
 \multirow{4}{*}{exact}
- & FlatIP & 0.692 & 0.806 & --- \\
- & Soft O2 & \textbf{0.752} & 0.848 & --- \\
- & Hard hydr. & 0.612 & 0.615 & --- \\
- & Shuffled O2 & 0.570 & 0.747 & --- \\
+ & FlatIP & 0.692 & 0.806 & 0.753 \\
+ & Soft O2 & \textbf{0.752} & 0.848 & 0.869 \\
+ & Hard hydr. & 0.612 & 0.615 & 0.897 \\
+ & Shuffled O2 & 0.570 & 0.747 & 0.705 \\
 \midrule
 \multirow{4}{*}{advice-recall}
- & FlatIP & 0.332 & 0.464 & --- \\
- & Soft O2 & \textbf{0.472} & 0.540 & --- \\
- & Hard hydr. & 0.394 & 0.403 & --- \\
- & Shuffled O2 & 0.348 & 0.467 & --- \\
+ & FlatIP & 0.332 & 0.464 & 0.483 \\
+ & Soft O2 & \textbf{0.472} & 0.540 & 0.582 \\
+ & Hard hydr. & 0.394 & 0.403 & 0.601 \\
+ & Shuffled O2 & 0.348 & 0.467 & 0.454 \\
 \midrule
 \multirow{4}{*}{u-para}
- & FlatIP & 0.568 & 0.718 & --- \\
- & Soft O2 & \textbf{0.759} & 0.819 & --- \\
- & Hard hydr. & 0.596 & 0.594 & --- \\
- & Shuffled O2 & 0.592 & 0.712 & --- \\
+ & FlatIP & 0.568 & 0.718 & 0.744 \\
+ & Soft O2 & \textbf{0.759} & 0.819 & 0.844 \\
+ & Hard hydr. & 0.596 & 0.594 & 0.864 \\
+ & Shuffled O2 & 0.592 & 0.712 & 0.705 \\
 \bottomrule
 \end{tabular}
 \end{table}

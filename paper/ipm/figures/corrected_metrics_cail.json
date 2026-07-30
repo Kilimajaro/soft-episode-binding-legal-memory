@@ -27,6 +27,220 @@
           "session_miss": 0.0016666666666666668
         },
         "n": 600
+      },
+      "parent_hydrate": {
+        "session_hit@k": 0.9983333333333333,
+        "answer_hit@k": 0.9833333333333333,
+        "episode_completeness@k": 0.9787962962962962,
+        "ndcg@k": 0.8468432856960347,
+        "mrr@k": 0.9800277777777777,
+        "failure_taxonomy": {
+          "complete": 0.9833333333333333,
+          "incomplete": 0.015,
+          "answer_only": 0.0,
+          "session_miss": 0.0016666666666666668
+        },
+        "ah_ci": {
+          "mean": 0.9833333333333333,
+          "ci_low": 0.9732916666666667,
+          "ci_high": 0.9933333333333333,
+          "n": 600,
+          "n_boot": 1000
+        },
+        "n": 600
+      },
+      "shuffled_o2": {
+        "session_hit@k": 0.9983333333333333,
+        "answer_hit@k": 0.3466666666666667,
+        "episode_completeness@k": 0.3668320105820106,
+        "ndcg@k": 0.36944023064112713,
+        "mrr@k": 0.985,
+        "failure_taxonomy": {
+          "complete": 0.3466666666666667,
+          "incomplete": 0.6516666666666666,
+          "answer_only": 0.0,
+          "session_miss": 0.0016666666666666668
+        },
+        "ah_ci": {
+          "mean": 0.3466666666666667,
+          "ci_low": 0.30666666666666664,
+          "ci_high": 0.3850416666666666,
+          "n": 600,
+          "n_boot": 1000
+        },
+        "n": 600
+      }
+    },
+    "u1_exact": {
+      "dense_flat": {
+        "session_hit@k": 1.0,
+        "answer_hit@k": 0.8316666666666667,
+        "episode_completeness@k": 0.5542936507936509,
+        "ndcg@k": 0.5538873490006424,
+        "mrr@k": 0.97,
+        "failure_taxonomy": {
+          "complete": 0.8316666666666667,
+          "incomplete": 0.16833333333333333,
+          "answer_only": 0.0,
+          "session_miss": 0.0
+        },
+        "ah_ci": {
+          "mean": 0.8316666666666667,
+          "ci_low": 0.8033333333333333,
+          "ci_high": 0.86,
+          "n": 600,
+          "n_boot": 1000
+        },
+        "n": 600
+      },
+      "dense_o2": {
+        "session_hit@k": 1.0,
+        "answer_hit@k": 0.96,
+        "episode_completeness@k": 0.9235291005291005,
+        "ndcg@k": 0.7764927647509748,
+        "mrr@k": 0.97,
+        "failure_taxonomy": {
+          "complete": 0.96,
+          "incomplete": 0.04,
+          "answer_only": 0.0,
+          "session_miss": 0.0
+        },
+        "ah_ci": {
+          "mean": 0.96,
+          "ci_low": 0.9416666666666667,
+          "ci_high": 0.975,
+          "n": 600,
+          "n_boot": 1000
+        },
+        "n": 600
+      },
+      "parent_hydrate": {
+        "session_hit@k": 1.0,
+        "answer_hit@k": 0.9983333333333333,
+        "episode_completeness@k": 0.9973756613756612,
+        "ndcg@k": 0.8638320758816548,
+        "mrr@k": 0.9587083333333332,
+        "failure_taxonomy": {
+          "complete": 0.9983333333333333,
+          "incomplete": 0.0016666666666666668,
+          "answer_only": 0.0,
+          "session_miss": 0.0
+        },
+        "ah_ci": {
+          "mean": 0.9983333333333333,
+          "ci_low": 0.995,
+          "ci_high": 1.0,
+          "n": 600,
+          "n_boot": 1000
+        },
+        "n": 600
+      },
+      "shuffled_o2": {
+        "session_hit@k": 1.0,
+        "answer_hit@k": 0.695,
+        "episode_completeness@k": 0.4365740740740741,
+        "ndcg@k": 0.4113916276881172,
+        "mrr@k": 0.97,
+        "failure_taxonomy": {
+          "complete": 0.695,
+          "incomplete": 0.305,
+          "answer_only": 0.0,
+          "session_miss": 0.0
+        },
+        "ah_ci": {
+          "mean": 0.695,
+          "ci_low": 0.6566666666666666,
+          "ci_high": 0.7316666666666667,
+          "n": 600,
+          "n_boot": 1000
+        },
+        "n": 600
+      }
+    },
+    "u_last": {
+      "dense_flat": {
+        "session_hit@k": 0.9983333333333333,
+        "answer_hit@k": 0.425,
+        "episode_completeness@k": 0.4325079365079365,
+        "ndcg@k": 0.419644822856924,
+        "mrr@k": 0.9830555555555556,
+        "failure_taxonomy": {
+          "complete": 0.425,
+          "incomplete": 0.5733333333333334,
+          "answer_only": 0.0,
+          "session_miss": 0.0016666666666666668
+        },
+        "ah_ci": {
+          "mean": 0.425,
+          "ci_low": 0.38666666666666666,
+          "ci_high": 0.46166666666666667,
+          "n": 600,
+          "n_boot": 1000
+        },
+        "n": 600
+      },
+      "dense_o2": {
+        "session_hit@k": 0.9983333333333333,
+        "answer_hit@k": 0.945,
+        "episode_completeness@k": 0.9188068783068782,
+        "ndcg@k": 0.790674679637904,
+        "mrr@k": 0.9830555555555556,
+        "failure_taxonomy": {
+          "complete": 0.945,
+          "incomplete": 0.05333333333333334,
+          "answer_only": 0.0,
+          "session_miss": 0.0016666666666666668
+        },
+        "ah_ci": {
+          "mean": 0.945,
+          "ci_low": 0.925,
+          "ci_high": 0.9616666666666667,
+          "n": 600,
+          "n_boot": 1000
+        },
+        "n": 600
+      },
+      "parent_hydrate": {
+        "session_hit@k": 0.9983333333333333,
+        "answer_hit@k": 0.9833333333333333,
+        "episode_completeness@k": 0.9770000000000001,
+        "ndcg@k": 0.8544841857564671,
+        "mrr@k": 0.9779166666666667,
+        "failure_taxonomy": {
+          "complete": 0.9833333333333333,
+          "incomplete": 0.015,
+          "answer_only": 0.0,
+          "session_miss": 0.0016666666666666668
+        },
+        "ah_ci": {
+          "mean": 0.9833333333333333,
+          "ci_low": 0.9732916666666667,
+          "ci_high": 0.9933333333333333,
+          "n": 600,
+          "n_boot": 1000
+        },
+        "n": 600
+      },
+      "shuffled_o2": {
+        "session_hit@k": 0.9983333333333333,
+        "answer_hit@k": 0.2866666666666667,
+        "episode_completeness@k": 0.3592526455026455,
+        "ndcg@k": 0.34789721205315716,
+        "mrr@k": 0.9830555555555556,
+        "failure_taxonomy": {
+          "complete": 0.2866666666666667,
+          "incomplete": 0.7116666666666667,
+          "answer_only": 0.0,
+          "session_miss": 0.0016666666666666668
+        },
+        "ah_ci": {
+          "mean": 0.2866666666666667,
+          "ci_low": 0.25,
+          "ci_high": 0.3233333333333333,
+          "n": 600,
+          "n_boot": 1000
+        },
+        "n": 600
       }
     }
   }
