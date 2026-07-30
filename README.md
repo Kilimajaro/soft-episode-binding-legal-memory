@@ -8,18 +8,26 @@ Companion release for the IPM manuscript:
 
 **Repository:** https://github.com/Kilimajaro/soft-episode-binding-legal-memory
 
+## Quick start (smoke)
+
+```bash
+bash scripts/reproduce_ipm_smoke.sh
+```
+
+This checks package layout, metric tests (when present), main-table artifacts, and compiles the anonymous manuscript with `tectonic` if available. Full Soft~O2 grids require Ollama embeddings and are documented under `BIMS-LEGAL-code/README.md`.
+
 ## Packages
 
 | Folder | Purpose |
 |--------|---------|
 | [`BIMS-LEGAL-code/`](BIMS-LEGAL-code/) | Reproducible code: BIMS core, O1–O3, Soft O2 / Soft O2-C, eval scripts, table/figure generators |
 | [`BIMS-LEGAL-dataset/`](BIMS-LEGAL-dataset/) | Evaluation corpora, Mix manifests, and primary `results.json` artifacts |
+| [`paper/ipm/`](paper/ipm/) | Author manuscript, anonymous manuscript, and title page |
 
-Rebuild both packages from the development checkout:
+Rebuild publication folders from the development checkout:
 
 ```bash
 bash scripts/build_publication_packages.sh
-bash scripts/publish_to_github.sh   # sync to soft-episode-binding-legal-memory
 ```
 
 ## Manuscript alignment (2026-07)
@@ -33,6 +41,11 @@ bash scripts/publish_to_github.sh   # sync to soft-episode-binding-legal-memory
 | QA audit ($N{=}270$) | `release_summaries/qa/` |
 | Scale curve | `primary_results/scale_curve.json` |
 
+## Licences
+
+- **Code** in this repository: MIT (see `LICENSE`).
+- **Upstream corpora** (CAIL2024, DISC-Law-SFT, Lawyer-LLaMA): remain under their original licences; processed LegalEp/LegalMem artifacts are derived research releases.
+
 ## Citation
 
-If you use this release, please cite the IPM manuscript and attribute upstream corpora (CAIL2024, DISC-Law-SFT, Lawyer-LLaMA) under their original licenses.
+If you use this release, please cite the IPM manuscript and attribute upstream corpora under their original licences.

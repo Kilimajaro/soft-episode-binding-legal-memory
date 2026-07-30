@@ -13,23 +13,29 @@
 
 \author[lab,idl]{Linrui Han\corref{cor1}}
 \ead{linrui_han@163.com}
-\cortext[cor1]{Corresponding author.}
+\cortext[cor1]{Corresponding author. Postal address: No.~25 Xitucheng Road, Haidian District, Beijing 100088, China.}
 
 \affiliation[uw]{organization={University of Winnipeg},
+            addressline={515 Portage Avenue},
             city={Winnipeg},
+            postcode={R3B 2E9},
             state={Manitoba},
             country={Canada}}
 
 \affiliation[lab]{organization={Ministry of Education Laboratory of Philosophy and Social Sciences -- The CUPL Data Law Lab, China University of Political Science and Law},
+            addressline={No.~25 Xitucheng Road, Haidian District},
             city={Beijing},
+            postcode={100088},
             country={China}}
 
 \affiliation[idl]{organization={The Institute for Data Law, China University of Political Science and Law},
+            addressline={No.~25 Xitucheng Road, Haidian District},
             city={Beijing},
+            postcode={100088},
             country={China}}
 
 \begin{abstract}
-Title-page abstract omitted; see blind manuscript.
+Recovering prior client-specific advice from a legal consultation archive is difficult: dense retrieval may rank a relevant question highly while omitting the lawyer's answer, an episode incompleteness failure under same-domain interference. BIMS-LEGAL indexes Chinese consultation logs in a dual store and uses Soft~O2 session binding with attenuated score inheritance. Exact replay is a surface-form reference; main channels are paraphrase, follow-up, and advice-recall. Soft~O2 improves over FlatIP on a shared turn-level index; Soft~O2-C and gated Hybrid extend binding under Mix off-session gold. We report Answer Hit, Episode Completeness, graded nDCG, a failure taxonomy, and paired significance tests.
 \end{abstract}
 \end{frontmatter}
 
@@ -43,12 +49,13 @@ The authors declare that they have no known competing financial interests or per
 \section*{Data availability}
 Code, processed evaluation corpora, and primary result files are publicly available at
 \url{https://github.com/Kilimajaro/soft-episode-binding-legal-memory}.
-Upstream legal corpora remain under their original licenses: CAIL2024 consultation tracks; Hugging Face \texttt{ShengbinYue/DISC-Law-SFT} and \texttt{Skepsun/lawyer\_llama\_data}.
+Upstream legal corpora remain under their original licences: CAIL2024 consultation tracks; Hugging Face \texttt{ShengbinYue/DISC-Law-SFT} and \texttt{Skepsun/lawyer\_llama\_data}.
+Code in the repository is released under the MIT Licence; redistributors of derived corpora should consult each upstream licence.
 
 \section*{Acknowledgements}
 The authors thank the Data Law Laboratory of China University of Political Science and Law for computational resources.
 
-\section*{Declaration of generative AI use}
-LLM-as-judge QA uses documented Ollama models as generator and judge in the reported dual-protocol sample ($N{=}270$); prompts and settings are documented in the manuscript. No generative AI was used to fabricate experimental numbers.
+\section*{Declaration of generative AI use in research methods}
+Large language models are used as generator and independent judge in the dual-protocol QA audit ($N{=}270$); prompts and settings are documented in the manuscript Methods~/Discussion. No generative AI system was used to fabricate experimental numbers.
 
 \end{document}

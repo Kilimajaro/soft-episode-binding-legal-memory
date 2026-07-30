@@ -38,27 +38,34 @@
 \ead{xu-l81@webmail.uwinnipeg.ca}
 \author[lab,idl]{Linrui Han\corref{cor1}}
 \ead{linrui_han@163.com}
-\cortext[cor1]{Corresponding author.}
+\cortext[cor1]{Corresponding author. Postal address: No.~25 Xitucheng Road, Haidian District, Beijing 100088, China.}
 \affiliation[uw]{organization={University of Winnipeg},
+            addressline={515 Portage Avenue},
             city={Winnipeg},
+            postcode={R3B 2E9},
             state={Manitoba},
             country={Canada}}
 \affiliation[lab]{organization={Ministry of Education Laboratory of Philosophy and Social Sciences -- The CUPL Data Law Lab, China University of Political Science and Law},
+            addressline={No.~25 Xitucheng Road, Haidian District},
             city={Beijing},
+            postcode={100088},
             country={China}}
 \affiliation[idl]{organization={The Institute for Data Law, China University of Political Science and Law},
+            addressline={No.~25 Xitucheng Road, Haidian District},
             city={Beijing},
+            postcode={100088},
             country={China}}
 
 \begin{abstract}
 \sloppy
-Recovering prior client-specific advice from a legal consultation archive is difficult because dense retrieval may rank a relevant question turn highly while omitting the lawyer's answer---an \emph{episode incompleteness} failure under same-domain interference.
-BIMS-LEGAL is a dual-store system for Chinese legal consultation logs: a fast episodic turn index with session identifiers and a slower BIRCH semantic store.
-Soft~O2 performs turn-level session binding by giving siblings attenuated inherited scores ($\beta s$) rather than hard score copy.
-We evaluate exact replay as diagnostic and use paraphrase, follow-up, and advice-recall as primary non-exact channels.
-Primary Soft~O2 contrasts use a shared turn-level index against dense FlatIP, hard hydration, and shuffled-$sid$ controls; Soft~O2 is strongest on non-exact channels where a partial episode hit can bind its answer sibling.
-Soft~O2-C and gated Hybrid complement Soft~O2 under a Mix cross-session protocol in which some gold evidence is held off-session; Soft~O2 remains the default when query and gold already share a session identifier.
-We report graded nDCG alongside Answer Hit and Episode Completeness, with paired significance tests and a failure taxonomy separating complete, incomplete, and missed-session retrieval.
+Recovering prior client-specific advice from a legal consultation archive is difficult: dense retrieval may rank a relevant question highly while omitting the lawyer's answer, an \emph{episode incompleteness} failure under same-domain interference.
+BIMS-LEGAL indexes Chinese consultation logs in a dual store---a fast episodic turn index with session identifiers and a slower BIRCH semantic store.
+Soft~O2 binds session siblings by attenuated score inheritance ($\beta s$) rather than hard score copy.
+Exact replay is reported only as a surface-form reference; the main channels are paraphrase, follow-up, and advice-recall.
+On a shared turn-level index Soft~O2 improves over dense FlatIP, with hard hydration and shuffled-$sid$ controls separating binding from score copying and membership noise.
+Gains are largest where a partial episode hit can pull in its answer sibling.
+Soft~O2-C and gated Hybrid extend binding to BIRCH clusters under a Mix protocol with off-session gold; when query and gold already share a session, Soft~O2 is preferred.
+We report Answer Hit, Episode Completeness, graded nDCG with fixed gold-session IDCG, a complete/incomplete/miss failure taxonomy, and paired significance tests.
 \end{abstract}
 
 \begin{keyword}
@@ -79,9 +86,8 @@ Classical legal information retrieval (IR) mainly targets \emph{external} author
 Memory-augmented dialogue systems recover evidence from evolving conversation logs \cite{wu2025longmemeval, maharana2024evaluating, packer2023memgpt}.
 The gap addressed here is \emph{internal consultation memory}: retrieving prior client-specific advice from a growing same-domain archive under lexical interference.
 
-BIMS-LEGAL is a dual-store Brain-Inspired Memory System for legal consultation archives, designed and evaluated in this study.
-The \emph{systemic contribution} is a dual-store architecture that separates a fast episodic pathway (timestamped turn embeddings with speaker role and session identifier $sid$) from a slow semantic pathway based on Balanced Iterative Reducing and Clustering using Hierarchies (BIRCH) with deferred consolidation \cite{zhang1996birch}.
-Complementary Learning Systems (CLS) theory \cite{mcclelland1995complementary, kumaran2016} supplies an architectural analogy for this dual-pathway design, not an empirical claim about biological memory.
+BIMS-LEGAL (Brain-Inspired Memory System for legal consultation archives) separates a fast episodic pathway---timestamped turn embeddings with speaker role and session identifier $sid$---from a slow semantic pathway based on Balanced Iterative Reducing and Clustering using Hierarchies (BIRCH) with deferred consolidation \cite{zhang1996birch}.
+Complementary Learning Systems (CLS) theory \cite{mcclelland1995complementary, kumaran2016} is used only as an architectural analogy for that dual-pathway split.
 Under same-domain interference, dense turn retrieval in a vector database often returns a question turn while its answer sibling remains outside top-$k$---a system-level episodic memory failure we term \emph{episode incompleteness}, distinct from a full session miss and exacerbated by IVFPQ score collapse and context fragmentation at moderate archive sizes.
 
 The \emph{algorithmic contributions} are soft binding operators that complete episodes without hard score copy:
@@ -89,7 +95,7 @@ The \emph{algorithmic contributions} are soft binding operators that complete ep
     \item \textbf{Soft~O2 (session soft binding).} When a turn is retrieved with score $s$, siblings sharing $sid$ inherit $\max(s_{t'},\,\beta\cdot s)$, surfacing answer turns under question-hit~/~answer-miss while preserving rank competition among candidates.
     \item \textbf{Soft~O2-C and gated Hybrid (cluster soft binding).} The same soft-inheritance rule applies within BIRCH clusters when gold evidence is not co-session with the query; Hybrid triggers cluster binding only on direct dense hits to avoid displacing same-session siblings.
 \end{itemize}
-Two \textbf{implementation and scale design operators} support rigorous large-scale shared-store experiments but are not standalone algorithmic contributions:
+Two \textbf{implementation operators} support large shared-store experiments but are not standalone algorithmic contributions:
 \begin{itemize}
     \item \textbf{O1 (exact FlatIP indexing).} At hundreds-to-thousands of turns, IVFPQ product quantization is under-trained and collapses Answer Hit; FlatIP restores faithful turn scores so Soft~O2 inherits uncorrupted sibling signals.
     \item \textbf{O3 (bulk-load consolidation).} Deferred BIRCH and disk writes make archive construction tractable without changing retrieval semantics.
@@ -98,24 +104,24 @@ Two \textbf{implementation and scale design operators} support rigorous large-sc
 We ask four research questions:
 
 \begin{itemize}
-    \item \textbf{RQ1.} Under same-domain interference, does episode incompleteness (question hit~/~answer miss) dominate full session miss?
+    \item \textbf{RQ1.} Under same-domain interference, how prevalent is episode incompleteness (question hit~/~answer miss) relative to full session miss?
     \item \textbf{RQ2.} Do Soft~O2 and Soft~O2-C address episode incompleteness under measured index distortion, and what incremental gains does Soft~O2 provide over FlatIP and hard parent hydration?
     \item \textbf{RQ3.} On the \emph{same} LegalEp~/LegalMem stores, when is the slow (BIRCH) pathway effective? Does Soft~O2-C help under standard same-session gold, and under a fair Mix of same-/cross-session gold?
-    \item \textbf{RQ4.} Across CAIL multi-turn and LegalEp paraphrase~/advice-recall channels, how large and session-tied are Soft~O2 gains, and how do Soft~O2 and Soft~O2-C~/Hybrid complement each other?
+    \item \textbf{RQ4.} Across CAIL multi-turn and LegalEp paraphrase~/advice-recall channels, how large and session-tied are Soft~O2 gains, and when do Soft~O2-C~/Hybrid help beyond Soft~O2?
 \end{itemize}
 
 \paragraph{Contributions.}
 \begin{enumerate}
     \item A dual-store memory architecture for Chinese legal consultation archives, separating fast episodic turn recovery from slower BIRCH semantic integration under same-domain interference.
-    \item Soft~O2, a turn-level session soft-binding operator that addresses episode incompleteness without hard parent hydration or session-max score copy---the primary algorithmic claim before Soft~O2-C.
-    \item A conservative three-candidate diagnostic of Soft~O2 score competition using the gap ratio $\rho=s_d/s_h$; default $\beta{=}0.98$ is chosen by validation sweep, not by a closed-form optimum.
-    \item Turn-level lexical and fusion controls (BM25-turn, dense+BM25 RRF, cross-encoder) under the same evidence unit as Soft~O2; joint episode / document-level indexes are a different input granularity and are not claimed as Soft~O2 competitors here.
-    \item Soft~O2-C and gated Hybrid under a Mix cross-session protocol, together with graded nDCG, a failure taxonomy, and paired significance reporting.
-    \item O1 exact FlatIP and O3 bulk-load consolidation as implementation operators enabling the shared-store ablations reported here.
+    \item Soft~O2, a turn-level session soft-binding operator that recovers missing answer siblings without hard parent hydration or session-max score copy.
+    \item A three-candidate score-competition account of Soft~O2 using the gap ratio $\rho=s_d/s_h$, with default $\beta{=}0.98$ chosen by validation sweep.
+    \item Turn-level lexical and fusion controls (BM25-turn, dense+BM25 RRF, cross-encoder) under the same evidence unit as Soft~O2, with joint episode indexing treated as a coarser alternative design rather than a turn-binding baseline.
+    \item Soft~O2-C and gated Hybrid on Mix cross-session reconstructions, graded nDCG with fixed gold-session IDCG, a failure taxonomy, and paired significance tests.
+    \item O1 exact FlatIP and O3 bulk-load consolidation as implementation operators for the shared-store ablations.
 \end{enumerate}
 
 Section~\ref{sec:related} reviews related work.
-Section~\ref{sec:method} presents BIMS-LEGAL operators and the Soft~O2 diagnostic model.
+Section~\ref{sec:method} presents BIMS-LEGAL operators and the Soft~O2 attenuation analysis.
 Section~\ref{sec:protocol} details corpora, metrics, and protocols.
 Section~\ref{sec:experiments} reports results.
 Section~\ref{sec:discussion} discusses implications and limitations.
@@ -140,7 +146,8 @@ Memory architectures for dialogue agents extend context via hierarchical paging,
 LongMemEval and LoCoMo evaluate long-horizon recall and QA over personal conversation logs \cite{wu2025longmemeval, maharana2024evaluating}, while broader memory-agent surveys emphasize persistence beyond the context window \cite{wu2025memory, Tan2025}.
 Recent conversational RAG work stresses reuse of historical search evidence across turns \cite{mo2026historical}.
 BIMS-LEGAL positions its dual-store contribution at this intersection: episodic turn embeddings with $sid$ for same-session recovery (Soft~O2), and BIRCH centroids with Soft~O2-C for cross-session recovery when query and gold evidence occupy different sessions but share thematic structure \cite{zhang1996birch}.
-Soft~O2 directly addresses the episodic retrieval challenge that parent-document hydration and session-max aggregation handle via hard score copy: under dense same-domain interference, a question turn can dominate top-$k$ while its answer sibling remains absent, producing fluent yet ungrounded downstream generation unless siblings enter under attenuated inherited scores.
+Under dense same-domain interference, a question turn can occupy top-$k$ while its answer sibling is absent.
+Parent-document hydration and session-max aggregation recover that sibling by hard score copy; Soft~O2 instead injects attenuated inherited scores so episode completion does not erase rank competition among unrelated candidates.
 
 \subsection{Session-aware retrieval}
 Parent-document hydration, session aggregation, and joint session indexing are standard session-aware mechanisms for attaching sibling context to a dense hit.
@@ -168,8 +175,7 @@ Soft O2-C & Turn+cluster & Soft $\beta_c s$ & Soft & Yes \\
 \end{table}
 {\footnotesize $^*$On the reported corpora, session-max rankings coincide with hard parent hydration under full-sibling expansion; main tables report a single hard-expansion baseline. Soft~O2 denotes session soft binding; Soft~O2-C denotes cluster soft binding on the BIRCH pathway.}
 
-We reuse CLS vocabulary as an architectural analogy for BIMS-LEGAL: turn embeddings with timestamps, roles, and session identifiers as episodic elements; Soft~O2 as episode binding on the episodic pathway; BIRCH centroids with Soft~O2-C as semantic integration on the slow pathway; and shared-store distractors as interference.
-The dual-store split is the systemic design; Soft~O2 and Soft~O2-C are the algorithmic mechanisms evaluated on Chinese legal consultation archives.
+In short, the dual-store split is the system design, and Soft~O2~/Soft~O2-C are the operators evaluated on Chinese legal consultation archives.
 
 \section{Method: BIMS-LEGAL}\label{sec:method}
 
@@ -194,7 +200,7 @@ The returned list is the top-$k$ of the bound set under the rewritten scores.
 \begin{figure}[t]
     \centering
 \includegraphics[width=0.98\linewidth]{fig1_architecture.png}
-\caption{BIMS-LEGAL dual-store pipeline. (A)~Episodic turn indexing and BIRCH semantic clustering (O3 bulk-load consolidation). (B)~Query-time dense retrieval under O1 FlatIP with Soft~O2 session binding and Soft~O2-C cluster binding (algorithmic core); O1 and O3 are implementation operators. (C)~Evaluation order: shared-store ablations, CAIL~/LegalEp Soft~O2 grids, same-store cluster validation, and fair Mix Soft~O2-C.}
+\caption{BIMS-LEGAL dual-store pipeline. (A)~Episodic turn indexing and BIRCH semantic clustering (O3 bulk-load). (B)~Query-time FlatIP retrieval with Soft~O2 session binding and Soft~O2-C cluster binding; O1 and O3 are implementation operators. (C)~Evaluation order: shared-store ablations, Soft~O2 grids, and Mix Soft~O2-C.}
     \label{fig:bims_architecture}
 \end{figure}
 
@@ -216,7 +222,7 @@ Let $\widehat{S}$ denote the similarity induced by an ANN backend.
 At hundreds to a few thousand turns, FAISS IVFPQ is often under-trained, so $\|\widehat{S}-S\|$ is large enough to reorder turns and break Soft~O2 inheritance.
 O1 forces $\widehat{S}=S$ via exact FlatIP (inner-product search on $\ell_2$-normalized embeddings).
 Quantization error depresses Answer Hit (Table~\ref{tab:scale}: IVFPQ AH $0.330$ at $M{=}1600$ on LegalEp-DISC exact).
-O1 is an engineering prerequisite for rigorous Soft~O2 evaluation, not a standalone retrieval algorithm.
+O1 is an engineering prerequisite for Soft~O2 evaluation, not a standalone retrieval algorithm.
 
 \paragraph{O3: Bulk-load consolidation.}
 During bulk construction, O3 replaces the per-insert update
@@ -243,7 +249,7 @@ Soft~O2 is $\mathsf{SoftBind}(\cdot;\mathrm{Sib},\beta)$ with default $\beta{=}0
 Hard parent hydration is the special case $\beta{=}1$ with forced insertion of all siblings; session-max replaces each member score by $\max_{t\in sid}s_t$.
 \end{definition}
 
-Algorithm~\ref{alg:soft-o2} states the deployed Soft~O2 procedure (expand + completeness truncate), matching the public implementation.
+Algorithm~\ref{alg:soft-o2} states Soft~O2 as sibling expansion followed by a completeness pass and top-$k$ truncation, matching the public implementation.
 
 \begin{algorithm}[t]
 \caption{Soft~O2 session soft binding}
@@ -267,13 +273,14 @@ Algorithm~\ref{alg:soft-o2} states the deployed Soft~O2 procedure (expand + comp
 \end{algorithmic}
 \end{algorithm}
 
-\subsection{Soft O2 attenuation as diagnostic score competition}\label{sec:beta-theory}
+\subsection{Soft O2 attenuation and score competition}\label{sec:beta-theory}
 
 The attenuation $\beta$ controls how strongly a retrieved turn promotes its session siblings.
-We treat the following as a \emph{diagnostic} model, not a proof of a universal optimum.
-In particular, a zero-margin hinge objective with $\beta\in(0,1]$ does not identify a meaningful quantile solution: when the rank margin is zero, the rank term is inactive for all $\beta<1$, so its weight cannot determine a closed-form optimum.
+Availability of the injected sibling rises with $\beta$, while fidelity of the direct hit falls as $\beta\to 1$.
+We characterize that trade-off with a three-candidate score-competition model and choose $\beta$ by validation sweep rather than by a closed-form optimum.
+A zero-margin hinge objective on $\beta\in(0,1]$ is uninformative for this choice: its rank term vanishes for all $\beta<1$.
 
-\begin{definition}[Three-candidate diagnostic model]\label{def:three-cand}
+\begin{definition}[Three-candidate score-competition model]\label{def:three-cand}
 For a query whose dense retrieval directly hits a gold turn $h$ with fused score $s_h>0$, let $a$ be the gold answer sibling and let $d$ be the strongest non-session distractor in a wide candidate pool, with scores $s_a$ and $s_d$.
 Soft~O2 rewrites
 \begin{equation}\label{eq:soft-rewrite}
@@ -297,20 +304,21 @@ Availability follows from $\beta s_h>s_d$, i.e.\ $\beta>\rho$.
 Rank preservation requires $s'_a<s_h$, which reduces to $\beta<1$ when $s_h>0$.
 \end{proof}
 
-\paragraph{Exploratory soft-rank diagnostic.}
-We also minimize an exploratory soft pairwise diagnostic on a validation grid,
+\paragraph{Soft-rank visualization and sweep.}
+On a validation grid we also plot the soft pairwise surrogate
 \begin{equation}\label{eq:softrank}
 \mathcal{L}_{\mathrm{sr}}(\beta;\rho)
 =-\log\sigma\!\bigl(\tau(\beta-\rho)\bigr)
 -\gamma\log\sigma\!\bigl(\tau(1-\beta)\bigr),
 \end{equation}
 with logistic $\sigma$, temperature $\tau$, and rank weight $\gamma$.
-This visualization is useful for studying the availability--ranking trade-off, but it depends on the diagnostic pool, query channel, and chosen hyperparameters.
-Default $\beta{=}0.98$ is selected from the sweep in Table~\ref{tab:beta}, where $\{0.90,0.95,0.98\}$ form a stable high-AH band.
+The curve is a visualization of the availability--ranking trade-off under the measured $\rho$ pool; it is not used as a fitted optimum.
+Default $\beta{=}0.98$ is taken from the AH sweep in Table~\ref{tab:beta}, where $\{0.90,0.95,0.98\}$ form a stable high-AH band on CAIL follow-up and LegalEp paraphrase as well as exact grids.
+Advice-recall uses the same default without a separate gap-ratio fit.
 
 \begin{table}[t]
 \centering
-\caption{Diagnostic gap-ratio statistics on LegalEp $M{=}3000$ stores (exact-channel query proxy; strongest measured non-session distractor). These are calibration diagnostics, not derivations of an optimal $\beta$.}
+\caption{Gap-ratio statistics on LegalEp $M{=}3000$ stores (exact-channel query proxy; strongest measured non-session distractor). Default $\beta$ is chosen by the AH sweep in Table~\ref{tab:beta}.}
 \label{tab:beta-theory}
 \compacttab\footnotesize
 \begin{tabular}{@{}lcccc@{}}
@@ -324,8 +332,8 @@ LegalEp-Lawyer & $0.662$ & $0.815$ & $0.998$ & $0.98$ \\
 \end{table}
 
 Fair controls include hard parent hydration, session-max aggregation, and shuffled $sid$.
-On two-turn LegalEp episodes, hard hydration and session-max coincide under full-sibling expansion; we report a single hard-expansion baseline.
-Indexes that concatenate an entire question--answer episode into one retrieval unit (BM25-joint or dense joint-episode documents) change the input granularity and are therefore outside the Soft~O2 turn-level protocol; we do not report them as Soft~O2 competitors.
+On two-turn LegalEp episodes, hard hydration and session-max coincide under full-sibling expansion, so tables report a single hard-expansion baseline.
+Concatenating a full question--answer episode into one retrieval unit (BM25-joint or dense joint-episode documents) changes the evidence unit from turns to documents; we treat that design as an alternative indexing choice rather than a Soft~O2 turn-binding baseline (Section~\ref{sec:protocol}).
 
 \subsection{Semantic consolidation and Soft O2-C}\label{sec:soft-o2c}
 Semantic consolidation follows a BIRCH-style dual-phase procedure \cite{zhang1996birch}.
@@ -367,7 +375,8 @@ A per-cluster sibling budget $B_c$ caps $|\mathrm{Clus}(t)\cap\mathrm{Injected}|
 
 Gated Hybrid (Algorithm~\ref{alg:hybrid}) injects only \emph{cross-session} cluster siblings relative to sessions already covered by dense~/Soft~O2 hits, and triggers cluster binding only on direct dense hits.
 This prevents thematic confusers from displacing same-session siblings already recovered by Soft~O2.
-Soft~O2 and Soft~O2-C are complementary: Soft~O2 is the default binder when query and gold share $sid$; Soft~O2-C is required when gold evidence is held in a different session but the same cluster.
+Soft~O2 applies when query and gold share $sid$.
+Soft~O2-C is the cluster-pathway operator when gold evidence lies in another session of the same thematic cluster.
 
 \section{Corpora and Evaluation Protocol}\label{sec:protocol}
 
@@ -394,7 +403,7 @@ Each episode is a natural (question, answer) pair with session identifier $sid$.
 Reconstruction applies length bounds and legal-content filters, excludes exam prompts, removes near-duplicates, separates needles from distractors under a fixed seed, and retains an audit subsample.
 After filtering, each LegalEp corpus retains $3500$ passed sessions ($500$ needles, $2500$ distractors at the $M{=}3000$ primary tier).
 
-\paragraph{Query-channel policy (addressing exact-match shortcuts).}
+\paragraph{Query-channel policy.}
 Exact replay uses the stored user question and is reported only as a \emph{diagnostic} upper bound on surface-form recovery.
 Primary claims use paraphrase, Uk-followup~/U-last, and advice-recall queries whose surface form is not identical to the stored question text; paraphrase and advice-recall templates are generated under a fixed seed and audited on a subsample.
 LegalMem-MT reuses CAIL multi-turn gold under the same store for same-session Soft~O2 vs Soft~O2-C contrasts and for Mix reconstructions.
@@ -409,44 +418,48 @@ EC is the mean coverage of gold turns within the target session.
 Session Hit@$k$ is reported only for diagnosis.
 For nDCG we use fixed graded relevance over the full gold session: answer turns $rel{=}1.0$, other same-session turns $rel{=}0.5$, all other turns $rel{=}0.0$.
 The ideal denominator (IDCG) is computed from all gold-relevant turns in the target session and truncated at $k$, so every system on a query shares the same IDCG.
-Answer Hit and Episode Completeness are the primary Soft~O2 claims; nDCG uses the fixed gold-session IDCG above so that systems remain comparable on each query.
-Primary contrasts use bootstrap 95\% CIs and McNemar mid-$p$ tests on paired per-query hits; where families of related hypotheses are interpreted jointly, we also report Holm-corrected $p$-values (Table~\ref{tab:sig}).
+Answer Hit and Episode Completeness are the main Soft~O2 outcomes; nDCG is reported with the fixed gold-session IDCG so that systems remain comparable on each query.
+Hard expansion can raise nDCG when copied siblings occupy early ranks, so AH and EC are read together with nDCG.
+
+The primary hypothesis family is Soft~O2 vs FlatIP on the nine CAIL and LegalEp transfer channels; for that family we report bootstrap 95\% CIs, McNemar mid-$p$, and Holm-adjusted $p$-values (Table~\ref{tab:sig}).
+Hard-hydration, CE, and Soft~O2-C~/Hybrid Mix contrasts are secondary.
 
 Turn-level dense FlatIP (O1) is the base dense retriever.
-Soft~O2 applies soft sibling score inheritance on the episodic pathway.
-Soft~O2-C applies the analogous rule within BIRCH clusters.
+Soft~O2 applies soft sibling score inheritance on the episodic pathway; Soft~O2-C applies the same rule within BIRCH clusters.
 Hard parent hydration expands a hit to all siblings by copying the trigger score.
 Lexical controls include BM25 over turns and dense+BM25 Reciprocal Rank Fusion (RRF) under the same turn-level evidence unit.
-We do \emph{not} include BM25-joint or dense joint-episode indexes in Soft~O2 primary comparisons: those methods retrieve pre-concatenated episode documents and therefore answer a different retrieval problem.
+BM25-joint and dense joint-episode indexes retrieve pre-concatenated episode documents and therefore answer a coarser retrieval problem; they are discussed as alternative designs in Section~\ref{sec:limitations} rather than Soft~O2 turn-binding baselines.
 A cross-encoder (CE) control reranks the top-$30$ FlatIP candidates with \path{BAAI/bge-reranker-v2-m3}.
-Negative and sensitivity controls include shuffled $sid$, a $\beta$ sweep, and IVFPQ as a quantization reference.
+Shuffled $sid$, a $\beta$ sweep, and IVFPQ provide membership, attenuation, and quantization controls.
 
 \subsection{Fair Mix protocol for Soft O2-C}\label{sec:csce-protocol}
-On fully same-session LegalMem grids, Soft~O2 already recovers gold answers that share $sid$ with the query, so Soft~O2-C has little exclusive headroom and may inject thematic confusers.
-We therefore reconstruct the \emph{same} LegalEp and LegalMem archives under a Mix protocol: $70\%$ of gold episodes are split into query-side $S_a$ and evidence-side $S_b$ with distinct session identifiers, while $30\%$ remain intact.
+On fully same-session LegalMem grids Soft~O2 already recovers gold answers that share $sid$, leaving Soft~O2-C little exclusive headroom and exposing it to thematic confusers.
+To study off-session recovery we rebuild the \emph{same} LegalEp and LegalMem archives under a Mix protocol: $70\%$ of gold episodes are split into query-side $S_a$ and evidence-side $S_b$ with distinct session identifiers, while $30\%$ remain intact.
 Distractors are unchanged.
-All operators---FlatIP, Soft~O2, Soft~O2-C, and gated Hybrid---share unrestricted dense retrieval on this store; we report overall AH and stratum AH on $\texttt{cross\_session}$ vs $\texttt{same\_session}$ queries.
+FlatIP, Soft~O2, Soft~O2-C, and gated Hybrid share unrestricted dense retrieval on this store; we report overall AH and stratum AH on $\texttt{cross\_session}$ vs $\texttt{same\_session}$ queries.
 
 \paragraph{Cluster co-membership under Mix.}
-After BIRCH consolidation on the Mix store, each cross-session Sa/Sb split pair is \emph{glued} into one cluster identifier so that Soft~O2-C can be evaluated when thematic co-membership is present.
-Glue uses split metadata from the evaluation construction only; it does not inject labels at query time.
-If Soft~O2-C still fails to recover cross-session gold under that condition, the failure is attributable to binding rather than accidental cluster separation.
-Natural same-cluster rates without glue are lower and are noted in Section~\ref{sec:limitations}.
-Soft~O2's session membership constraint is unchanged: glue affects only whether Soft~O2-C has a cluster in which to bind.
+After BIRCH consolidation, each cross-session Sa/Sb pair is assigned a shared cluster identifier.
+This construction uses split metadata available only when building the evaluation store; it does not inject labels at query time.
+The intent is to test Soft~O2-C when thematic co-membership is present.
+If recovery still fails, the failure is attributable to binding rather than accidental cluster separation.
+Natural same-cluster rates without this construction are lower (Section~\ref{sec:limitations}).
+Soft~O2's session membership rule is unchanged.
 LegalEp Mix uses advice-recall queries; LegalMem Mix uses mid-split Uk-followup queries.
-External LongMemEval~/LoCoMo numbers from prior retrieval runs on this codebase (QA correctness $70.7\%$~/~$68.2\%$ on released test splits) are cited only as long-horizon memory context \cite{wu2025longmemeval, maharana2024evaluating}, not as Soft~O2-C evidence on legal corpora.
+LongMemEval~/LoCoMo numbers from prior runs on this codebase (QA correctness $70.7\%$~/~$68.2\%$) supply long-horizon memory context only \cite{wu2025longmemeval, maharana2024evaluating}.
 
 \section{Experiments}\label{sec:experiments}
 
-Unless noted, the embedding model is \texttt{nomic-embed-text-v2-moe} \cite{nussbaum2025nomic}, $k{=}10$, seed $42$.
-We report primary contrasts in figures and keep full numeric grids in the appendix.
-Result files and scripts are released with the accompanying repository so that each table maps to a public JSON artifact.
+Unless noted, the embedding model is \texttt{nomic-embed-text-v2-moe} \cite{nussbaum2025nomic}, $k{=}10$, and the main $M{\approx}3000$ grids use seed $42$.
+A five-seed check on a smaller shared store ($M{=}400$) is reported later; robustness across alternative encoders is left open (Section~\ref{sec:limitations}).
+Primary contrasts appear in figures; full numeric grids are in the appendix.
+Each main table maps to a released JSON artifact in the accompanying repository.
 
 \subsection{Implementation operators and Soft O2 ablation}\label{sec:exp-o1o3}
 Table~\ref{tab:o1o2} reports the shared-store ablation on DISC-Law and Lawyer-LLaMA ($M{=}400$, $S{=}300$).
 IVFPQ baseline Answer Hit is $0.540$~/~$0.397$.
 O1 alone yields a small gain on DISC ($0.567$) and a near-tie on Lawyer ($0.397$), confirming that exact indexing is a necessary implementation prerequisite but insufficient alone.
-O1+Soft~O2 raises Answer Hit to $0.780$~/~$0.680$ ($+0.240$~/~$+0.283$ over baseline) and Episode Completeness to $0.888$~/~$0.840$---the primary algorithmic gain.
+O1+Soft~O2 raises Answer Hit to $0.780$~/~$0.680$ ($+0.240$~/~$+0.283$ over baseline) and Episode Completeness to $0.888$~/~$0.840$.
 O3 is enabled for all configurations in this ladder as a construction prerequisite; it does not alter retrieval scores.
 
 \begin{table}[htbp]
@@ -623,7 +636,14 @@ LegalEp-Lawyer / exact & 0.636 & 0.708 & \textbf{0.752} \\
 \end{table}
 
 \subsection{Soft~O2-C and gated Hybrid under Mix}\label{sec:exp-cluster}
-When gold answers already share $sid$ with the query, Soft~O2 is the natural operator and cluster binding is unnecessary. The complementary question is whether Soft~O2-C helps when evidence is deliberately placed off-session. Table~\ref{tab:csce} uses the Mix protocol of Section~\ref{sec:csce-protocol}: $70\%$ cross-session Sa/Sb gold and $30\%$ intact same-session gold, with FlatIP, Soft~O2, Soft~O2-C, and gated Hybrid sharing unrestricted dense retrieval. On the cross-session stratum, Soft~O2-C improves over Soft~O2 on LegalEp-Lawyer ($0.491$ vs $0.446$) and LegalMem-MT ($0.537$ vs $0.503$), showing that cluster soft binding can recover split-episode gold that session membership alone cannot surface. Gated Hybrid Soft~O2+Soft~O2-C turns this mechanism into an overall gain: LegalEp-Lawyer AH rises to $0.534$ from Soft~O2 $0.496$ (mid-$p{=}0.010$${}^{*}$), and LegalMem-MT reaches $0.646$ vs Soft~O2 $0.618$, while most same-session hits are preserved ($0.560$~/~$0.867$). Ungated Soft~O2-C can raise cross-session hits yet displace intact same-session evidence, which is why Hybrid triggers cluster binding only on direct dense hits. Same-session Soft~O2 vs Soft~O2-C contrasts remain Soft~O2-led and are reported in Appendix~\ref{app:tables} (Table~\ref{tab:cluster_same}).
+When gold answers already share $sid$ with the query, Soft~O2 is sufficient and cluster binding is unnecessary.
+Table~\ref{tab:csce} asks the off-session question under the Mix protocol of Section~\ref{sec:csce-protocol}: $70\%$ cross-session Sa/Sb gold and $30\%$ intact same-session gold, with FlatIP, Soft~O2, Soft~O2-C, and gated Hybrid sharing unrestricted dense retrieval.
+
+On the cross-session stratum Soft~O2-C improves over Soft~O2 on LegalEp-Lawyer ($0.491$ vs $0.446$) and LegalMem-MT ($0.537$ vs $0.503$): cluster binding can surface split-episode gold that session membership alone misses.
+Gated Hybrid converts that mechanism into an overall gain on LegalEp-Lawyer ($0.534$ vs Soft~O2 $0.496$; mid-$p{=}0.010$${}^{*}$) and a directional gain on LegalMem-MT ($0.646$ vs $0.618$), while preserving most same-session hits ($0.560$~/~$0.867$).
+On LegalEp-DISC the Hybrid edge is negligible ($0.486$ vs $0.482$).
+Ungated Soft~O2-C can raise cross-session hits yet displace intact same-session evidence, which is why Hybrid triggers cluster binding only on direct dense hits.
+Same-session Soft~O2 vs Soft~O2-C contrasts remain Soft~O2-led (Appendix~\ref{app:tables}, Table~\ref{tab:cluster_same}).
 
 \begin{table}[htbp]
 \centering
@@ -670,28 +690,29 @@ We treat O1 FlatIP as an engineering prerequisite for Soft~O2 at these scales an
 
 \paragraph{End-to-end QA audit (summary).}
 \sloppy
-A dual-protocol QA audit ($N{=}270$ per corpus; generator \texttt{qwen3:14b}, independent judge \texttt{qwen3:32b}) links retrieval quality to downstream answerability under a \emph{single} retrieval configuration (Soft~O2); we do not claim causal superiority over FlatIP in generation without paired downstream controls.
+A dual-protocol QA audit ($N{=}270$ per corpus; generator \texttt{qwen3:14b}, independent judge \texttt{qwen3:32b}) reports judged answerability under Soft~O2 retrieval alone; it is not a paired FlatIP vs Soft~O2 generation experiment.
 Full protocol and stratified results appear in Section~\ref{sec:rag-discussion}.
 On a smaller shared store ($M{=}400$, five seeds), Soft~O2 AH on LegalEp-DISC is $0.851\pm 0.008$ versus FlatIP $0.698\pm 0.040$.
 
 \section{Discussion}\label{sec:discussion}
 
 \subsection{Findings and scope}
-RQ1--RQ2 show that episode incompleteness is a substantial recurrent FlatIP failure mode under same-domain interference, and that Soft~O2 converts many incomplete retrievals into complete ones without shrinking session-miss rates (Table~\ref{tab:rq1-failure}).
-O1 restores score fidelity as an implementation prerequisite; Soft~O2 supplies the primary algorithmic gain through soft sibling inheritance; O3 enables archive construction at scale.
-The diagnostic gap-ratio analysis (Section~\ref{sec:beta-theory}) explains why $\beta$ should remain close to but below unity, and why the validation sweep peaks in $\{0.9,0.95,0.98\}$ rather than at hard hydration ($\beta{=}1$).
+RQ1--RQ2 show that episode incompleteness is a substantial FlatIP failure mode under same-domain interference, and that Soft~O2 converts many incomplete retrievals into complete ones without shrinking session-miss rates (Table~\ref{tab:rq1-failure}).
+O1 restores score fidelity; Soft~O2 supplies the main gain through soft sibling inheritance; O3 makes large shared stores tractable.
+The gap-ratio analysis (Section~\ref{sec:beta-theory}) motivates keeping $\beta$ close to but below unity; the AH sweep peaks in $\{0.9,0.95,0.98\}$ rather than at hard hydration ($\beta{=}1$).
 On CAIL, Soft~O2 raises Answer Hit by large margins (U1 $+0.218$, Uk $+0.428$, U-last $+0.517$) with collapsing shuffled-$sid$ controls, and keeps higher EC than hard expansion despite occasional AH ties.
-LegalEp paraphrase and advice-recall---not exact replay---carry the primary Soft~O2 transfer claims.
+After Holm adjustment on the Soft~O2 vs FlatIP family, the non-exact CAIL and LegalEp gains remain significant, while LegalEp exact replay is mixed (Table~\ref{tab:sig}).
+LegalEp paraphrase and advice-recall, rather than exact replay, support the main transfer result.
 Graded nDCG agrees with the Soft~O2$>$FlatIP ordering (Table~\ref{tab:ndcg-graded}).
-RQ3--RQ4 follow Soft~O2 $\rightarrow$ Soft~O2-C: under Mix, gated Hybrid recovers additional cross-session gold (Table~\ref{tab:csce}), while Soft~O2 remains the default when gold already shares $sid$ (Table~\ref{tab:cluster_same}).
-Sparse and fusion turn-level baselines situate Soft~O2 among standard IR alternatives \cite{robertson2009bm25, cormack2009rrf, nogueira2019multistage}; coarser joint-episode indexes were not evaluated as Soft~O2 competitors.
+Under Mix, gated Hybrid recovers additional cross-session gold on LegalEp-Lawyer with a directional lift on LegalMem-MT (Table~\ref{tab:csce}); Soft~O2 remains preferable when gold already shares $sid$ (Table~\ref{tab:cluster_same}).
+Turn-level BM25, RRF, and CE place Soft~O2 among standard IR alternatives \cite{robertson2009bm25, cormack2009rrf, nogueira2019multistage}; joint-episode indexes are a coarser design choice outside this protocol.
 
 \subsection{RAG application perspective}\label{sec:rag-discussion}
 Consultation-memory retrieval is judged downstream by whether an LLM can answer from recovered evidence rather than confabulate.
 We audit this end-to-end with a dual-protocol pipeline on Soft~O2 retrieval only: generator \texttt{qwen3:14b} and independent judge \texttt{qwen3:32b} are distinct models.
 Per corpus we pool $N{=}270$ judged instances as P1~$n{=}120$ plus P2~$n{=}150$ (folder \texttt{legal\_qa\_n270}).
 Table~\ref{tab:qa_audit} summarizes pooled Evidence-Answerability Rate (EAR) and stratified independent-judge scores.
-When Soft~O2 retrieves complete episodes---both question and answer turns in top-$k$---the generator receives grounded prior advice and judged answerability rises in this single-system audit (pooled EAR $0.867$ on DISC and $0.859$ on Lawyer; Wilson $95\%$ CI $[0.83,0.90]$ / $[0.82,0.89]$).
+In the complete-episode stratum---both question and answer turns in top-$k$---judged answerability is higher in this single-system audit (pooled EAR $0.867$ on DISC and $0.859$ on Lawyer; Wilson $95\%$ CI $[0.83,0.90]$ / $[0.82,0.89]$).
 Follow-up queries remain the hardest stratum (independent-judge EAR $0.517$~/~$0.480$), consistent with episodic incompleteness persisting even when surface-form overlap is low.
 
 A blind two-annotator legal audit ($n{=}60$/corpus) yields Cohen's $\kappa{=}0.71$~/~$0.68$ and separates retrieval from generation failures (retrieval-failure share $0.283$~/~$0.317$).
@@ -716,13 +737,14 @@ Lawyer-LLaMA & \textbf{0.859} & 0.729 & 0.68 \\
 
 \subsection{Limitations}\label{sec:limitations}
 LegalEp episodes are consultation pairs; multi-turn authenticity remains reserved for CAIL.
-The Mix protocol co-locates Sa/Sb pairs so Soft~O2-C can be tested when thematic co-membership is present (Section~\ref{sec:csce-protocol}); unsupervised BIRCH without that construction step would not receive split-pair metadata at build time.
+The Mix protocol assigns Sa/Sb pairs a shared cluster id so Soft~O2-C can be tested when thematic co-membership is present (Section~\ref{sec:csce-protocol}); unsupervised BIRCH without that construction would not receive split-pair metadata at build time.
 Soft~O2 depends on correct session identifiers; Soft~O2-C depends on cluster quality.
-BM25-joint and dense joint-episode document indexes were not included in Soft~O2 primary comparisons because they change the retrieval evidence unit from turns to concatenated episodes; evaluating those coarser designs under a matched online-update protocol is left to future work.
-The $\beta$ diagnostic is semi-empirical: it assumes a dominant distractor and a well-defined hit score, and the fitted $\rho$ uses a stored user-turn embedding as an exact-channel query proxy; paraphrase~/advice-recall gap laws may shift the feasible band slightly but leave the high-$\beta$ operating region unchanged.
+Joint-episode document indexes change the evidence unit from turns to concatenated episodes; comparing them under a matched online-update and latency protocol is left to future work.
+The $\rho$ statistics use an exact-channel query proxy and the strongest measured distractor; paraphrase and advice-recall gap laws may shift the feasible band slightly, though the AH sweep keeps a stable high-$\beta$ region on those channels.
+All main grids use one multilingual embedding model and a fixed seed at $M{\approx}3000$; five-seed variance is reported only for the smaller $M{=}400$ store.
 LLM paraphrases need human audit.
 Statutory correctness, citation validity, and professional liability remain unevaluated.
-Multiple channels inflate comparison multiplicity; we therefore report Holm-corrected $p$-values for the primary Soft~O2 vs FlatIP family (Table~\ref{tab:sig}) alongside uncorrected McNemar mid-$p$ tests.
+Because many channels are tested, Holm-adjusted $p$-values accompany the Soft~O2 vs FlatIP family (Table~\ref{tab:sig}); Hybrid Mix gains outside LegalEp-Lawyer are treated as directional.
 
 \paragraph{Latency and deployment scope.}
 Scale curves cover $M\in\{100,400,1600,6400\}$ under a fixed hardware stack (Table~\ref{tab:scale}).
@@ -733,12 +755,14 @@ Behavior at roughly $10^5$ sessions is not measured, and we do not claim asympto
 
 \section{Conclusion}\label{sec:conclusion}
 
-BIMS-LEGAL targets consultation-memory retrieval under same-domain interference in Chinese legal archives through a dual-store design: an episodic turn index paired with a BIRCH semantic store.
-Soft~O2 session soft binding is the primary algorithmic contribution; Soft~O2-C with gated Hybrid extends soft binding to BIRCH clusters under Mix reconstructions in which some gold evidence is held off-session; Soft~O2 attenuation $\beta$ is validated on a diagnostic gap-ratio model; and O1 exact indexing with O3 bulk-load consolidation are implementation operators that enable the shared-store ablations reported here.
-Under a shared-corpus protocol spanning CAIL multi-turn dialogues and rebuilt LegalEp episode corpora, Soft~O2 improves Answer Hit over FlatIP on multi-turn, paraphrase, and advice-recall channels with collapsing shuffled-$sid$ controls, yields higher episode completeness than hard expansion on CAIL, and raises graded nDCG while reducing incompleteness.
-Under Mix reconstructions, gated Hybrid Soft~O2+Soft~O2-C recovers additional cross-session gold while Soft~O2 remains the default on intact same-session gold.
-End-to-end QA audit links complete episode retrieval to judged answerability and low wrong-session contamination in downstream generation under Soft~O2 retrieval.
-Sparse, fusion, and cross-encoder baselines situate Soft~O2 among standard turn-level IR alternatives; joint episode / document-level indexes are a different input granularity and are not Soft~O2 competitors in this protocol.
+BIMS-LEGAL recovers prior advice from Chinese legal consultation archives under same-domain interference with a dual store: an episodic turn index and a BIRCH semantic store.
+Soft~O2 is the main algorithmic contribution: attenuated session binding completes episodes without hard score copy.
+Soft~O2-C and gated Hybrid extend the same idea to thematic clusters when Mix reconstructions place some gold off-session.
+Attenuation $\beta$ is chosen by validation sweep under a three-candidate score-competition account; O1 FlatIP and O3 bulk-load are the implementation operators that make the shared-store ablations feasible.
+On CAIL multi-turn and LegalEp paraphrase~/advice-recall channels, Soft~O2 improves Answer Hit over FlatIP, keeps higher episode completeness than hard expansion on CAIL, and raises graded nDCG while cutting incompleteness; shuffled-$sid$ controls collapse the gains.
+Under Mix, gated Hybrid recovers additional cross-session gold on LegalEp-Lawyer while Soft~O2 remains preferable on intact same-session gold.
+An end-to-end Soft~O2 QA audit associates complete episode retrieval with judged answerability and low wrong-session contamination, without claiming paired generation superiority over FlatIP.
+Turn-level BM25, RRF, and CE place Soft~O2 among standard IR alternatives; joint-episode indexing remains a coarser design outside this protocol.
 
 \section*{Declarations}
 
@@ -752,33 +776,33 @@ The authors declare no competing interests.
 This study uses publicly released research corpora and excludes confidential client data. The system is a research prototype for consultation-memory retrieval.
 
 \subsection*{Data availability}
-Code, processed evaluation corpora, and primary result files are publicly available at
-\url{https://github.com/Kilimajaro/soft-episode-binding-legal-memory}.
-Upstream legal corpora: CAIL2024 consultation tracks; Hugging Face
+Code, processed evaluation corpora, and primary result JSON files are available at
+\url{https://github.com/Kilimajaro/soft-episode-binding-legal-memory}
+(archived release to accompany camera-ready).
+Upstream corpora remain under their original licenses: CAIL2024 consultation tracks; Hugging Face
 \codeid{ShengbinYue/DISC-Law-SFT} and
 \codeid{Skepsun/lawyer_llama_data}.
+Processed LegalEp~/LegalMem artifacts are derived research releases; redistributors should consult each upstream licence before reuse.
 
 \subsection*{Code availability}
-The BIMS-LEGAL implementation (O1 FlatIP, Soft~O2, O3 bulk-load, Soft~O2-C), LegalMem/LegalEp pipelines, Mix builders, and table/figure scripts are released in the same repository with JSON artifacts for each main table.
+The BIMS-LEGAL implementation (O1 FlatIP, Soft~O2, O3 bulk-load, Soft~O2-C), corpus builders, Mix constructors, and table/figure scripts ship in the same repository, with one JSON artifact per main table.
 
 \subsection*{Author contributions}
 \sloppy
 L.X.\ (University of Winnipeg) designed BIMS-LEGAL and the Soft~O2~/Soft~O2-C evaluation, implemented the system, ran the experiments, and wrote the manuscript.
 L.H.\ (corresponding author; CUPL Data Law Lab and Institute for Data Law) provided methodology guidance, revision, and supervision.
 
-\clearpage
 \FloatBarrier
 \bibliographystyle{elsarticle-harv}
 \bibliography{references}
 
 \clearpage
-\FloatBarrier
 \appendix
 \setcounter{table}{0}
 \renewcommand{\thetable}{A.\arabic{table}}
 \renewcommand{\theHtable}{A.\arabic{table}}
 \section{Numeric grids and controls}\label{app:tables}
-Same-session Soft~O2-C contrasts, significance tests, scale curves, and full Soft~O2 numeric grids appear below. Primary Soft~O2 and Mix claims are carried by the main-text figures and tables.
+Same-session Soft~O2-C contrasts, significance tests, scale curves, and full Soft~O2 numeric grids appear below.
 
 \begin{table}[htbp]
 \centering
