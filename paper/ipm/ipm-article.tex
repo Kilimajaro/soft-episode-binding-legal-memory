@@ -56,7 +56,7 @@ Recovering prior client-specific advice from a legal consultation archive is dif
 BIMS-LEGAL is a dual-store system for Chinese legal consultation logs: a fast episodic turn index with session identifiers and a slower BIRCH semantic store.
 Soft~O2 performs turn-level session binding by giving siblings attenuated inherited scores ($\beta s$) rather than hard score copy.
 We evaluate exact replay as diagnostic and use paraphrase, follow-up, and advice-recall as primary non-exact channels.
-BM25-joint is a strong lexical baseline on exact and high-overlap queries; Soft~O2 instead targets online turn-level retrieval, where a partial episode hit can bind its answer sibling, and is strongest relative to dense FlatIP on paraphrase, follow-up, and advice-recall.
+Primary Soft~O2 contrasts use a shared turn-level index against dense FlatIP, hard hydration, and shuffled-$sid$ controls; Soft~O2 is strongest on non-exact channels where a partial episode hit can bind its answer sibling.
 Soft~O2-C and gated Hybrid are reported as exploratory, gold-assisted solvability bounds for cross-session recovery---complementary to Soft~O2, not replacements for it, and not claims about natural unsupervised BIRCH deployment.
 We report corrected graded nDCG alongside Answer Hit and Episode Completeness, with paired significance tests and a failure taxonomy separating complete, incomplete, and missed-session retrieval.
 \end{abstract}
@@ -109,7 +109,7 @@ We ask four research questions:
     \item A dual-store memory architecture for Chinese legal consultation archives, separating fast episodic turn recovery from slower BIRCH semantic integration under same-domain interference.
     \item Soft~O2, a turn-level session soft-binding operator that addresses episode incompleteness without hard parent hydration or session-max score copy---the primary algorithmic claim before Soft~O2-C.
     \item A conservative three-candidate diagnostic of Soft~O2 score competition using the gap ratio $\rho=s_d/s_h$; default $\beta{=}0.98$ is chosen by validation sweep, not by a closed-form optimum.
-    \item An honest comparison with strong lexical baselines: BM25-joint and dense joint-episode indexing are highly competitive on exact/surface-overlap channels, while Soft~O2 targets paraphrase, follow-up, and advice-recall under an online turn-level index.
+    \item Turn-level lexical and fusion controls (BM25-turn, dense+BM25 RRF, cross-encoder) under the same evidence unit as Soft~O2; joint episode / document-level indexes are a different input granularity and are not claimed as Soft~O2 competitors here.
     \item Exploratory Soft~O2-C / gated Hybrid results under a gold-assisted Mix solvability bound, plus corrected nDCG, failure taxonomy, and paired significance reporting.
     \item O1 exact FlatIP and O3 bulk-load consolidation as implementation operators enabling the shared-store ablations reported here.
 \end{enumerate}
@@ -325,7 +325,7 @@ LegalEp-Lawyer & $0.662$ & $0.815$ & $0.998$ & $0.98$ \\
 
 Fair controls include hard parent hydration, session-max aggregation, and shuffled $sid$.
 On two-turn LegalEp episodes, hard hydration and session-max coincide under full-sibling expansion; we report a single hard-expansion baseline.
-Dense joint episode indexing is an atomic-index bound with a different evidence unit.
+Indexes that concatenate an entire question--answer episode into one retrieval unit (BM25-joint or dense joint-episode documents) change the input granularity and are therefore outside the Soft~O2 turn-level protocol; we do not report them as Soft~O2 competitors.
 
 \subsection{Semantic consolidation and Soft O2-C}\label{sec:soft-o2c}
 Semantic consolidation follows a BIRCH-style dual-phase procedure \cite{zhang1996birch}.
@@ -417,7 +417,8 @@ Turn-level dense FlatIP (O1) is the base dense retriever.
 Soft~O2 applies soft sibling score inheritance on the episodic pathway.
 Soft~O2-C applies the analogous rule within BIRCH clusters.
 Hard parent hydration expands a hit to all siblings by copying the trigger score.
-Lexical controls include BM25 over turns and over joint question--answer documents, together with dense+BM25 Reciprocal Rank Fusion (RRF).
+Lexical controls include BM25 over turns and dense+BM25 Reciprocal Rank Fusion (RRF) under the same turn-level evidence unit.
+We do \emph{not} include BM25-joint or dense joint-episode indexes in Soft~O2 primary comparisons: those methods retrieve pre-concatenated episode documents and therefore answer a different retrieval problem.
 A cross-encoder (CE) control reranks the top-$30$ FlatIP candidates with \path{BAAI/bge-reranker-v2-m3}.
 Negative and sensitivity controls include shuffled $sid$, a $\beta$ sweep, and IVFPQ as a quantization reference.
 
@@ -496,31 +497,12 @@ CAIL / Uk-followup & Soft O2 & \textbf{92.8\%} & \textbf{7.0\%} & 0.2\% \\
 \end{tabular}
 \end{table}
 
-\subsection{Strong lexical and joint-episode baselines}\label{sec:s1-strong-baselines}
-BM25-joint indexes each question--answer episode as one lexical document and is therefore very strong on exact replay and other high-overlap channels.
-Soft~O2 instead assumes an online turn-level index and uses session binding to recover missing answer turns after a dense hit.
-Table~\ref{tab:bm25-tradeoff} reports this trade-off on the same store, query set, and $k{=}10$.
-Soft~O2 is not claimed to dominate BM25-joint on lexical overlap: BM25-joint leads on CAIL and on several advice-recall cells, while Soft~O2 edges BM25-joint on LegalEp-DISC paraphrase ($0.648$ vs $0.592$) and remains the preferred operator when episodes must be updated turn-by-turn without re-indexing joint documents.
-
-\begin{table}[t]
-\centering
-\caption{BM25-joint vs Soft~O2 (AH@10, primary V4 tier). Boldface: higher AH within each row. Soft~O2 targets online turn-level binding; BM25-joint is the stronger lexical/joint-document baseline on high-overlap channels.}
-\label{tab:bm25-tradeoff}
-\compacttab\footnotesize
-\begin{tabular}{@{}llcc@{}}
-\toprule
-\textbf{Corpus / channel} & \textbf{BM25-joint} & \textbf{Soft O2} \\
-\midrule
-CAIL / U1 & \textbf{0.993} & 0.788 \\
-CAIL / Uk & \textbf{0.840} & 0.698 \\
-CAIL / U-last & \textbf{0.823} & 0.762 \\
-LegalEp-DISC / exact & \textbf{0.976} & 0.638 \\
-LegalEp-DISC / u-para & 0.592 & \textbf{0.648} \\
-LegalEp-DISC / advice & \textbf{0.432} & 0.428 \\
-LegalEp-Lawyer / advice & \textbf{0.652} & 0.472 \\
-\bottomrule
-\end{tabular}
-\end{table}
+\subsection{Turn-level lexical controls}\label{sec:s1-strong-baselines}
+Primary Soft~O2 claims stay within a turn-level index: FlatIP, Soft~O2, hard hydration, and shuffled $sid$ share the same episodic store and evidence unit.
+As a same-granularity lexical control, BM25-turn indexes each turn independently (Table~\ref{tab:bm25}).
+On CAIL non-exact channels Soft~O2 exceeds BM25-turn (Uk $0.698$ vs $0.482$; U-last $0.762$ vs $0.413$), while BM25-turn remains competitive on exact replay where surface overlap is high.
+We deliberately omit BM25-joint and dense joint-episode indexing from Soft~O2 head-to-head tables: both concatenate question and answer into one document before retrieval, so a hit already contains the answer and the comparison would confound Soft~O2's binding mechanism with a change of input granularity.
+Those coarser-grained designs are left as future work rather than Soft~O2 baselines.
 
 \begin{table}[t]
 \centering
@@ -649,8 +631,8 @@ Together, Tables~\ref{tab:cluster_same}--\ref{tab:csce} support a staged narrati
 {\footnotesize McNemar mid-$p$ tests on paired Answer Hit; ${}^{*}\,p{<}0.05$, ${}^{**}\,p{<}0.01$.}
 
 \subsection{Controls, significance, scale, and QA audit}\label{sec:exp-scale}
-Lexical BM25 is strong on exact replay (DISC exact BM25-turn $0.802$, BM25-joint $0.976$) and weaker on advice-recall ($0.382$~/~$0.432$).
-Dense+BM25 RRF complements Soft~O2 on surface-overlap channels.
+Lexical BM25-turn is competitive on exact replay (DISC exact $0.802$) and weaker on advice-recall ($0.382$).
+Dense+BM25 RRF complements Soft~O2 on surface-overlap channels under the same turn-level unit.
 Cross-encoder reranking (\path{bge-reranker-v2-m3}, top-$30$) improves FlatIP inside the CE suite, yet remains below Soft~O2 on CAIL (Uk FlatIP+CE $0.375$ vs Soft~O2 $0.698$; Table~\ref{tab:ce}).
 A $\beta$ sweep peaks near $\{0.9,0.95,0.98\}$ and weakens at $\beta{=}0.5$ (Table~\ref{tab:beta}), consistent with the diagnostic gap-ratio band in Section~\ref{sec:beta-theory} (Table~\ref{tab:beta-theory}).
 McNemar mid-$p$ tests (Table~\ref{tab:sig}) show Soft~O2 versus FlatIP highly significant on all CAIL channels and on LegalEp paraphrase~/advice-recall.
@@ -683,7 +665,7 @@ LegalEp paraphrase and advice-recall---not exact replay---carry the primary Soft
 Corrected fixed-gold nDCG on a FlatIP rebuild corroborates the Soft~O2$>$FlatIP ordering without replacing the V4 AH/EC transfer numbers (Table~\ref{tab:ndcg-corrected}).
 RQ3 shows that the BIRCH slow pathway benefits Soft~O2-C only when gold is not already co-session; Mix Hybrid Soft~O2+Soft~O2-C recovers that regime without forcing Soft~O2 to zero on intact same-session gold.
 RQ4: Soft~O2 (session) is the default operator; Soft~O2-C~/Hybrid (cluster) are complementary exploratory bounds within one BIMS-LEGAL dual-store.
-Sparse, fusion, and cross-encoder baselines situate Soft~O2 among standard IR alternatives \cite{robertson2009bm25, cormack2009rrf, nogueira2019multistage}.
+Sparse and fusion turn-level baselines situate Soft~O2 among standard IR alternatives \cite{robertson2009bm25, cormack2009rrf, nogueira2019multistage}; coarser joint-episode indexes were not evaluated as Soft~O2 competitors.
 
 \subsection{RAG application perspective}\label{sec:rag-discussion}
 Consultation-memory retrieval is judged downstream by whether an LLM can answer from recovered evidence rather than confabulate.
@@ -717,6 +699,7 @@ Lawyer-LLaMA & \textbf{0.859} & 0.729 & 0.68 \\
 LegalEp episodes are consultation pairs; multi-turn authenticity remains reserved for CAIL.
 Mix glue establishes a solvability bound for Soft~O2-C evaluation (Section~\ref{sec:csce-protocol}); natural same-cluster rates without glue are lower and are diagnostics only---real unsupervised BIRCH clustering would not receive split-pair metadata at build time.
 Soft~O2 depends on correct session identifiers; Soft~O2-C depends on cluster quality.
+BM25-joint and dense joint-episode document indexes were not included in Soft~O2 primary comparisons because they change the retrieval evidence unit from turns to concatenated episodes; evaluating those coarser designs under a matched online-update protocol is left to future work.
 The $\beta$ diagnostic is semi-empirical: it assumes a dominant distractor and a well-defined hit score, and the fitted $\rho$ uses a stored user-turn embedding as an exact-channel query proxy; paraphrase~/advice-recall gap laws may shift the feasible band slightly but leave the high-$\beta$ operating region unchanged.
 LLM paraphrases need human audit.
 Statutory correctness, citation validity, and professional liability remain unevaluated.
@@ -736,7 +719,7 @@ Soft~O2 session soft binding is the primary algorithmic contribution; Soft~O2-C 
 Under a shared-corpus protocol spanning CAIL multi-turn dialogues and rebuilt LegalEp episode corpora, Soft~O2 improves Answer Hit over FlatIP on multi-turn, paraphrase, and advice-recall channels with collapsing shuffled-$sid$ controls, yields higher episode completeness than hard expansion on CAIL, and raises corrected fixed-gold nDCG while reducing incompleteness.
 Same-store Soft~O2-C underperforms Soft~O2 when gold shares $sid$; under fair Mix reconstructions, gated Hybrid Soft~O2+Soft~O2-C can recover additional cross-session gold while Soft~O2 remains strong on intact same-session gold.
 End-to-end QA audit links complete episode retrieval to judged answerability and low wrong-session contamination in downstream generation under Soft~O2 retrieval.
-Sparse, fusion, and cross-encoder baselines situate Soft~O2 among standard IR alternatives; BM25-joint remains a strong lexical joint-document baseline on high-overlap channels.
+Sparse, fusion, and cross-encoder baselines situate Soft~O2 among standard turn-level IR alternatives; joint episode / document-level indexes are a different input granularity and are not Soft~O2 competitors in this protocol.
 
 \section*{Declarations}
 
@@ -874,19 +857,19 @@ Boldface follows AH/EC winners so that Soft~O2's completeness advantage remains 
 
 \begin{table}[H]
 \centering
-\caption{BM25 turn/joint and dense+BM25 RRF (AH@10). Boldface: higher AH within each row among reported cells.}
+\caption{Turn-level BM25 and dense+BM25 RRF (AH@10). Boldface: higher AH within each row among reported turn-level cells. BM25-joint / joint-episode document indexes are omitted: they change evidence granularity and were not run as Soft~O2 protocol competitors.}
 \label{tab:bm25}
 \compacttab\footnotesize
-\begin{tabular}{@{}llcc@{}}
+\begin{tabular}{@{}llc@{}}
 \toprule
-\textbf{Corpus} & \textbf{Channel} & \textbf{BM25-turn} & \textbf{BM25-joint} \\
+\textbf{Corpus} & \textbf{Channel} & \textbf{AH@10} \\
 \midrule
-LegalEp-DISC & exact & 0.802 & 0.976 \\
-LegalEp-DISC & advice-recall & 0.382 & 0.432 \\
-LegalEp-DISC & exact (dense RRF) & 0.780 & --- \\
-LegalEp-DISC & advice (dense RRF) & 0.394 & --- \\
-CAIL & U1 / Uk / U-last & 0.748 / 0.482 / 0.413 & 0.993 / 0.840 / 0.823 \\
-LegalEp-Lawyer & exact / advice & 0.784 / 0.460 & 0.998 / 0.652 \\
+LegalEp-DISC & exact (BM25-turn) & 0.802 \\
+LegalEp-DISC & advice-recall (BM25-turn) & 0.382 \\
+LegalEp-DISC & exact (dense+BM25 RRF) & 0.780 \\
+LegalEp-DISC & advice (dense+BM25 RRF) & 0.394 \\
+CAIL & U1 / Uk / U-last (BM25-turn) & 0.748 / 0.482 / 0.413 \\
+LegalEp-Lawyer & exact / advice (BM25-turn) & 0.784 / 0.460 \\
 \bottomrule
 \end{tabular}
 \end{table}
