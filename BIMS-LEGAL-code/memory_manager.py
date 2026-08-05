@@ -308,14 +308,19 @@ def _target_n_clusters(n_paragraphs):
 
 
 class ClusteringLayer:
-    """双阶段聚类：支持按目标簇数 KMeans（推荐），或 BIRCH + 合并小簇"""
+    """Semantic consolidation for the slow pathway.
+
+    Production path (``encode_with_target_k`` / ``_update_clusters``) uses
+    target-k KMeans. ``fast_encode`` retains an optional sklearn Birch fit for
+    ablation utilities only and is not used by Soft O2-C consolidation.
+    """
     def __init__(self, threshold=BIRCH_THRESHOLD):
         self.birch = Birch(threshold=threshold, n_clusters=BIRCH_N_CLUSTERS)
         self.labels_ = None
         self.centers_ = None
 
     def encode_with_target_k(self, X, target_k):
-        """按目标簇数 KMeans，避免簇过多/过少；返回 (labels, centers)，过滤空簇。"""
+        """Target-k KMeans consolidation used by the main semantic store."""
         X = np.asarray(X, dtype='float32')
         n = len(X)
         if n <= 1:
@@ -434,7 +439,7 @@ class VectorMemoryManager:
         self._exact_match_boost = 1.0   # 查询与段落文本精确/近精确匹配时的加分
         self._session_members = {}      # session_id -> [para_tid, ...]
         self._tid_to_session = {}       # para_tid -> session_id
-        # Soft O2-C：同 BIRCH 语义簇兄弟软继承（默认关闭；与会话 Soft O2 对位）。
+        # Soft O2-C：同 KMeans 语义簇兄弟软继承（默认关闭；与会话 Soft O2 对位）。
         self._cluster_expand = False
         self._cluster_coherence = 0.90
         self._cluster_max_siblings = 8  # 防止大簇淹没 top-k
@@ -1400,16 +1405,18 @@ class VectorMemoryManager:
                         seeded.append(r)
             all_results = seeded  # may be empty — do not fall back to distractors
 
+        # Record direct dense/associative hits BEFORE session soft expansion.
+        # Gated Hybrid (Soft O2-C) must trigger only on these tids, not on
+        # siblings injected later by Soft O2 session binding.
+        self._cluster_direct_hits = {
+            r.get("tid") for r in all_results if r.get("tid") is not None
+        }
+
         # 情景会话一致性扩展：召回某段落时，激活其同会话的其它段落（默认关闭）
         all_results = self._expand_with_session_siblings(all_results)
 
         # 海马体精确匹配增强（法律评测：查询常为原问句）
         all_results = self._apply_exact_match_boost(query, all_results)
-
-        # 记录直接命中（session 软继承之前），供 gated cluster O2-C 触发
-        self._cluster_direct_hits = {
-            r.get("tid") for r in all_results if r.get("tid") is not None
-        }
 
         # 法律稀疏 hybrid 检索增强（默认关闭）：并入法条/术语 BM25 候选并融合打分
         _aug = getattr(self, "_retrieval_augment", None)

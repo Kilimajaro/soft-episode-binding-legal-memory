@@ -308,14 +308,19 @@ def _target_n_clusters(n_paragraphs):
 
 
 class ClusteringLayer:
-    """双阶段聚类：支持按目标簇数 KMeans（推荐），或 BIRCH + 合并小簇"""
+    """Semantic consolidation for the slow pathway.
+
+    Production path (``encode_with_target_k`` / ``_update_clusters``) uses
+    target-k KMeans. ``fast_encode`` retains an optional sklearn Birch fit for
+    ablation utilities only and is not used by Soft O2-C consolidation.
+    """
     def __init__(self, threshold=BIRCH_THRESHOLD):
         self.birch = Birch(threshold=threshold, n_clusters=BIRCH_N_CLUSTERS)
         self.labels_ = None
         self.centers_ = None
 
     def encode_with_target_k(self, X, target_k):
-        """按目标簇数 KMeans，避免簇过多/过少；返回 (labels, centers)，过滤空簇。"""
+        """Target-k KMeans consolidation used by the main semantic store."""
         X = np.asarray(X, dtype='float32')
         n = len(X)
         if n <= 1:
@@ -434,6 +439,25 @@ class VectorMemoryManager:
         self._exact_match_boost = 1.0   # 查询与段落文本精确/近精确匹配时的加分
         self._session_members = {}      # session_id -> [para_tid, ...]
         self._tid_to_session = {}       # para_tid -> session_id
+        # Soft O2-C：同 KMeans 语义簇兄弟软继承（默认关闭；与会话 Soft O2 对位）。
+        self._cluster_expand = False
+        self._cluster_coherence = 0.90
+        self._cluster_max_siblings = 8  # 防止大簇淹没 top-k
+        self._cluster_cross_session_only = False  # 仅绑定 sid 未出现在 top-k 的簇 sibling
+        self._cluster_trigger_on_soft = True      # False 时仅用向量/关联直接命中触发簇扩展
+        self._cluster_budget = 0                  # 全局簇注入上限；0=不限（沿用 per-cluster max_siblings）
+        self._cluster_pin_session_slots = False   # hybrid_xsess：簇注入不挤掉已补全的会话 sibling
+        self._cluster_direct_hits = set()         # 单次 search 内的直接命中 tid（非 session 软继承）
+        # 新 cluster 模块（小规模消融；默认全关）
+        self._cluster_bridge_o2 = False           # A: 同 session 跨簇补全（direct-hit 触发）
+        self._cluster_rerank_only = False         # B: 宽池同簇加分，不注入新 turn
+        self._cluster_suppress_confusers = False  # C: 同簇低 sim session 降权
+        self._cluster_route_top_m = 0             # D: top-M 簇路由（0=关闭）
+        self._cluster_residual_fallback = False     # E: session 不完整时才 cluster 扩展
+        self._cluster_centroids = {}              # cluster_id -> normalized centroid vector
+        self._search_wide_pool = []               # 截断前宽候选（供 rerank 模块）
+        self._cluster_members = {}      # cluster_id -> [para_tid, ...]
+        self._tid_to_cluster = {}       # para_tid -> cluster_id
         # 批量装载模式（默认关闭）：批量写入大语料时，推迟聚类/摘要/落盘到 finalize_bulk_load()，
         # 避免每加 4 段就做一次 O(n^2) 轮廓系数聚类与全量落盘（构建大记忆库时的主要瓶颈）。
         self._bulk_load = False
@@ -488,6 +512,7 @@ class VectorMemoryManager:
                         kn.paragraph_ids = data.get('paragraph_ids', [])
                         kn.metrics = data.get('metrics', kn.metrics)
                         self.knowledge_graph[node_id] = kn
+                self._rebuild_cluster_membership()
             except Exception as e:
                 logger.warning("加载知识图谱失败: %s", e)
 
@@ -977,7 +1002,22 @@ class VectorMemoryManager:
         
         if not self._ablation_single_stage_cluster:
             self._hippocampal_consolidation()
+        self._rebuild_cluster_membership()
         self._save_vector_db()
+
+    def _rebuild_cluster_membership(self):
+        """Build tid↔cluster maps from knowledge_graph for Soft O2-C."""
+        members = {}
+        tid_to_c = {}
+        for cid, node in (self.knowledge_graph or {}).items():
+            pids = list(getattr(node, "paragraph_ids", None) or [])
+            if not pids:
+                continue
+            members[cid] = pids
+            for pid in pids:
+                tid_to_c[pid] = cid
+        self._cluster_members = members
+        self._tid_to_cluster = tid_to_c
 
     def _update_summary_memory(self):
         if len(self.para_tree) < 3:
@@ -1246,6 +1286,33 @@ class VectorMemoryManager:
                 })
         return results
 
+    def _paragraph_tid(self, tid):
+        """Map sentence / child vector ids to their paragraph tid."""
+        if tid is None:
+            return None
+        tid = str(tid)
+        if tid in self._tid_to_session or tid in (self.para_tree or {}):
+            return tid
+        meta = self._meta_for_tid(tid)
+        parent = meta.get("parent_tid") if meta else None
+        if parent:
+            return parent
+        if "_sent" in tid:
+            return tid.rsplit("_sent", 1)[0]
+        return tid
+
+    def _session_id_for_tid(self, tid):
+        """Resolve session_id for paragraph or sentence tids."""
+        if not tid:
+            return None
+        sid = (self._tid_to_session or {}).get(tid)
+        if sid:
+            return sid
+        parent = self._paragraph_tid(tid)
+        if parent and parent != tid:
+            return (self._tid_to_session or {}).get(parent)
+        return None
+
     def clear_search_cache(self) -> int:
         """Invalidate cached search rankings only (preserve embed LRU entries)."""
         return self.lru_cache.clear_prefix("search:")
@@ -1257,10 +1324,26 @@ class VectorMemoryManager:
         expand = int(bool(getattr(self, "_session_expand", False)))
         sfirst = int(bool(getattr(self, "_session_first_rerank", False)))
         beta = float(getattr(self, "_session_coherence", 0.98) or 0.98)
+        cexp = int(bool(getattr(self, "_cluster_expand", False)))
+        cbeta = float(getattr(self, "_cluster_coherence", 0.90) or 0.90)
+        cmax = int(getattr(self, "_cluster_max_siblings", 8) or 8)
+        cxsess = int(bool(getattr(self, "_cluster_cross_session_only", False)))
+        ctrig = int(bool(getattr(self, "_cluster_trigger_on_soft", True)))
+        cbud = int(getattr(self, "_cluster_budget", 0) or 0)
+        cbridge = int(bool(getattr(self, "_cluster_bridge_o2", False)))
+        crerank = int(bool(getattr(self, "_cluster_rerank_only", False)))
+        csupp = int(bool(getattr(self, "_cluster_suppress_confusers", False)))
+        croute = int(getattr(self, "_cluster_route_top_m", 0) or 0)
+        cres = int(bool(getattr(self, "_cluster_residual_fallback", False)))
         use_pq = int(bool(getattr(getattr(self, "vector_store", None), "use_pq", False)))
+        seed_sid = getattr(self, "_seed_restrict_session_id", None) or ""
+        seed_tag = abs(hash(str(seed_sid))) % (2**32) if seed_sid else 0
         cache_key = (
             f"search:{hash(query) % (2**32)}:t{int(is_temporal_task)}"
-            f":k{int(top_k)}:e{expand}:f{sfirst}:b{beta:.4f}:pq{use_pq}"
+            f":k{int(top_k)}:e{expand}:f{sfirst}:b{beta:.4f}"
+            f":ce{cexp}:cb{cbeta:.4f}:cm{cmax}:cx{cxsess}:ct{ctrig}:cbu{cbud}"
+            f":br{cbridge}:rr{crerank}:sp{csupp}:rt{croute}:rs{cres}:pq{use_pq}"
+            f":sd{seed_tag}"
         )
         cached = self.lru_cache.get(cache_key)
         if cached is not None:
@@ -1282,8 +1365,16 @@ class VectorMemoryManager:
         all_results.extend(assoc)
 
         # 3. 段落向量检索（时序推理时多取以提升召回）
-        para_top_k = TEMPORAL_PARA_TOP_K if temporal_priority else (20 if getattr(self, "_session_first_rerank", False) else 5)
+        need_wide = (
+            getattr(self, "_session_first_rerank", False)
+            or getattr(self, "_cluster_expand", False)
+            or bool(getattr(self, "_seed_restrict_session_id", None))
+        )
+        para_top_k = TEMPORAL_PARA_TOP_K if temporal_priority else (40 if need_wide else 5)
         para_results = self._vector_search(qv, top_k=para_top_k, vec_type='paragraph', min_score=0.0)
+        route_m = int(getattr(self, "_cluster_route_top_m", 0) or 0)
+        if route_m > 0 and getattr(self, "_cluster_centroids", None):
+            para_results = self._cluster_route_paragraphs(qv, para_results, route_m)
         filtered_para = [r for r in para_results if r.get('score', 0) >= 0.2][:para_top_k]
         all_results.extend(filtered_para)
 
@@ -1293,6 +1384,33 @@ class VectorMemoryManager:
             sent_results = self._vector_search(qv, top_k=remaining * 2, vec_type='sentence', min_score=0.65)
             filtered_sent = [r for r in sent_results if r.get('score', 0) >= 0.3]
             all_results.extend(filtered_sent)
+
+        # CSCE seed 协议：仅保留 query session（Sa）上的 dense 命中，再做绑定扩展。
+        # Soft O2 只能补全 Sa；Soft O2-C 经同簇绑定可注入 Sb gold。
+        seed_sid = getattr(self, "_seed_restrict_session_id", None)
+        if seed_sid:
+            seeded = []
+            for r in all_results:
+                tid = r.get("tid")
+                sid = self._session_id_for_tid(tid)
+                if sid == seed_sid:
+                    # Prefer paragraph tid for session/cluster maps
+                    parent = self._paragraph_tid(tid)
+                    if parent and parent != tid:
+                        rr = dict(r)
+                        rr["tid"] = parent
+                        rr["memory_id"] = parent
+                        seeded.append(rr)
+                    else:
+                        seeded.append(r)
+            all_results = seeded  # may be empty — do not fall back to distractors
+
+        # Record direct dense/associative hits BEFORE session soft expansion.
+        # Gated Hybrid (Soft O2-C) must trigger only on these tids, not on
+        # siblings injected later by Soft O2 session binding.
+        self._cluster_direct_hits = {
+            r.get("tid") for r in all_results if r.get("tid") is not None
+        }
 
         # 情景会话一致性扩展：召回某段落时，激活其同会话的其它段落（默认关闭）
         all_results = self._expand_with_session_siblings(all_results)
@@ -1353,12 +1471,19 @@ class VectorMemoryManager:
         else:
             final_results.sort(key=lambda x: (-x.get('final_score', 0), _parse_time(x)))
 
-        # 去重：按内容（full_dialog/text）去重，避免同一对话块因不同 tid/timestamp 重复占位
+        self._search_wide_pool = list(final_results)
+
+        # 去重：seed 协议按 tid；否则按内容（full_dialog/text）去重
         unique_results = []
         seen_content = set()
+        seed_mode = bool(getattr(self, "_seed_restrict_session_id", None))
         for result in final_results:
-            content = (result.get('full_dialog') or result.get('text', '')).strip()
-            content_key = content[:8000] if content else result.get('tid', '')  # 截断避免超长 key
+            tid = result.get("tid")
+            if seed_mode:
+                content_key = tid
+            else:
+                content = (result.get('full_dialog') or result.get('text', '')).strip()
+                content_key = content[:8000] if content else tid
             if content_key in seen_content:
                 continue
             seen_content.add(content_key)
@@ -1366,8 +1491,8 @@ class VectorMemoryManager:
             if len(unique_results) >= top_k:
                 break
         
-        # 如果结果不足，补充
-        if len(unique_results) < top_k:
+        # 如果结果不足，补充（seed 限制协议禁止 backfill，否则会绕过 Sa 种子约束）
+        if len(unique_results) < top_k and not getattr(self, "_seed_restrict_session_id", None):
             needed = top_k - len(unique_results)
             existing_tids = {r.get('tid') for r in unique_results}
             backfill = self._backfill_results(qv, existing_tids, needed)
@@ -1375,11 +1500,256 @@ class VectorMemoryManager:
             unique_results = unique_results[:top_k]
             if temporal_priority and backfill:
                 unique_results.sort(key=lambda x: (_parse_time(x), -x.get('final_score', 0)))
+        elif len(unique_results) < top_k and getattr(self, "_seed_restrict_session_id", None):
+            # keep short lists under seed restriction; Soft O2 / Soft O2-C may expand later
+            unique_results = unique_results[:top_k]
 
         unique_results = self._ensure_session_completeness(unique_results, top_k)
+        unique_results = self._apply_cluster_modules(unique_results, top_k, qv)
 
         self.lru_cache.put(cache_key, unique_results)
         return unique_results
+
+    def _apply_cluster_modules(self, results, top_k, qv):
+        """Run at most one cluster module after sess_o2 (ablation configs are mutually exclusive)."""
+        if getattr(self, "_cluster_bridge_o2", False):
+            return self._cluster_bridge_episode(results, top_k)
+        if getattr(self, "_cluster_rerank_only", False):
+            return self._cluster_rerank_boost(results, top_k)
+        if getattr(self, "_cluster_suppress_confusers", False):
+            return self._apply_cluster_suppress_confusers(results, top_k, qv)
+        if getattr(self, "_cluster_residual_fallback", False):
+            return self._apply_cluster_residual_fallback(results, top_k)
+        if getattr(self, "_cluster_expand", False):
+            return self._ensure_cluster_completeness(results, top_k)
+        return results[:top_k]
+
+    def _direct_hit_semantic_scores(self):
+        """Semantic scores for direct-hit tids recorded before session soft expansion."""
+        scores = {}
+        pool = getattr(self, "_search_wide_pool", None) or []
+        direct = getattr(self, "_cluster_direct_hits", None) or set()
+        for r in pool:
+            tid = r.get("tid")
+            if tid in direct:
+                scores[tid] = max(
+                    scores.get(tid, 0.0),
+                    float(r.get("score", 0) or 0),
+                )
+        return scores
+
+    def _cluster_route_paragraphs(self, qv, para_results, top_m):
+        """Module D: boost (or lightly filter) paragraphs in query-top clusters."""
+        cents = getattr(self, "_cluster_centroids", None) or {}
+        members = getattr(self, "_cluster_members", None) or {}
+        if not cents or not members:
+            return para_results
+        qv = np.asarray(qv, dtype="float32").ravel()
+        qn = qv / (np.linalg.norm(qv) + 1e-8)
+        scored = []
+        for cid, cv in cents.items():
+            cv = np.asarray(cv, dtype="float32").ravel()
+            cn = cv / (np.linalg.norm(cv) + 1e-8)
+            scored.append((float(np.dot(qn, cn)), cid))
+        scored.sort(key=lambda x: -x[0])
+        top_cids = {cid for _, cid in scored[: max(1, int(top_m))]}
+        allowed = set()
+        for cid in top_cids:
+            allowed.update(members.get(cid, []))
+        if not allowed:
+            return para_results
+        boosted = []
+        for r in para_results:
+            rr = dict(r)
+            if rr.get("tid") in allowed:
+                rr["score"] = float(rr.get("score", 0) or 0) * 1.15
+            boosted.append(rr)
+        boosted.sort(key=lambda x: -float(x.get("score", 0) or 0))
+        if len([r for r in boosted if r.get("tid") in allowed]) >= max(3, len(boosted) // 4):
+            return boosted
+        return para_results
+
+    def _cluster_bridge_episode(self, results, top_k):
+        """Module A: re-inject same-session missing turns when direct hit shares their cluster."""
+        if not self._tid_to_session or not self._tid_to_cluster:
+            return results[:top_k]
+        direct = getattr(self, "_cluster_direct_hits", None) or set()
+        if not direct:
+            return results[:top_k]
+        direct_scores = self._direct_hit_semantic_scores()
+        direct_clusters = {
+            self._tid_to_cluster[t]
+            for t in direct
+            if t in self._tid_to_cluster
+        }
+        beta = float(getattr(self, "_cluster_coherence", 0.90) or 0.90)
+        by_tid = {r.get("tid"): r for r in results}
+        hit_sessions = {
+            self._tid_to_session[t]
+            for t in by_tid
+            if t in self._tid_to_session
+        }
+        extra = []
+        for sid in hit_sessions:
+            for tid in self._session_members.get(sid, []):
+                if tid in by_tid:
+                    continue
+                cid = self._tid_to_cluster.get(tid)
+                if not cid:
+                    continue
+                trigger_sc = 0.0
+                for d in direct:
+                    ds = self._tid_to_session.get(d)
+                    if ds == sid:
+                        trigger_sc = max(trigger_sc, direct_scores.get(d, 0.0))
+                    elif self._tid_to_cluster.get(d) == cid:
+                        trigger_sc = max(trigger_sc, direct_scores.get(d, 0.0))
+                if cid not in direct_clusters and trigger_sc <= 0:
+                    continue
+                if trigger_sc <= 0:
+                    continue
+                node = self.para_tree.get(tid)
+                if node is None:
+                    continue
+                soft_sc = trigger_sc * beta
+                meta = self._meta_for_tid(tid)
+                extra.append({
+                    "tid": tid, "text": node.text, "full_text": node.text,
+                    "type": "paragraph", "score": soft_sc, "final_score": soft_sc,
+                    "timestamp": getattr(node, "timestamp", ""),
+                    "memory_id": tid, "context_label": meta.get("context_label", ""),
+                })
+                by_tid[tid] = extra[-1]
+        merged = list(results) + extra
+        merged.sort(key=lambda x: -float(x.get("final_score", x.get("score", 0)) or 0))
+        return merged[:top_k]
+
+    def _cluster_rerank_boost(self, results, top_k):
+        """Module B: boost wide-pool candidates in direct-hit clusters; no new tid injection."""
+        pool = getattr(self, "_search_wide_pool", None) or list(results)
+        direct = getattr(self, "_cluster_direct_hits", None) or set()
+        if not direct or not self._tid_to_cluster:
+            return results[:top_k]
+        direct_clusters = {
+            self._tid_to_cluster[t]
+            for t in direct
+            if t in self._tid_to_cluster
+        }
+        lam = 0.12
+        min_sim = 0.22
+        by_tid = {}
+        for r in pool:
+            tid = r.get("tid")
+            if not tid:
+                continue
+            base = float(r.get("final_score", r.get("score", 0)) or 0)
+            sim = float(r.get("score", 0) or 0)
+            cid = self._tid_to_cluster.get(tid)
+            boost = lam * sim if cid in direct_clusters and sim >= min_sim else 0.0
+            rr = dict(r)
+            rr["final_score"] = base + boost
+            by_tid[tid] = rr
+        merged = sorted(by_tid.values(), key=lambda x: -float(x.get("final_score", 0) or 0))
+        return merged[:top_k]
+
+    def _para_embedding_for_tid(self, tid):
+        """Return paragraph embedding for tid, or None if unavailable.
+
+        ParagraphNode stores the vector as ``para_vector`` (not ``vector``).
+        Fall back to FAISS reconstruct via metadata when the in-memory copy is missing.
+        """
+        node = self.para_tree.get(tid)
+        if node is not None:
+            vec = getattr(node, "para_vector", None)
+            if vec is not None:
+                return np.asarray(vec, dtype="float32").ravel()
+        meta = self._meta_for_tid(tid)
+        idx = meta.get("index_pos")
+        if idx is None:
+            return None
+        try:
+            if idx < 0 or idx >= self.vector_store.ntotal():
+                return None
+            return np.asarray(self.vector_store.reconstruct(idx), dtype="float32").ravel()
+        except Exception:
+            return None
+
+    def _apply_cluster_suppress_confusers(self, results, top_k, qv):
+        """Module C: downweight turns from low-query-sim sessions in the hit cluster."""
+        if not self._tid_to_cluster or not self._tid_to_session:
+            return results[:top_k]
+        direct = getattr(self, "_cluster_direct_hits", None) or set()
+        direct_scores = self._direct_hit_semantic_scores()
+        if not direct:
+            return results[:top_k]
+        top_cid = None
+        top_sc = -1.0
+        for t in direct:
+            cid = self._tid_to_cluster.get(t)
+            sc = direct_scores.get(t, 0.0)
+            if cid and sc > top_sc:
+                top_sc = sc
+                top_cid = cid
+        if not top_cid:
+            return results[:top_k]
+        sess_best = {}
+        qv_a = np.asarray(qv, dtype="float32").ravel()
+        qn = qv_a / (np.linalg.norm(qv_a) + 1e-8)
+        for tid in self._cluster_members.get(top_cid, []):
+            sid = self._tid_to_session.get(tid)
+            if not sid:
+                continue
+            vec = self._para_embedding_for_tid(tid)
+            if vec is None:
+                continue
+            vn = vec / (np.linalg.norm(vec) + 1e-8)
+            sim = float(np.dot(qn, vn))
+            sess_best[sid] = max(sess_best.get(sid, 0.0), sim)
+        gamma = 0.25
+        confuser_thr = 0.35
+        confusers = {sid for sid, sb in sess_best.items() if sb < confuser_thr}
+        out = []
+        for r in results:
+            rr = dict(r)
+            sid = self._tid_to_session.get(rr.get("tid"))
+            if sid in confusers:
+                fs = float(rr.get("final_score", rr.get("score", 0)) or 0)
+                rr["final_score"] = fs * (1.0 - gamma)
+            out.append(rr)
+        out.sort(key=lambda x: -float(x.get("final_score", x.get("score", 0)) or 0))
+        return out[:top_k]
+
+    def _apply_cluster_residual_fallback(self, results, top_k):
+        """Module E: cluster expand only when a hit session is still incomplete after sess_o2."""
+        if not self._tid_to_session:
+            return results[:top_k]
+        by_tid = {r.get("tid"): r for r in results}
+        incomplete = set()
+        for tid in by_tid:
+            sid = self._tid_to_session.get(tid)
+            if not sid:
+                continue
+            members = self._session_members.get(sid, [])
+            if members and any(m not in by_tid for m in members):
+                incomplete.add(sid)
+        if not incomplete:
+            return results[:top_k]
+        saved_cross = getattr(self, "_cluster_cross_session_only", False)
+        saved_trig = getattr(self, "_cluster_trigger_on_soft", True)
+        saved_bud = getattr(self, "_cluster_budget", 0)
+        saved_expand = bool(getattr(self, "_cluster_expand", False))
+        self._cluster_expand = True
+        self._cluster_cross_session_only = True
+        self._cluster_trigger_on_soft = False
+        self._cluster_budget = 1
+        try:
+            out = self._ensure_cluster_completeness(results, top_k)
+        finally:
+            self._cluster_cross_session_only = saved_cross
+            self._cluster_trigger_on_soft = saved_trig
+            self._cluster_budget = saved_bud
+            self._cluster_expand = saved_expand
+        return out
 
     def _ensure_session_completeness(self, results, top_k):
         """情景记忆完整性：若命中某会话，补入缺失 sibling。
@@ -1417,6 +1787,121 @@ class VectorMemoryManager:
         merged = list(results) + extra
         merged.sort(key=lambda x: -float(x.get("final_score", x.get("score", 0)) or 0))
         return merged[:top_k]
+
+    def _ensure_cluster_completeness(self, results, top_k):
+        """语义簇 Soft O2-C：若命中某 BIRCH 簇成员，软继承分数到同簇 sibling。
+        与会话 Soft O2 对位：分数 = cluster_max_score × β_c；默认限制每簇 sibling 数，
+        避免大主题簇淹没 episode-specific 证据。
+
+        Gated 变体（hybrid_xsess）：
+          _cluster_cross_session_only — 跳过 top-k 已覆盖 session 的 sibling
+          _cluster_trigger_on_soft=False — 仅用 _cluster_direct_hits 触发簇扩展
+          _cluster_budget>0 — 全局簇注入上限（优先于 per-cluster max_siblings）
+        """
+        if not getattr(self, "_cluster_expand", False):
+            return results[:top_k]
+        if not getattr(self, "_tid_to_cluster", None):
+            self._rebuild_cluster_membership()
+        if not self._tid_to_cluster:
+            return results[:top_k]
+        beta = float(getattr(self, "_cluster_coherence", 0.90) or 0.90)
+        max_sib = int(getattr(self, "_cluster_max_siblings", 8) or 8)
+        cross_sess = bool(getattr(self, "_cluster_cross_session_only", False))
+        trigger_soft = bool(getattr(self, "_cluster_trigger_on_soft", True))
+        budget = int(getattr(self, "_cluster_budget", 0) or 0)
+        direct_hits = getattr(self, "_cluster_direct_hits", None) or set()
+        by_tid = {r.get("tid"): r for r in results}
+        covered_sessions = set()
+        if cross_sess and self._tid_to_session:
+            for tid in by_tid:
+                sid = self._tid_to_session.get(tid)
+                if sid:
+                    covered_sessions.add(sid)
+        cluster_score = {}
+        for r in results:
+            tid = r.get("tid")
+            if not trigger_soft and tid not in direct_hits:
+                continue
+            cid = self._tid_to_cluster.get(tid)
+            if cid:
+                cluster_score[cid] = max(
+                    cluster_score.get(cid, 0.0),
+                    float(r.get("final_score", r.get("score", 0)) or 0),
+                )
+        extra = []
+        budget_left = budget if budget > 0 else None
+        prefer_asst = bool(getattr(self, "_cluster_prefer_assistant", False))
+        for cid, sc in cluster_score.items():
+            soft_sc = sc * beta
+            members = list(self._cluster_members.get(cid, []))
+            if prefer_asst:
+                def _asst_rank(tid):
+                    meta = self._meta_for_tid(tid)
+                    role = (meta.get("context_label") or "").lower()
+                    return 0 if role == "assistant" else 1
+                members = sorted(members, key=_asst_rank)
+            added = 0
+            for tid in members:
+                if tid in by_tid:
+                    continue
+                if budget_left is not None and budget_left <= 0:
+                    break
+                if added >= max_sib:
+                    break
+                if cross_sess:
+                    sid = self._tid_to_session.get(tid)
+                    if sid and sid in covered_sessions:
+                        continue
+                node = self.para_tree.get(tid)
+                if node is None:
+                    continue
+                meta = self._meta_for_tid(tid)
+                extra.append({
+                    "tid": tid, "text": node.text, "full_text": node.text,
+                    "type": "paragraph", "score": soft_sc, "final_score": soft_sc,
+                    "timestamp": getattr(node, "timestamp", ""),
+                    "memory_id": tid, "context_label": meta.get("context_label", ""),
+                    "cluster_id": cid,
+                })
+                by_tid[tid] = extra[-1]
+                added += 1
+                if budget_left is not None:
+                    budget_left -= 1
+            if budget_left is not None and budget_left <= 0:
+                break
+        merged = list(results) + extra
+        merged.sort(key=lambda x: -float(x.get("final_score", x.get("score", 0)) or 0))
+        pin = bool(getattr(self, "_cluster_pin_session_slots", False))
+        if pin and cross_sess and getattr(self, "_session_expand", False):
+            protected = set()
+            for r in results:
+                sid = self._tid_to_session.get(r.get("tid"))
+                if not sid:
+                    continue
+                for tid in self._session_members.get(sid, []):
+                    protected.add(tid)
+            merged = self._truncate_preserving_tids(merged, top_k, protected)
+        else:
+            merged = merged[:top_k]
+        return merged
+
+    def _truncate_preserving_tids(self, merged, top_k, protected_tids):
+        """Keep protected tids (e.g. session-complete siblings) when cluster extras compete for top_k."""
+        if not protected_tids or top_k <= 0:
+            return merged[:top_k]
+        by_score = sorted(
+            merged,
+            key=lambda x: -float(x.get("final_score", x.get("score", 0)) or 0),
+        )
+        kept, rest = [], []
+        for r in by_score:
+            tid = r.get("tid")
+            if tid in protected_tids:
+                kept.append(r)
+            else:
+                rest.append(r)
+        out = kept + rest
+        return out[:top_k]
 
     def _meta_for_tid(self, tid):
         # O(1) lookup; rebuild lazily if metadata grew (bulk load / late inserts).
@@ -1687,6 +2172,8 @@ class VectorMemoryManager:
         self._embed_api_calls = 0
         self._tid_to_session = {}
         self._session_members = {}
+        self._tid_to_cluster = {}
+        self._cluster_members = {}
         if os.path.exists(self.talk_file):
             os.remove(self.talk_file)
         os.makedirs(os.path.dirname(self.talk_file), exist_ok=True)

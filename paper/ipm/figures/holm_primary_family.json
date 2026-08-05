@@ -1,0 +1,60 @@
+{
+  "family": "SoftO2_vs_FlatIP_primary9",
+  "source": "BIMS-LEGAL-dataset/primary_results/bims_legal_v4 per_query_ah",
+  "rows": [
+    {
+      "label": "CAIL / Uk",
+      "delta_ah": 0.42833333333333334,
+      "mid_p": 8.993025227426245e-48,
+      "holm_p": 7.194420181940996e-47
+    },
+    {
+      "label": "CAIL / U1",
+      "delta_ah": 0.21833333333333338,
+      "mid_p": 5.192781109644184e-18,
+      "holm_p": 3.634946776750929e-17
+    },
+    {
+      "label": "CAIL / U-last",
+      "delta_ah": 0.5166666666666667,
+      "mid_p": 5.506582252222475e-65,
+      "holm_p": 4.9559240270002274e-64
+    },
+    {
+      "label": "LegalEp-DISC / exact",
+      "delta_ah": -0.0020000000000000018,
+      "mid_p": 0.9340795771546327,
+      "holm_p": 0.9340795771546327
+    },
+    {
+      "label": "LegalEp-Lawyer / exact",
+      "delta_ah": 0.06000000000000005,
+      "mid_p": 0.023863795943825483,
+      "holm_p": 0.047727591887650966
+    },
+    {
+      "label": "LegalEp-DISC / u-para",
+      "delta_ah": 0.10060362173038229,
+      "mid_p": 7.945707619736947e-05,
+      "holm_p": 0.00031782830478947787
+    },
+    {
+      "label": "LegalEp-Lawyer / u-para",
+      "delta_ah": 0.19076305220883538,
+      "mid_p": 2.104006276646849e-15,
+      "holm_p": 1.2624037659881093e-14
+    },
+    {
+      "label": "LegalEp-DISC / advice",
+      "delta_ah": 0.08599999999999997,
+      "mid_p": 0.00012535822987511428,
+      "holm_p": 0.00037607468962534284
+    },
+    {
+      "label": "LegalEp-Lawyer / advice",
+      "delta_ah": 0.13999999999999996,
+      "mid_p": 1.1784452984726363e-10,
+      "holm_p": 5.892226492363181e-10
+    }
+  ]
+}

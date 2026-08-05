@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Fit Soft-O2 β* from a three-candidate ranking-competition model (faiss-only).
+"""Soft-O2 β diagnostics from a three-candidate ranking-competition model (faiss-only).
+
+coverage_quantile_diagnostic is NOT an optimizer and is NOT used to choose β;
+default β=0.98 comes from the AH validation sweep.
+
+Original one-liner:
 
 Does not load VectorMemoryManager (slow on large workdirs). Uses:
   - vectors/vector.index + vectors/metadata.json
@@ -27,7 +32,7 @@ def _sigmoid(x: np.ndarray) -> np.ndarray:
     return 1.0 / (1.0 + np.exp(-np.clip(x, -40.0, 40.0)))
 
 
-def beta_star_hinge(rho: np.ndarray, w_avail: float = 1.0, w_rank: float = 0.05) -> Tuple[float, dict]:
+def coverage_quantile_diagnostic(rho: np.ndarray, w_avail: float = 1.0, w_rank: float = 0.05) -> Tuple[float, dict]:
     rho = np.asarray(rho, dtype=np.float64)
     rho = rho[np.isfinite(rho) & (rho >= 0)]
     if rho.size == 0:
@@ -41,7 +46,8 @@ def beta_star_hinge(rho: np.ndarray, w_avail: float = 1.0, w_rank: float = 0.05)
         "rho_p90": float(np.quantile(rho, 0.90)),
         "rho_p95": float(np.quantile(rho, 0.95)),
         "rho_p98": float(np.quantile(rho, 0.98)),
-        "beta_star_hinge": beta,
+        "coverage_quantile_value": beta,
+        "note": "diagnostic coverage quantile only; not an optimizer; not used to choose beta",
         "w_avail": w_avail,
         "w_rank": w_rank,
     }
@@ -236,8 +242,8 @@ def main():
         flush=True,
     )
 
-    b_h, st_h = beta_star_hinge(rho, w_avail=1.0, w_rank=0.05)
-    b_h2, st_h2 = beta_star_hinge(rho, w_avail=1.0, w_rank=0.15)
+    b_h, st_h = coverage_quantile_diagnostic(rho, w_avail=1.0, w_rank=0.05)
+    b_h2, st_h2 = coverage_quantile_diagnostic(rho, w_avail=1.0, w_rank=0.15)
     b_s, st_s = beta_star_softrank(rho, tau=20.0, gamma=0.05)
     b_s2, st_s2 = beta_star_softrank(rho, tau=20.0, gamma=0.15)
 
@@ -267,7 +273,7 @@ def main():
             "s_a_mean": float(np.mean(sas)),
             "s_d_mean": float(np.mean(sds)),
         },
-        "beta_star": {
+        "coverage_quantile_diagnostic": {
             "hinge_wrank0.05": b_h,
             "hinge_wrank0.15": b_h2,
             "softrank_gamma0.05": b_s,
@@ -283,7 +289,7 @@ def main():
     }
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(out, indent=2, ensure_ascii=False))
-    print(json.dumps({"beta_star": out["beta_star"], "rho_stats": out["rho_stats"], "cover": cover}, indent=2))
+    print(json.dumps({"coverage_quantile_diagnostic": out["coverage_quantile_diagnostic"], "rho_stats": out["rho_stats"], "cover": cover}, indent=2))
     print(f"[wrote] {args.out}")
 
 

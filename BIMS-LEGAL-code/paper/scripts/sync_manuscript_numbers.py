@@ -366,7 +366,7 @@ Lawyer-LLaMA & 0.750 & 0.783 & 0.100 & 0.133 & 0.68 \\
     t = replace_once(
         t,
         r"""Code, configuration files, per-query JSON outputs, and evaluation scripts are released as a fixed repository tag aligned with this manuscript.""",
-        r"""Code, processed evaluation corpora, and primary result files are released at \url{https://github.com/Kilimajaro/soft-episode-binding-legal-memory}.""",
+        r"""Code, configuration files, per-query JSON outputs, and evaluation scripts are released at \url{https://github.com/Kilimajaro/soft-episode-binding-legal-memory} under tag \texttt{ipm-legal-revision-20260720}, aligned with this manuscript.""",
         "repro-url",
     )
 

@@ -40,7 +40,7 @@ def main():
     ax.axis("off")
 
     ax.set_title(
-        "Figure 1. BIMS-LEGAL: dual-store memory, O1--O3 operators, Soft O2 / Soft O2-C evaluation",
+        "Figure 1. BIMS-LEGAL pipeline: dual-store memory, Soft O2 binding, multi-corpus evaluation",
         fontsize=11.5, fontweight="bold", pad=12, loc="left",
     )
 
@@ -49,9 +49,9 @@ def main():
     ax.add_patch(Rectangle((0.25, 2.35), 13.0, 2.0, facecolor="#FBF6F6", edgecolor="#E5D4D4", lw=0.8, zorder=0))
     ax.add_patch(Rectangle((0.25, 0.2), 13.0, 1.95, facecolor="#F6F6F6", edgecolor="#D8D8D8", lw=0.8, zorder=0))
 
-    ax.text(0.4, 6.3, "(A) Dual-store architecture + O1/O3", fontsize=9.5, fontweight="bold", color="#2F4A6A")
-    ax.text(0.4, 4.15, "(B) Retrieval with Soft O2 / Soft O2-C", fontsize=9.5, fontweight="bold", color="#8B2E2E")
-    ax.text(0.4, 1.95, "(C) Evaluation order (integrity-first)", fontsize=9.5, fontweight="bold", color="#444")
+    ax.text(0.4, 6.3, "(A) Dual-store architecture", fontsize=9.5, fontweight="bold", color="#2F4A6A")
+    ax.text(0.4, 4.15, "(B) Retrieval with Soft O2 (episodic operator)", fontsize=9.5, fontweight="bold", color="#8B2E2E")
+    ax.text(0.4, 1.95, "(C) Evaluation protocol (integrity-first)", fontsize=9.5, fontweight="bold", color="#444")
 
     # --- A ---
     box(ax, (0.45, 4.75), 2.35, 1.35,
@@ -81,7 +81,7 @@ def main():
         "Dense retrieval\nsummary + assoc.\n+ vector (+ temporal)",
         fc="#E7EEF6", ec="#2F4A6A", fs=7.8)
     box(ax, (6.0, 2.55), 3.0, 1.4,
-        "Soft O2 / Soft O2-C\ns' ← max(s', β·s)\nsession or cluster",
+        "Soft O2 binding\ns' ← max(s', β·s)\nno hard score copy",
         fc="#F8E8E8", ec="#8B2E2E", fs=8.0, fw="bold")
     box(ax, (9.25, 2.55), 3.8, 1.4,
         "Rank & evaluate\nAH@k · EC@k · nDCG@k\nbootstrap CI · McNemar",
@@ -93,16 +93,16 @@ def main():
 
     # --- C ---
     box(ax, (0.45, 0.4), 2.9, 1.3,
-        "① O1--O3 ablation\nFlatIP + Soft O2\nM=400 shared store",
+        "① CAIL2024\nauthentic multi-turn\ngold dialogues",
         fc="#E3ECF7", ec="#1F4E79", fs=7.6, fw="bold")
     box(ax, (3.55, 0.4), 2.9, 1.3,
-        "② Soft O2 on session\nCAIL multi-turn +\nLegalEp paraphrase",
+        "② LegalEp-DISC\nquality-filtered\nconsultation episodes",
         fc="#FAFAFA", ec="#555", fs=7.6)
     box(ax, (6.65, 0.4), 2.9, 1.3,
-        "③ Cluster pathway\nsame-session Soft O2-C\nvs Soft O2",
+        "③ LegalEp-Lawyer\nconsult sources only\n+ audit sample",
         fc="#FAFAFA", ec="#555", fs=7.6)
     box(ax, (9.75, 0.4), 3.3, 1.3,
-        "④ Fair Mix Soft O2-C\ncross-/same-session gold\nHybrid gated binding",
+        "④ LongMemEval / LoCoMo\ncross-domain completeness\n+ architecture ablations",
         fc="#FAFAFA", ec="#555", fs=7.6)
     arrow(ax, (3.35, 1.05), (3.55, 1.05), color="#666")
     arrow(ax, (6.45, 1.05), (6.65, 1.05), color="#666")
@@ -111,7 +111,7 @@ def main():
     # Controls footnote strip
     ax.text(
         6.75, 0.08,
-        "Controls: FlatIP · Hard hydration · BM25 · RRF · CE · shuffled sid  |  Exact replay is diagnostic only",
+        "Controls (every legal corpus): FlatIP · Hard hydration · Session-max · Dense Joint · BM25 · shuffled sid",
         ha="center", va="bottom", fontsize=7.2, color="#555", style="italic",
     )
 

@@ -14,7 +14,20 @@ Companion release for the IPM manuscript:
 bash scripts/reproduce_ipm_smoke.sh
 ```
 
-This checks package layout, metric tests (when present), main-table artifacts, and compiles the anonymous manuscript with `tectonic` if available. Full Soft~O2 grids require Ollama embeddings and are documented under `BIMS-LEGAL-code/README.md`.
+This syncs canonical code into `BIMS-LEGAL-code/`, runs Hybrid-gate / Holm / metrics unit tests, and checks the Soft~O2-C KMeans API. Full Soft~O2 grids require Ollama embeddings and are documented under `BIMS-LEGAL-code/README.md`.
+
+## Reproduction tiers
+
+| Tier | Command | What it does |
+|------|---------|----------------|
+| Smoke | `bash scripts/reproduce_ipm_smoke.sh` | Code sync, Hybrid-gate / Holm / metrics tests, Soft~O2-C KMeans smoke |
+| Table-only | `python paper/scripts/regenerate_unified_tables.py` | Rebuild Soft O2 grids / failure taxonomy / Holm from `corrected_metrics_*.json` + V4 `per_query_ah` |
+| Code sync | `bash scripts/sync_canonical_code.sh` | Root `memory_manager.py` / `eval/` → `BIMS-LEGAL-code/` (zero-diff check) |
+| Full rerun | See `BIMS-LEGAL-code/README.md` | Requires Ollama embeddings; regenerates stores and rankings |
+
+Canonical implementation: **repository root** (`memory_manager.py`, `eval/`). `BIMS-LEGAL-code/` is a publication mirror kept in sync by `scripts/sync_canonical_code.sh`.
+
+Data licences: see [`DATA_LICENSES.md`](DATA_LICENSES.md).
 
 ## Packages
 

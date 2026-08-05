@@ -57,6 +57,11 @@ def test_failure_session_miss():
     assert m["failure_mode"] == "session_miss"
 
 
+def test_failure_taxonomy_answer_only():
+    m = metrics_at_k([_row("a1")], ["q1", "a1"], ["a1"], k=10, gold_q_tids=["q1"])
+    assert m["failure_mode"] == "answer_only"
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("test_"):

@@ -2,6 +2,7 @@
 # Sync development tree into BIMS-LEGAL-code / BIMS-LEGAL-dataset publication folders.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+bash "$ROOT/scripts/sync_canonical_code.sh"
 CODE="$ROOT/BIMS-LEGAL-code"
 DATA="$ROOT/BIMS-LEGAL-dataset"
 
