@@ -60,7 +60,3 @@ bash scripts/build_publication_packages.sh
 
 - **Code** in this repository: MIT (see `LICENSE`).
 - **Upstream corpora** (CAIL2024, DISC-Law-SFT, Lawyer-LLaMA): remain under their original licences; see [`DATA_LICENSES.md`](DATA_LICENSES.md). Processed LegalEp/LegalMem artifacts are derived research releases.
-
-## Citation
-
-If you use this release, please cite the IPM manuscript and attribute upstream corpora under their original licences.
