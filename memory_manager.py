@@ -1789,7 +1789,7 @@ class VectorMemoryManager:
         return merged[:top_k]
 
     def _ensure_cluster_completeness(self, results, top_k):
-        """语义簇 Soft O2-C：若命中某 BIRCH 簇成员，软继承分数到同簇 sibling。
+        """语义簇 Soft O2-C：若命中某 KMeans 语义簇成员，软继承分数到同簇 sibling。
         与会话 Soft O2 对位：分数 = cluster_max_score × β_c；默认限制每簇 sibling 数，
         避免大主题簇淹没 episode-specific 证据。
 

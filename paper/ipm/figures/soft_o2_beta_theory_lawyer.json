@@ -18,34 +18,6 @@
     "s_a_mean": 0.6917147405708537,
     "s_d_mean": 0.6652516205170576
   },
-  "beta_star": {
-    "hinge_wrank0.05": 0.8163813430884281,
-    "hinge_wrank0.15": 0.7743974007691656,
-    "softrank_gamma0.05": 0.9488995983935743,
-    "softrank_gamma0.15": 0.9168353413654619
-  },
-  "hinge_detail": {
-    "n": 425,
-    "cover_quantile_pi": 0.9523809523809523,
-    "rho_p50": 0.6620654262343303,
-    "rho_p90": 0.7855643894264821,
-    "rho_p95": 0.8151501241128108,
-    "rho_p98": 0.8385770177841186,
-    "beta_star_hinge": 0.8163813430884281,
-    "w_avail": 1.0,
-    "w_rank": 0.05
-  },
-  "hinge_detail_wrank0.15": {
-    "n": 425,
-    "cover_quantile_pi": 0.8695652173913044,
-    "rho_p50": 0.6620654262343303,
-    "rho_p90": 0.7855643894264821,
-    "rho_p95": 0.8151501241128108,
-    "rho_p98": 0.8385770177841186,
-    "beta_star_hinge": 0.7743974007691656,
-    "w_avail": 1.0,
-    "w_rank": 0.15
-  },
   "softrank_detail": {
     "n": 425,
     "tau": 20.0,
@@ -81,5 +53,36 @@
     0.9,
     0.95,
     0.98
-  ]
+  ],
+  "coverage_quantile_diagnostic": {
+    "hinge_wrank0.05": 0.8163813430884281,
+    "hinge_wrank0.15": 0.7743974007691656,
+    "softrank_gamma0.05": 0.9488995983935743,
+    "softrank_gamma0.15": 0.9168353413654619,
+    "note": "not an optimizer; beta chosen by AH validation sweep"
+  },
+  "coverage_quantile_detail": {
+    "n": 425,
+    "cover_quantile_pi": 0.9523809523809523,
+    "rho_p50": 0.6620654262343303,
+    "rho_p90": 0.7855643894264821,
+    "rho_p95": 0.8151501241128108,
+    "rho_p98": 0.8385770177841186,
+    "w_avail": 1.0,
+    "w_rank": 0.05,
+    "coverage_quantile_value": 0.8163813430884281,
+    "note": "coverage quantile diagnostic only; not used to choose beta"
+  },
+  "coverage_quantile_detail_wrank0.15": {
+    "n": 425,
+    "cover_quantile_pi": 0.8695652173913044,
+    "rho_p50": 0.6620654262343303,
+    "rho_p90": 0.7855643894264821,
+    "rho_p95": 0.8151501241128108,
+    "rho_p98": 0.8385770177841186,
+    "w_avail": 1.0,
+    "w_rank": 0.15,
+    "coverage_quantile_value": 0.7743974007691656,
+    "note": "coverage quantile diagnostic only; not used to choose beta"
+  }
 }

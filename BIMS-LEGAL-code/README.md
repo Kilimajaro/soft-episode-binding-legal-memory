@@ -1,3 +1,5 @@
+> **Source of truth:** edit files at the repository root (`../memory_manager.py`, `../eval/`). This folder is a publication mirror synced by `../scripts/sync_canonical_code.sh`.
+
 # BIMS-LEGAL Reproducible Code Package
 
 Companion code for:

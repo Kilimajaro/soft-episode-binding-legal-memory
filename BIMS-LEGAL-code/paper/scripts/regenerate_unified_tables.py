@@ -98,7 +98,7 @@ def rewrite_appendix_grids(tex: str) -> str:
                 ("Uk-followup", "uk_followup"),
                 ("U-last", "u_last"),
             ],
-            True,
+            False,
         ),
         "tab:disc_main": (
             "disc",

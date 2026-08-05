@@ -19,33 +19,35 @@
       "s_a_mean": 0.7197734221617381,
       "s_d_mean": 0.7450430556933085
     },
-    "beta_star": {
+    "coverage_quantile_diagnostic": {
       "hinge_wrank0.05": 0.8588259759403409,
       "hinge_wrank0.15": 0.8270061215278633,
       "softrank_gamma0.05": 0.9869759036144579,
       "softrank_gamma0.15": 0.9509036144578313
     },
-    "hinge_detail": {
+    "coverage_quantile_detail": {
       "n": 375,
       "cover_quantile_pi": 0.9523809523809523,
       "rho_p50": 0.746379554271698,
       "rho_p90": 0.834767452742212,
       "rho_p95": 0.853650903244769,
       "rho_p98": 0.8927025430911675,
-      "beta_star_hinge": 0.8588259759403409,
+      "coverage_quantile_value": 0.8588259759403409,
       "w_avail": 1.0,
-      "w_rank": 0.05
+      "w_rank": 0.05,
+      "note": "diagnostic coverage quantile only; not an optimizer; not used to choose beta"
     },
-    "hinge_detail_wrank0.15": {
+    "coverage_quantile_detail_wrank0.15": {
       "n": 375,
       "cover_quantile_pi": 0.8695652173913044,
       "rho_p50": 0.746379554271698,
       "rho_p90": 0.834767452742212,
       "rho_p95": 0.853650903244769,
       "rho_p98": 0.8927025430911675,
-      "beta_star_hinge": 0.8270061215278633,
+      "coverage_quantile_value": 0.8270061215278633,
       "w_avail": 1.0,
-      "w_rank": 0.15
+      "w_rank": 0.15,
+      "note": "diagnostic coverage quantile only; not an optimizer; not used to choose beta"
     },
     "softrank_detail": {
       "n": 375,
@@ -104,33 +106,35 @@
       "s_a_mean": 0.6917147405708537,
       "s_d_mean": 0.6652516205170576
     },
-    "beta_star": {
+    "coverage_quantile_diagnostic": {
       "hinge_wrank0.05": 0.8163813430884281,
       "hinge_wrank0.15": 0.7743974007691656,
       "softrank_gamma0.05": 0.9488995983935743,
       "softrank_gamma0.15": 0.9168353413654619
     },
-    "hinge_detail": {
+    "coverage_quantile_detail": {
       "n": 425,
       "cover_quantile_pi": 0.9523809523809523,
       "rho_p50": 0.6620654262343303,
       "rho_p90": 0.7855643894264821,
       "rho_p95": 0.8151501241128108,
       "rho_p98": 0.8385770177841186,
-      "beta_star_hinge": 0.8163813430884281,
+      "coverage_quantile_value": 0.8163813430884281,
       "w_avail": 1.0,
-      "w_rank": 0.05
+      "w_rank": 0.05,
+      "note": "diagnostic coverage quantile only; not an optimizer; not used to choose beta"
     },
-    "hinge_detail_wrank0.15": {
+    "coverage_quantile_detail_wrank0.15": {
       "n": 425,
       "cover_quantile_pi": 0.8695652173913044,
       "rho_p50": 0.6620654262343303,
       "rho_p90": 0.7855643894264821,
       "rho_p95": 0.8151501241128108,
       "rho_p98": 0.8385770177841186,
-      "beta_star_hinge": 0.7743974007691656,
+      "coverage_quantile_value": 0.7743974007691656,
       "w_avail": 1.0,
-      "w_rank": 0.15
+      "w_rank": 0.15,
+      "note": "diagnostic coverage quantile only; not an optimizer; not used to choose beta"
     },
     "softrank_detail": {
       "n": 425,

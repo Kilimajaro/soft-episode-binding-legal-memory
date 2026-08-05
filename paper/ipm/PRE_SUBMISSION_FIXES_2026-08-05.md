@@ -34,3 +34,7 @@
 - `bash scripts/reproduce_ipm_smoke.sh` 通过
 - `python paper/scripts/regenerate_unified_tables.py` 已回写主稿表
 - `tectonic` 编译 `ipm-article.pdf` 与 `ipm-article-anonymous.pdf` 成功
+
+
+## 终检
+见 `FINAL_CHECKLIST_STATUS_2026-08-06.md`（对照 docx 全表）。

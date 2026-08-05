@@ -27,6 +27,8 @@ This syncs canonical code into `BIMS-LEGAL-code/`, runs Hybrid-gate / Holm / met
 
 Canonical implementation: **repository root** (`memory_manager.py`, `eval/`). `BIMS-LEGAL-code/` is a publication mirror kept in sync by `scripts/sync_canonical_code.sh`.
 
+Mix Soft~O2-C / Hybrid entrypoints live under root `eval/legal/v3/` (`run_cluster_o2_ablation.py`, `build_split_episode_manifest.py`); the publication mirror is refreshed by `scripts/sync_canonical_code.sh`.
+
 Data licences: see [`DATA_LICENSES.md`](DATA_LICENSES.md).
 
 ## Packages

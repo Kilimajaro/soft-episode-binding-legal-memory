@@ -78,6 +78,10 @@ def main() -> None:
 
     if "github.com/Kilimajaro" in tex or "xu-l81@" in tex or "linrui_han@" in tex:
         raise SystemExit("anonymize left identifying URLs or emails")
+    tex = tex.replace(
+        "Computational resources were provided by the Data Law Laboratory, China University of Political Science and Law.",
+        "Computational resources were provided by the authors' host institutions.",
+    )
     if "University of Winnipeg" in tex or "CUPL Data Law Lab" in tex:
         raise SystemExit("anonymize left identifying affiliations in body")
 
