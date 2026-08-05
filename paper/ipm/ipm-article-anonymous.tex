@@ -42,7 +42,7 @@ BIMS-LEGAL indexes Chinese consultation logs in a dual store: a fast episodic tu
 Soft~O2 binds session siblings by attenuated score inheritance ($\beta s$) rather than hard score copy.
 Exact replay is a surface-form reference; main channels are paraphrase, follow-up, and advice-recall.
 On a shared turn-level FlatIP rebuild Soft~O2 substantially improves Answer Hit over dense FlatIP; hard hydration is a score-copy envelope that can further raise AH by forcing siblings into top-$k$.
-Soft~O2-C is evaluated as a conditional cluster-binding mechanism under Mix reconstructions with off-session gold, not as a fully unsupervised deployment claim.
+Soft~O2-C is evaluated as a conditional cluster-binding mechanism under Mix reconstructions with off-session gold; gated Hybrid is the composed operator when thematic co-membership helps.
 We report Answer Hit, Episode Completeness, graded nDCG with fixed gold-session IDCG, a four-way failure taxonomy, and Holm-adjusted Soft~O2 vs FlatIP tests.
 \end{abstract}
 
@@ -616,16 +616,17 @@ LegalEp-Lawyer / exact & 0.636 & 0.708 & \textbf{0.752} \\
 \subsection{Soft~O2-C and gated Hybrid under Mix}\label{sec:exp-cluster}
 When gold answers already share $sid$ with the query, Soft~O2 is sufficient and cluster binding is unnecessary.
 Table~\ref{tab:csce} asks the off-session question under the Mix protocol of Section~\ref{sec:csce-protocol}: $70\%$ cross-session Sa/Sb gold and $30\%$ intact same-session gold, with FlatIP, Soft~O2, Soft~O2-C, and gated Hybrid sharing unrestricted dense retrieval.
+Hybrid uses the post-gate direct-dense trigger: cluster binding fires only on tids recorded \emph{before} Soft~O2 session expansion.
 
-On the cross-session stratum Soft~O2-C improves over Soft~O2 on LegalEp-Lawyer ($0.491$ vs $0.446$) and LegalMem-MT ($0.537$ vs $0.503$): cluster binding can surface split-episode gold that session membership alone misses.
-Cross-session Soft~O2-C gains motivate gated Hybrid as a selective operator, but the Mix Hybrid numbers in Table~\ref{tab:csce} predate a gate fix that records direct dense hits \emph{before} Soft~O2 session expansion.
-Those Hybrid rows are retained only as historical exploratory measurements and are not used for significance claims in this submission; Soft~O2-C $\mathrm{AH}_{\mathrm{cross}}$ contrasts remain the mechanism evidence.
-Ungated Soft~O2-C can raise cross-session hits yet displace intact same-session evidence.
+On LegalEp Mix stores, gated Hybrid is the strongest overall system (DISC AH $0.542$, Lawyer $0.536$; McNemar mid-$p{=}0.0005$${}^{**}$ / $0.0022$${}^{**}$ vs Soft~O2) and also leads $\mathrm{AH}_{\mathrm{cross}}$.
+Ungated Soft~O2-C raises DISC $\mathrm{AH}_{\mathrm{cross}}$ to $0.506$ from Soft~O2 $0.460$ and Lawyer cross to $0.480$ from $0.440$, but remains weaker than Hybrid once session binding is composed under the gate.
+On LegalMem-MT Mix the picture reverses: Soft~O2 retains the best overall AH ($0.602$), while Soft~O2-C ($0.440$) and Hybrid ($0.562$) trail; FlatIP even leads the cross stratum ($0.520$).
+Cluster binding is therefore conditional on corpus and cluster purity---helpful as a gated add-on on LegalEp advice-recall Mix, but not a free lunch on CAIL multi-turn Mix under the same protocol.
 Same-session Soft~O2 vs Soft~O2-C contrasts remain Soft~O2-led (Appendix~\ref{app:tables}, Table~\ref{tab:cluster_same}).
 
 \begin{table}[htbp]
 \centering
-\caption{Mix evaluation of Soft~O2-C and gated Hybrid (same store, unrestricted dense; AH@10). Gold is $70$\% cross-session Sa/Sb + $30$\% intact same-session. Boldface: best overall AH and best cross-session AH within each corpus. Significance vs Soft~O2: ${}^{*}\,p{<}0.05$, ${}^{**}\,p{<}0.01$.}
+\caption{Mix evaluation of Soft~O2-C and gated Hybrid after the direct-dense gate fix (same store, unrestricted dense; AH@10). Gold is $70$\% cross-session Sa/Sb + $30$\% intact same-session. Boldface: best overall AH and best cross-session AH within each corpus. Significance vs Soft~O2: ${}^{*}\,p{<}0.05$, ${}^{**}\,p{<}0.01$.}
 \label{tab:csce}
 \compacttab\footnotesize
 \begin{tabular}{@{}llcccc@{}}
@@ -633,26 +634,26 @@ Same-session Soft~O2 vs Soft~O2-C contrasts remain Soft~O2-led (Appendix~\ref{ap
 \textbf{Corpus} & \textbf{System} & \textbf{AH} & \textbf{AH$_{\mathrm{cross}}$} & \textbf{AH$_{\mathrm{same}}$} & \textbf{mid-$p$ vs Soft~O2} \\
 \midrule
 \multirow{4}{*}{LegalEp-DISC Mix}
- & FlatIP & 0.478 & 0.477 & 0.480 & --- \\
- & Soft O2 & 0.482 & 0.443 & \textbf{0.573} & --- \\
- & Soft O2-C & 0.410 & 0.443 & 0.333 & 0.0004${}^{**}$ \\
- & Hybrid$^{\dagger}$ & \textbf{0.486} & \textbf{0.469} & 0.527 & 0.8099 \\
+ & FlatIP & 0.494 & 0.491 & 0.500 & --- \\
+ & Soft O2 & 0.492 & 0.460 & 0.567 & --- \\
+ & Soft O2-C & 0.498 & 0.506 & 0.480 & 0.7275 \\
+ & Hybrid & \textbf{0.542} & \textbf{0.526} & \textbf{0.580} & 0.0005${}^{**}$ \\
 \midrule
 \multirow{4}{*}{LegalEp-Lawyer Mix}
- & FlatIP & 0.462 & 0.454 & 0.480 & --- \\
- & Soft O2 & 0.496 & 0.446 & \textbf{0.613} & --- \\
- & Soft O2-C & 0.464 & 0.491 & 0.400 & 0.0857 \\
- & Hybrid$^{\dagger}$ & \textbf{0.534} & \textbf{0.523} & 0.560 & 0.0105 \\
+ & FlatIP & 0.460 & 0.451 & 0.480 & --- \\
+ & Soft O2 & 0.492 & 0.440 & \textbf{0.613} & --- \\
+ & Soft O2-C & 0.464 & 0.480 & 0.427 & 0.1284 \\
+ & Hybrid & \textbf{0.536} & \textbf{0.520} & 0.573 & 0.0022${}^{**}$ \\
 \midrule
 \multirow{4}{*}{LegalMem-MT Mix}
- & FlatIP & 0.534 & 0.526 & 0.553 & --- \\
- & Soft O2 & 0.618 & 0.503 & \textbf{0.887} & --- \\
- & Soft O2-C & 0.500 & 0.537 & 0.413 & 0.0000${}^{**}$ \\
- & Hybrid$^{\dagger}$ & \textbf{0.646} & \textbf{0.551} & 0.867 & 0.1837 \\
+ & FlatIP & 0.530 & \textbf{0.520} & 0.553 & --- \\
+ & Soft O2 & \textbf{0.602} & 0.489 & \textbf{0.867} & --- \\
+ & Soft O2-C & 0.440 & 0.460 & 0.393 & 0.0000${}^{**}$ \\
+ & Hybrid & 0.562 & 0.446 & 0.833 & 0.0594 \\
 \bottomrule
 \end{tabular}
 \end{table}
-{\footnotesize Soft~O2-C $\mathrm{AH}_{\mathrm{cross}}$ is the mechanism contrast. $^{\dagger}$Hybrid rows are exploratory measurements from a pre-fix gate implementation and are not used for primary claims. Cluster co-membership of Sa/Sb pairs follows Section~\ref{sec:csce-protocol}.}
+{\footnotesize Hybrid uses the post-gate direct-dense trigger. Soft~O2-C mid-$p$ vs Soft~O2 may favour either side; on LegalMem-MT the ${}^{**}$ marks Soft~O2-C significantly \emph{below} Soft~O2. Cluster co-membership of Sa/Sb pairs follows Section~\ref{sec:csce-protocol}.}
 
 \subsection{Scale behaviour}\label{sec:exp-scale}
 Figure~\ref{fig:scale} and Table~\ref{tab:scale} report quality and warm-query latency on LegalEp-DISC exact ($Q{=}100$, three repeats; $M\in\{100,400,1600,6400\}$).
@@ -683,7 +684,7 @@ Hard hydration can exceed Soft~O2 AH/EC as a score-copy envelope.
 After Holm adjustment on the Soft~O2 vs FlatIP family, the non-exact CAIL and LegalEp gains remain significant, while LegalEp exact replay is mixed (Table~\ref{tab:sig}).
 LegalEp paraphrase and advice-recall, rather than exact replay, support the main transfer result.
 Graded nDCG agrees with the Soft~O2$>$FlatIP ordering (Table~\ref{tab:ndcg-graded}).
-Under Mix, Soft~O2-C can raise cross-session Answer Hit when thematic co-membership is present (Table~\ref{tab:csce}); Soft~O2 remains preferable when gold already shares $sid$ (Table~\ref{tab:cluster_same}).
+Under Mix, gated Hybrid significantly improves overall AH over Soft~O2 on LegalEp-DISC and LegalEp-Lawyer, while Soft~O2 remains strongest on LegalMem-MT (Table~\ref{tab:csce}); Soft~O2 stays preferable when gold already shares $sid$ (Table~\ref{tab:cluster_same}).
 Turn-level BM25, RRF, and CE place Soft~O2 among standard IR alternatives \cite{robertson2009bm25, cormack2009rrf, nogueira2019multistage}; joint-episode indexes are a coarser design choice outside this protocol.
 
 \subsection{RAG application perspective}\label{sec:rag-discussion}
@@ -740,7 +741,7 @@ The $\rho$ statistics use an exact-channel query proxy and the strongest measure
 Main $M{\approx}3000$ tables use a fixed seed; five-seed variance is reported only for the smaller $M{=}400$ store.
 LLM paraphrases need human audit.
 Statutory correctness, citation validity, and professional liability remain unevaluated.
-Because many channels are tested, Holm-adjusted $p$-values accompany the Soft~O2 vs FlatIP family (Table~\ref{tab:sig}); Mix Hybrid rows remain exploratory pending a post-gate re-run and are not used for significance claims.
+Because many channels are tested, Holm-adjusted $p$-values accompany the Soft~O2 vs FlatIP family (Table~\ref{tab:sig}); Mix Hybrid significance is reported only vs Soft~O2 within Table~\ref{tab:csce} and is corpus-conditional.
 
 \paragraph{Latency and deployment scope.}
 Scale curves cover $M\in\{100,400,1600,6400\}$ under a fixed hardware stack (Table~\ref{tab:scale}).
@@ -756,7 +757,7 @@ Soft~O2 is the main algorithmic contribution: attenuated session binding complet
 Soft~O2-C extends the same idea to thematic clusters under Mix reconstructions as a conditional mechanism test.
 Attenuation $\beta$ is chosen by validation sweep under a three-candidate score-competition account; O1 FlatIP and O3 bulk-load are the implementation operators that make the shared-store ablations feasible.
 On CAIL multi-turn and LegalEp paraphrase~/advice-recall channels, Soft~O2 improves Answer Hit over FlatIP, keeps higher episode completeness than hard expansion on CAIL, and raises graded nDCG while cutting incompleteness; shuffled-$sid$ controls collapse the gains.
-Under Mix, Soft~O2-C can recover additional cross-session gold when co-membership is present, while Soft~O2 remains preferable on intact same-session gold.
+Under Mix, gated Hybrid recovers additional LegalEp gold when cluster co-membership is present, while Soft~O2 remains preferable on LegalMem-MT Mix and on intact same-session gold.
 An end-to-end Soft~O2 QA audit associates complete episode retrieval with judged answerability and low wrong-session contamination, without claiming paired generation superiority over FlatIP.
 Turn-level BM25, RRF, and CE place Soft~O2 among standard IR alternatives; joint-episode indexing remains a coarser design outside this protocol.
 

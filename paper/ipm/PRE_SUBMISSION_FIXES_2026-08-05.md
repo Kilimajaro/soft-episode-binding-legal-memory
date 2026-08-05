@@ -22,7 +22,7 @@
 
 | ID | 说明 |
 |----|------|
-| S0-4 Mix 重跑 | Hybrid 数字已标注 exploratory；完整 Mix 需在门控修复后重跑 |
+| S0-4 Mix 重跑 | **已完成（2026-08-06）**：全量 Mix 重跑入库；Hybrid 取消 exploratory；详见 `MIX_GATEFIX_RERUN_IMPACT_2026-08-06.md` |
 | S1-1 joint-episode 实测 | 范围主张已收紧；同协议 latency/index 实测未补 |
 | S1-5 paired ΔAH CI | Methods 已改为实际报告范围（Holm family）；完整 paired CI 可后续补 |
 | S2-1/S2-2 | 多 embedding / 多种子仍为增强项 |
