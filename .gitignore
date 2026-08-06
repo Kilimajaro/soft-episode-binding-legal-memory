@@ -7,3 +7,4 @@ data/embed_cache/
 *.log
 results/
 BIMS-LEGAL-code/data/
+*.blg
