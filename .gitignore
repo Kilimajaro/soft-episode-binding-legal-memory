@@ -16,3 +16,13 @@ data/lawyer_llama/
 data/release_summaries/
 **/launch_*.sh
 *.sqlite-journal
+# accidental quote-prefixed dirs from bad rsync
+\"*
+# one-off feedback notes
+paper/ipm/FEEDBACK_FIXES_*.md
+# experiments
+results/
+**/worker.log
+BIMS-LEGAL-dataset/legal_raw/
+**/QUALITY_REPORT.json
+BIMS-LEGAL-dataset/legal_raw/

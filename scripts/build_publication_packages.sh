@@ -10,8 +10,8 @@ rsync -a --delete \
   --exclude='.git' --exclude='__pycache__' --exclude='.venv' --exclude='data/' \
   "$ROOT/eval/" "$CODE/eval/" 2>/dev/null || true
 rsync -a \
-  "$ROOT/memory_manager.py" "$ROOT/config.py" "$ROOT/app.py" "$ROOT/embed_backend.py" \
-  "$ROOT/ablation_eval.py" "$ROOT/requirements.txt" \
+  "$ROOT/memory_manager.py" "$ROOT/config.py" "$ROOT/embed_backend.py" \
+  "$ROOT/requirements.txt" \
   "$CODE/" 2>/dev/null || true
 rsync -a "$ROOT/paper/scripts/" "$CODE/paper/scripts/"
 rsync -a "$ROOT/BIMS-LEGAL-dataset/" "$DATA/" 2>/dev/null || true

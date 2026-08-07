@@ -23,3 +23,7 @@ Processing scripts live under `eval/legal/` and `paper/scripts/`. If an upstream
 ## Removal
 
 To drop a corpus copy from a local checkout, remove the matching tree under `BIMS-LEGAL-dataset/` / `data/` and re-run download/build scripts documented in `BIMS-LEGAL-dataset/README.md` (when present) or `BIMS-LEGAL-code/README.md`.
+
+## Raw upstream dumps
+
+Raw HF / CAIL dumps under `BIMS-LEGAL-dataset/legal_raw/` are **not** shipped in the public GitHub tree (size / licence). Download from the upstream cards listed above and place them locally if you need full reconstruction.
