@@ -10,3 +10,9 @@ BIMS-LEGAL-code/data/
 *.blg
 **/embed_cache/
 data/talk.txt
+BIMS-LEGAL-dataset/primary_results/bims_legal_v4/
+data/cail_source/
+data/lawyer_llama/
+data/release_summaries/
+**/launch_*.sh
+*.sqlite-journal

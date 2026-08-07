@@ -35,9 +35,9 @@ Data licences: see [`DATA_LICENSES.md`](DATA_LICENSES.md).
 
 | Folder | Purpose |
 |--------|---------|
-| [`BIMS-LEGAL-code/`](BIMS-LEGAL-code/) | Reproducible code: BIMS core, O1–O3, Soft O2 / Soft O2-C, eval scripts, table/figure generators |
-| [`BIMS-LEGAL-dataset/`](BIMS-LEGAL-dataset/) | Evaluation corpora, Mix manifests, and primary `results.json` artifacts |
-| [`paper/ipm/`](paper/ipm/) | Author manuscript, anonymous manuscript, and title page |
+| [`BIMS-LEGAL-code/`](BIMS-LEGAL-code/) | Reproducible code: BIMS core, O1–O3, Soft O2 / Soft O2-C, eval scripts |
+| [`BIMS-LEGAL-dataset/`](BIMS-LEGAL-dataset/) | Evaluation corpora, Mix manifests, and slim primary artifacts (Mix / Soft O2-C / scale / O1+O2) |
+| [`paper/ipm/`](paper/ipm/) | Author manuscript, anonymous manuscript, figures, and unified Soft O2 metric JSON |
 
 Rebuild publication folders from the development checkout:
 
@@ -50,11 +50,13 @@ bash scripts/build_publication_packages.sh
 | Claim | Primary artifact |
 |-------|------------------|
 | O1+O2 ablation ($M{=}400$) | `BIMS-LEGAL-dataset/primary_results/legal_scaled_o1o2/` |
-| Soft O2 on CAIL / LegalEp ($M{\approx}3000$) | `paper/ipm/figures/corrected_metrics_*.json` (primary); legacy V4 archives under `BIMS-LEGAL-dataset/primary_results/bims_legal_v4/` for secondary controls only |
+| Soft O2 on CAIL / LegalEp ($M{\approx}3000$) | `paper/ipm/figures/corrected_metrics_*.json` only (tables + Fig.~3/4 + Holm) |
 | Same-store Soft O2 vs Soft O2-C | `BIMS-LEGAL-dataset/primary_results/bims_legal_cluster_o2/` |
 | Fair Mix Soft O2-C / Hybrid (post-gate) | `BIMS-LEGAL-dataset/primary_results/bims_legal_csce_mix/` + `csce_mix/` |
 | QA audit ($N{=}270$) | `BIMS-LEGAL-dataset/release_summaries/qa/` |
 | Scale curve | `BIMS-LEGAL-dataset/primary_results/scale_curve.json` |
+
+Do **not** reintroduce legacy `bims_legal_v4` Soft O2 dumps: they conflict with the unified FlatIP-rebuild grids used in the manuscript.
 
 ## Licences
 

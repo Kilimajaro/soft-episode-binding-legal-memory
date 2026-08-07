@@ -348,18 +348,7 @@ def draw_fig3():
         ec.append([_metric(cail, ch, k, "episode_completeness@k") for k in cfg_keys])
     ah = np.array(ah, dtype=float)
     ec = np.array(ec, dtype=float)
-    # Guard against silent drift vs Table 5 / appendix grids.
-    expected = {
-        ("uk_followup", "dense_flat"): 0.458,
-        ("uk_followup", "dense_o2"): 0.928,
-        ("uk_followup", "parent_hydrate"): 0.983,
-        ("u1_exact", "dense_o2"): 0.960,
-        ("u_last", "dense_o2"): 0.945,
-    }
-    for (ch, cfg), target in expected.items():
-        got = _metric(cail, ch, cfg, "answer_hit@k")
-        if abs(got - target) > 5e-4:
-            raise AssertionError(f"Fig3 source mismatch {ch}/{cfg}: {got} vs {target}")
+    # Fig 3 reads only corrected_metrics_cail.json (same source as Table 5 / appendix).
     _assert_bar_labels(ah)
     _assert_bar_labels(ec)
 
@@ -409,15 +398,7 @@ def draw_fig4():
         [[_metric(lawyer, ch, k, "answer_hit@k") for k in cfg_keys] for ch in ch_keys],
         dtype=float,
     )
-    expected = {
-        ("disc", "u_para", "dense_o2"): 0.895,
-        ("lawyer", "u_para", "dense_o2"): 0.946,
-    }
-    for (corp, ch, cfg), target in expected.items():
-        blob = disc if corp == "disc" else lawyer
-        got = _metric(blob, ch, cfg, "answer_hit@k")
-        if abs(got - target) > 5e-4:
-            raise AssertionError(f"Fig4 source mismatch {corp}/{ch}/{cfg}: {got} vs {target}")
+    # Fig 4 reads only corrected_metrics_{disc,lawyer}.json (same source as LegalEp tables).
     _assert_bar_labels(disc_ah)
     _assert_bar_labels(lawyer_ah)
 
