@@ -306,28 +306,63 @@ def _grouped_bars(ax, data, labels, colors, edges, width=0.18):
 
 
 # ---------------------------------------------------------------------------
-# Fig 3 — CAIL main results (primary visualization)
+# Fig 3 / Fig 4 — primary Soft O2 grids (must match corrected_metrics_*.json)
 # ---------------------------------------------------------------------------
 def _repo_root() -> Path:
     return Path(__file__).resolve().parents[2]
 
 
-def draw_fig3():
+def _load_corrected(name: str) -> dict:
+    """Load unified FlatIP-rebuild metrics; never read legacy bims_legal_v4 paths."""
     import json
-    root = _repo_root()
-    cail = json.loads((root / "results/bims_legal_v4/cail_M/tier_M/results.json").read_text())
+
+    path = _repo_root() / "paper" / "ipm" / "figures" / f"corrected_metrics_{name}.json"
+    if not path.exists():
+        raise FileNotFoundError(f"missing unified metrics artifact: {path}")
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _metric(blob: dict, channel: str, cfg: str, key: str) -> float:
+    return float(blob["channels"][channel][cfg][key])
+
+
+def _assert_bar_labels(data: np.ndarray) -> None:
+    """Ensure two-decimal bar labels are ordinary display rounding of the source values."""
+    for v in np.asarray(data, dtype=float).ravel():
+        shown = round(float(v) + 1e-12, 2)  # stable display rounding
+        # plotted text uses f"{v:.2f}"; keep both within one display cent.
+        text = float(f"{v:.2f}")
+        if abs(text - shown) > 0.011 and abs(text - v) > 0.011:
+            raise AssertionError(f"bar label {text:.2f} drifts from value {v}")
+
+
+def draw_fig3():
+    cail = _load_corrected("cail")
     channels = ["U1", "Uk-followup", "U-last"]
     ch_keys = ["u1_exact", "uk_followup", "u_last"]
     systems = ["FlatIP", "Soft O2", "Hard hydr.", "Shuffled O2"]
     cfg_keys = ["dense_flat", "dense_o2", "parent_hydrate", "shuffled_o2"]
     ah, ec = [], []
     for ch in ch_keys:
-        cf = cail["channels"][ch]["configs"]
-        ah.append([cf[k]["answer_hit@k"] for k in cfg_keys])
-        ec.append([cf[k]["episode_completeness@k"] for k in cfg_keys])
-    ah = np.array(ah)
-    ec = np.array(ec)
-    # FlatIP=slate, Soft O2=coral, Hard=teal (session), Shuffled=muted
+        ah.append([_metric(cail, ch, k, "answer_hit@k") for k in cfg_keys])
+        ec.append([_metric(cail, ch, k, "episode_completeness@k") for k in cfg_keys])
+    ah = np.array(ah, dtype=float)
+    ec = np.array(ec, dtype=float)
+    # Guard against silent drift vs Table 5 / appendix grids.
+    expected = {
+        ("uk_followup", "dense_flat"): 0.458,
+        ("uk_followup", "dense_o2"): 0.928,
+        ("uk_followup", "parent_hydrate"): 0.983,
+        ("u1_exact", "dense_o2"): 0.960,
+        ("u_last", "dense_o2"): 0.945,
+    }
+    for (ch, cfg), target in expected.items():
+        got = _metric(cail, ch, cfg, "answer_hit@k")
+        if abs(got - target) > 5e-4:
+            raise AssertionError(f"Fig3 source mismatch {ch}/{cfg}: {got} vs {target}")
+    _assert_bar_labels(ah)
+    _assert_bar_labels(ec)
+
     colors = [SLATE, CORAL, TEAL, MUTED]
     edges = [SLATE, "#8E3A30", TEAL, MUTED]
 
@@ -358,39 +393,33 @@ def draw_fig3():
     plt.close(fig)
 
 
-# ---------------------------------------------------------------------------
-# Fig 4 — LegalEp DISC vs Lawyer (exact / advice / para)
-# ---------------------------------------------------------------------------
 def draw_fig4():
-    import json
-    root = _repo_root()
-
-    def load(name):
-        return json.loads((root / f"results/bims_legal_v4/{name}/tier_M/results.json").read_text())
-
-    disc_exact = load("legalep_disc_M")
-    disc_advice = load("legalep_disc_advice")
-    disc_para = load("legalep_disc_para")
-    law_exact = load("legalep_lawyer_M")
-    law_advice = load("legalep_lawyer_advice")
-    law_para = load("legalep_lawyer_para")
-
-    def row(blob, ch, keys=("dense_flat", "dense_o2", "parent_hydrate")):
-        cf = blob["channels"][ch]["configs"]
-        return [cf[k]["answer_hit@k"] for k in keys]
-
+    disc = _load_corrected("disc")
+    lawyer = _load_corrected("lawyer")
     channels = ["exact", "advice-recall", "u-para"]
+    ch_keys = ["exact", "advice_recall", "u_para"]
     systems = ["FlatIP", "Soft O2", "Hard hydr."]
-    disc_ah = np.array([
-        row(disc_exact, "u1_exact" if "u1_exact" in disc_exact["channels"] else "exact"),
-        row(disc_advice, "advice_recall"),
-        row(disc_para, "u_para"),
-    ], dtype=float)
-    lawyer_ah = np.array([
-        row(law_exact, "exact"),
-        row(law_advice, "advice_recall"),
-        row(law_para, "u_para"),
-    ], dtype=float)
+    cfg_keys = ["dense_flat", "dense_o2", "parent_hydrate"]
+
+    disc_ah = np.array(
+        [[_metric(disc, ch, k, "answer_hit@k") for k in cfg_keys] for ch in ch_keys],
+        dtype=float,
+    )
+    lawyer_ah = np.array(
+        [[_metric(lawyer, ch, k, "answer_hit@k") for k in cfg_keys] for ch in ch_keys],
+        dtype=float,
+    )
+    expected = {
+        ("disc", "u_para", "dense_o2"): 0.895,
+        ("lawyer", "u_para", "dense_o2"): 0.946,
+    }
+    for (corp, ch, cfg), target in expected.items():
+        blob = disc if corp == "disc" else lawyer
+        got = _metric(blob, ch, cfg, "answer_hit@k")
+        if abs(got - target) > 5e-4:
+            raise AssertionError(f"Fig4 source mismatch {corp}/{ch}/{cfg}: {got} vs {target}")
+    _assert_bar_labels(disc_ah)
+    _assert_bar_labels(lawyer_ah)
 
     colors = [SLATE, CORAL, TEAL]
     edges = [SLATE, "#8E3A30", TEAL]
@@ -403,7 +432,7 @@ def draw_fig4():
     ]:
         _grouped_bars(ax, data, systems, colors, edges, width=0.22)
         ax.set_xticklabels(channels, fontsize=9)
-        ax.set_ylim(0, 0.92)
+        ax.set_ylim(0, 1.08)
         ax.set_title(title, fontsize=10.5, fontweight="bold", color=INK, loc="left", pad=8)
         _style_axes(ax)
 

@@ -42,6 +42,23 @@ def _bootstrap_env():
 
 _bootstrap_env()
 
+# Avoid hanging sklearn imports on broken threadpoolctl.get_version (env quirk).
+try:
+    import threadpoolctl
+    from threadpoolctl import _ThreadpoolInfo
+
+    _orig_gv = _ThreadpoolInfo.get_version
+
+    def _safe_gv(self):
+        try:
+            return _orig_gv(self)
+        except Exception:
+            return None
+
+    _ThreadpoolInfo.get_version = _safe_gv
+except Exception:
+    pass
+
 sys.path.insert(0, str(CODE))
 sys.path.insert(0, str(CODE / "eval" / "legal"))
 sys.path.insert(0, str(CODE / "eval" / "legal" / "v3"))
@@ -67,6 +84,7 @@ METRIC_KEYS = (
     "failure_taxonomy",
     "ah_ci",
     "n",
+    "per_query_ah",
 )
 
 
@@ -95,6 +113,14 @@ def load_eval_state(workdir: Path):
         print(f"[reuse] refuse empty index ntotal={ntotal}", flush=True)
         return None, None
     state = json.loads(state_path.read_text(encoding="utf-8"))
+    n_meta_tids = len(state.get("tid_to_session") or {})
+    # Guard against truncated/corrupt FAISS dumps (seen when ntotal << meta tids).
+    if n_meta_tids and ntotal < int(0.5 * n_meta_tids):
+        print(
+            f"[reuse] refuse corrupt index ntotal={ntotal} meta_tids={n_meta_tids}",
+            flush=True,
+        )
+        return None, None
     mgr._tid_to_session = {str(k): v for k, v in state["tid_to_session"].items()}
     mgr._session_members = {k: list(v) for k, v in state["session_members"].items()}
     print(f"[reuse] ntotal={ntotal} sessions={len(state['meta'])}", flush=True)
@@ -188,7 +214,15 @@ def main():
                 res = eval_config(jmgr, jmeta, qs, "joint_qa", args.top_k)
             else:
                 res = eval_config(mgr, meta, qs, cfg, args.top_k, bm25_pack=bm25_pack)
-            out["channels"][ch][cfg] = {k: res[k] for k in METRIC_KEYS if k in res}
+            cell = {k: res[k] for k in METRIC_KEYS if k in res}
+            # Stable ids for McNemar / Holm recomputation on the unified rebuild.
+            cell["query_ids"] = [
+                str(q.get("query_id") or q.get("qid") or f"{ch}:{q.get('session_id')}:{i}")
+                for i, q in enumerate(qs)
+            ]
+            if "per_query_ah" in cell and len(cell["per_query_ah"]) != len(cell["query_ids"]):
+                raise SystemExit(f"per_query_ah length mismatch for {ch}/{cfg}")
+            out["channels"][ch][cfg] = cell
             print(
                 f"[{ch}/{cfg}] AH={res['answer_hit@k']:.3f} EC={res['episode_completeness@k']:.3f} "
                 f"nDCG={res['ndcg@k']:.3f} SH={res.get('session_hit@k', float('nan')):.3f}",

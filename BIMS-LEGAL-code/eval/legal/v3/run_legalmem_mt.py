@@ -34,12 +34,11 @@ from query_channels import (  # noqa: E402
     load_legalep_queries,
 )
 from stats_sig import bootstrap_ci, paired_report  # noqa: E402
+from legal_metrics import metrics_at_k  # noqa: E402
 from run_revision_protocol import (  # noqa: E402
     parent_hydrate,
     session_max_expand,
-    metrics_at_k,
 )
-
 try:
     from rank_bm25 import BM25Okapi
 except ImportError:  # pragma: no cover

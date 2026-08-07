@@ -2,10 +2,9 @@
 """Regenerate paper tables from a SINGLE metric source (S0-1/S0-5/S0-6).
 
 Default source: paper/ipm/figures/corrected_metrics_{cail,disc,lawyer}.json
-(same FlatIP rebuild for AH, EC, nDCG, and failure_taxonomy).
+(same FlatIP rebuild for AH, EC, nDCG, failure_taxonomy, and per_query_ah).
 
-Holm primary family is computed from V4 per_query_ah when available
-(paired McNemar mid-p), then Holm-adjusted with a tested step-down.
+Holm primary family is computed from unified-rebuild per_query_ah when present.
 """
 from __future__ import annotations
 
@@ -22,7 +21,6 @@ from stats_sig import paired_report  # noqa: E402
 
 TEX = ROOT / "paper" / "ipm" / "ipm-article.tex"
 FIG = ROOT / "paper" / "ipm" / "figures"
-V4 = ROOT / "BIMS-LEGAL-dataset" / "primary_results" / "bims_legal_v4"
 
 CFG = {
     "FlatIP": "dense_flat",
@@ -32,16 +30,16 @@ CFG = {
 }
 
 PRIMARY_FAMILY = [
-    # (tex label, v4 rel path, channel key, soft cfg, flat cfg)
-    ("CAIL / Uk", "cail_M/tier_M/results.json", "uk_followup"),
-    ("CAIL / U1", "cail_M/tier_M/results.json", "u1_exact"),
-    ("CAIL / U-last", "cail_M/tier_M/results.json", "u_last"),
-    ("LegalEp-DISC / exact", "legalep_disc_M/tier_M/results.json", "u1_exact"),
-    ("LegalEp-Lawyer / exact", "legalep_lawyer_M/tier_M/results.json", "exact"),
-    ("LegalEp-DISC / u-para", "legalep_disc_para/tier_M/results.json", "u_para"),
-    ("LegalEp-Lawyer / u-para", "legalep_lawyer_para/tier_M/results.json", "u_para"),
-    ("LegalEp-DISC / advice", "legalep_disc_advice/tier_M/results.json", "advice_recall"),
-    ("LegalEp-Lawyer / advice", "legalep_lawyer_advice/tier_M/results.json", "advice_recall"),
+    # (tex label, corrected json stem, channel key)
+    ("CAIL / Uk", "cail", "uk_followup"),
+    ("CAIL / U1", "cail", "u1_exact"),
+    ("CAIL / U-last", "cail", "u_last"),
+    ("LegalEp-DISC / exact", "disc", "exact"),
+    ("LegalEp-Lawyer / exact", "lawyer", "exact"),
+    ("LegalEp-DISC / u-para", "disc", "u_para"),
+    ("LegalEp-Lawyer / u-para", "lawyer", "u_para"),
+    ("LegalEp-DISC / advice", "disc", "advice_recall"),
+    ("LegalEp-Lawyer / advice", "lawyer", "advice_recall"),
 ]
 
 
@@ -218,23 +216,22 @@ def rewrite_ndcg_graded(tex: str) -> str:
 
 
 def rewrite_failure_taxonomy(tex: str) -> str:
-    """Four-way taxonomy from corrected_metrics failure_taxonomy."""
+    """Four-way taxonomy from corrected_metrics failure_taxonomy (compact Table 4 layout)."""
     specs = [
-        ("LegalEp-DISC / u-para", "disc", "u_para"),
-        ("LegalEp-DISC / advice", "disc", "advice_recall"),
-        ("LegalEp-Lawyer / u-para", "lawyer", "u_para"),
-        ("CAIL / Uk-followup", "cail", "uk_followup"),
+        ("DISC / u-para", "disc", "u_para"),
+        ("DISC / advice", "disc", "advice_recall"),
+        ("Lawyer / u-para", "lawyer", "u_para"),
+        ("CAIL / Uk", "cail", "uk_followup"),
     ]
     systems = [
         ("FlatIP", "dense_flat"),
         ("Soft O2", "dense_o2"),
-        ("Hard hydr.", "parent_hydrate"),
-        ("Shuffled O2", "shuffled_o2"),
+        ("Hard", "parent_hydrate"),
+        ("Shuf.\\ O2", "shuffled_o2"),
     ]
     rows = []
     for lab, js, ch in specs:
         block = load_corrected(js)["channels"][ch]
-        # bold best complete / lowest incomplete among FlatIP, Soft O2, Shuffled
         focus = ["dense_flat", "dense_o2", "shuffled_o2"]
         completes = {c: float(block[c]["failure_taxonomy"]["complete"]) for c in focus}
         incompletes = {c: float(block[c]["failure_taxonomy"]["incomplete"]) for c in focus}
@@ -251,64 +248,84 @@ def rewrite_failure_taxonomy(tex: str) -> str:
             s = c + inc + ao + miss
             if abs(s - 1.0) > 0.002:
                 raise SystemExit(f"taxonomy sum {s} for {lab}/{name}")
-            c_s, i_s = pct(c), pct(inc)
+            # compact numeric cells (caption states values are %)
+            def cell(x: float) -> str:
+                return f"{100.0 * x:.1f}"
+
+            c_s, i_s = cell(c), cell(inc)
             if cfg in focus:
                 if abs(c - best_c) < 1e-12:
                     c_s = f"\\textbf{{{c_s}}}"
                 if abs(inc - best_i) < 1e-12:
                     i_s = f"\\textbf{{{i_s}}}"
             rows.append(
-                f"{lab} & {name} & {c_s} & {i_s} & {pct(ao)} & {pct(miss)} \\\\"
+                f"{lab} & {name} & {c_s} & {i_s} & {cell(ao)} & {cell(miss)} \\\\"
             )
         rows.append("\\midrule")
     if rows[-1] == "\\midrule":
         rows.pop()
     body = "\n".join(rows) + "\n"
-    # Update tabular header to 4 failure cols if needed — handled in paper edit
     tex = replace_table_body(tex, "tab:rq1-failure", body)
     print("rewrote tab:rq1-failure")
     return tex
 
 
 def rewrite_holm(tex: str) -> str:
-    """Recompute Soft O2 vs FlatIP primary family from V4 per_query_ah."""
+    """Recompute Soft O2 vs FlatIP primary family from unified-rebuild per_query_ah."""
     rows_out = []
     pvals = []
     metas = []
-    for lab, rel, ch in PRIMARY_FAMILY:
-        path = V4 / rel
-        if not path.exists():
-            # try alternate folder names
-            alts = list(V4.glob(f"**/{Path(rel).name}"))
-            if not alts:
-                raise SystemExit(f"missing V4 results {rel}")
-            path = alts[0]
-        data = json.loads(path.read_text(encoding="utf-8"))
-        cfgs = data["channels"][ch]["configs"]
-        a = cfgs["dense_o2"]["per_query_ah"]
-        b = cfgs["dense_flat"]["per_query_ah"]
+    paired_export = {"family": "SoftO2_vs_FlatIP_primary9", "source": "corrected_metrics_*.json per_query_ah", "channels": {}}
+    for lab, js, ch in PRIMARY_FAMILY:
+        data = load_corrected(js)
+        block = data["channels"][ch]
+        soft = block["dense_o2"]
+        flat = block["dense_flat"]
+        if "per_query_ah" not in soft or "per_query_ah" not in flat:
+            raise SystemExit(
+                f"missing per_query_ah for {lab} in corrected_metrics_{js}.json; "
+                "re-run paper/scripts/recompute_corrected_metrics.py with --reuse_index"
+            )
+        a = soft["per_query_ah"]
+        b = flat["per_query_ah"]
+        if len(a) != len(b):
+            raise SystemExit(f"paired length mismatch for {lab}: {len(a)} vs {len(b)}")
+        # Delta AH must match table point estimates (rounding aside).
+        delta_table = float(soft["answer_hit@k"]) - float(flat["answer_hit@k"])
+        delta_vec = float(sum(a) / len(a) - sum(b) / len(b))
+        if abs(delta_table - delta_vec) > 1e-9:
+            raise SystemExit(f"internal AH inconsistency for {lab}: {delta_table} vs {delta_vec}")
         rep = paired_report("Soft O2", a, "FlatIP", b)
         mid_p = float(rep["mcnemar"]["mid_p"])
         delta = float(rep["mcnemar"]["delta_mean"])
+        if abs(delta - delta_table) > 5e-4:
+            raise SystemExit(f"McNemar delta {delta} != table delta {delta_table} for {lab}")
         pvals.append(mid_p)
-        metas.append((lab, delta, mid_p))
+        metas.append((lab, delta_table, mid_p))
+        paired_export["channels"][lab] = {
+            "json": f"corrected_metrics_{js}.json",
+            "channel": ch,
+            "n": len(a),
+            "query_ids": soft.get("query_ids") or flat.get("query_ids"),
+            "soft_o2_ah": a,
+            "flatip_ah": b,
+            "delta_ah": delta_table,
+            "mid_p": mid_p,
+        }
     holm = holm_adjust(pvals)
-    # sanity vs known ordering for old p list
     for (lab, delta, mid_p), h in zip(metas, holm):
         rows_out.append(
             f"{lab} & O2 vs FlatIP & {delta:+.3f} & {mid_p:.2e} & {h:.2e} \\\\"
             if mid_p < 1e-3
             else f"{lab} & O2 vs FlatIP & {delta:+.3f} & {mid_p:.4g} & {h:.4g} \\\\"
         )
-    # Keep non-FlatIP contrast rows from existing table if present — rewrite only O2 vs FlatIP block by full table regen of primary rows
-    # Simpler: replace entire sig table body with primary family only + note
+        paired_export["channels"][lab]["holm_p"] = h
     body = "\n".join(rows_out) + "\n"
     tex = replace_table_body(tex, "tab:sig", body)
     print("rewrote tab:sig Holm family")
-    # write artifact
     art = {
         "family": "SoftO2_vs_FlatIP_primary9",
-        "source": "BIMS-LEGAL-dataset/primary_results/bims_legal_v4 per_query_ah",
+        "source": "paper/ipm/figures/corrected_metrics_*.json per_query_ah (unified FlatIP rebuild)",
         "rows": [
             {"label": lab, "delta_ah": d, "mid_p": p, "holm_p": h}
             for (lab, d, p), h in zip(metas, holm)
@@ -317,6 +334,9 @@ def rewrite_holm(tex: str) -> str:
     out = FIG / "holm_primary_family.json"
     out.write_text(json.dumps(art, indent=2), encoding="utf-8")
     print("wrote", out)
+    paired_path = FIG / "paired_ah_primary_family.json"
+    paired_path.write_text(json.dumps(paired_export, indent=2), encoding="utf-8")
+    print("wrote", paired_path)
     return tex
 
 

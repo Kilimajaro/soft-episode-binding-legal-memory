@@ -8,3 +8,5 @@ data/embed_cache/
 results/
 BIMS-LEGAL-code/data/
 *.blg
+**/embed_cache/
+data/talk.txt

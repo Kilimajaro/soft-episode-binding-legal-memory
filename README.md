@@ -21,7 +21,7 @@ This syncs canonical code into `BIMS-LEGAL-code/`, runs Hybrid-gate / Holm / met
 | Tier | Command | What it does |
 |------|---------|----------------|
 | Smoke | `bash scripts/reproduce_ipm_smoke.sh` | Code sync, Hybrid-gate / Holm / metrics tests, Soft O2-C KMeans smoke |
-| Table-only | `python paper/scripts/regenerate_unified_tables.py` | Rebuild Soft O2 grids / failure taxonomy / Holm from `corrected_metrics_*.json` + V4 `per_query_ah` |
+| Table-only | `python paper/scripts/regenerate_unified_tables.py` | Rebuild Soft O2 grids / failure taxonomy / Holm from unified `corrected_metrics_*.json` (incl. `per_query_ah`) |
 | Code sync | `bash scripts/sync_canonical_code.sh` | Root `memory_manager.py` / `eval/` → `BIMS-LEGAL-code/` (zero-diff check) |
 | Full rerun | See `BIMS-LEGAL-code/README.md` | Requires Ollama embeddings; regenerates stores and rankings |
 
@@ -50,7 +50,7 @@ bash scripts/build_publication_packages.sh
 | Claim | Primary artifact |
 |-------|------------------|
 | O1+O2 ablation ($M{=}400$) | `BIMS-LEGAL-dataset/primary_results/legal_scaled_o1o2/` |
-| Soft O2 on CAIL / LegalEp ($M{\approx}3000$) | `BIMS-LEGAL-dataset/primary_results/bims_legal_v4/` + `paper/ipm/figures/corrected_metrics_*.json` |
+| Soft O2 on CAIL / LegalEp ($M{\approx}3000$) | `paper/ipm/figures/corrected_metrics_*.json` (primary); legacy V4 archives under `BIMS-LEGAL-dataset/primary_results/bims_legal_v4/` for secondary controls only |
 | Same-store Soft O2 vs Soft O2-C | `BIMS-LEGAL-dataset/primary_results/bims_legal_cluster_o2/` |
 | Fair Mix Soft O2-C / Hybrid (post-gate) | `BIMS-LEGAL-dataset/primary_results/bims_legal_csce_mix/` + `csce_mix/` |
 | QA audit ($N{=}270$) | `BIMS-LEGAL-dataset/release_summaries/qa/` |

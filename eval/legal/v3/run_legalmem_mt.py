@@ -37,8 +37,20 @@ from stats_sig import bootstrap_ci, paired_report  # noqa: E402
 from run_revision_protocol import (  # noqa: E402
     parent_hydrate,
     session_max_expand,
-    metrics_at_k,
+    metrics_at_k as _metrics_at_k_base,
 )
+from legal_metrics import failure_taxonomy  # noqa: E402
+
+
+def metrics_at_k(retrieved, gold_sess_tids, gold_ans_tids, k, gold_q_tids=None):
+    """Prefer revision AH/EC path; attach failure taxonomy when query tids exist."""
+    out = _metrics_at_k_base(retrieved, gold_sess_tids, gold_ans_tids, k)
+    if gold_q_tids is not None:
+        out = dict(out)
+        out["failure_mode"] = failure_taxonomy(
+            retrieved[:k], gold_sess_tids, gold_ans_tids, gold_q_tids, k
+        )
+    return out
 
 try:
     from rank_bm25 import BM25Okapi

@@ -90,7 +90,7 @@ We evaluate Soft~O2 primarily against FlatIP under episode incompleteness, treat
 
 The main contributions are as follows.
 First, we formulate consultation-memory retrieval under same-domain interference and identify episode incompleteness as a recurrent failure mode of dense turn retrieval.
-Second, we propose Soft~O2 as a turn-level soft-binding operator, with a gap-ratio account of attenuation $\beta$ and default $\beta{=}0.98$ chosen by validation sweep, supported by O1/O3 as implementation operators for shared-store evaluation.
+Second, we propose Soft~O2 as a turn-level soft-binding operator, with a gap-ratio account of attenuation $\beta$ and default $\beta{=}0.98$ fixed in a separate early development sweep (Table~\ref{tab:beta}), supported by O1/O3 as implementation operators for shared-store evaluation.
 Third, we evaluate Soft~O2 on CAIL multi-turn and rebuilt LegalEp corpora against FlatIP, hard hydration, shuffled-$sid$, BM25-turn, RRF, and cross-encoder controls under a unified FlatIP-rebuild metric pipeline, and report Soft~O2-C Mix contrasts as conditional mechanism evidence with graded nDCG, a four-way failure taxonomy, and Holm-adjusted Soft~O2 vs FlatIP tests.
 
 Section~\ref{sec:related} reviews related work.
@@ -251,12 +251,12 @@ Algorithm~\ref{alg:soft-o2} records that full stage order; $\beta$ acts on the s
 The attenuation $\beta$ controls how strongly a retrieved turn promotes its session siblings.
 Availability of the injected sibling rises with $\beta$, while fidelity of the direct hit falls as $\beta\to 1$.
 Table~\ref{tab:beta-theory} summarizes the empirical gap-ratio distribution $\rho=s_d/s_h$ on LegalEp stores under an exact-channel query proxy: median $\rho$ lies well below one, and a high-$\beta$ operating point near $0.98$ covers most measured distractors while remaining strictly below hard hydration ($\beta{=}1$).
-We therefore characterize the availability--ranking trade-off with a three-candidate score-competition model and choose $\beta$ by validation sweep rather than by a closed-form optimum.
+We therefore characterize the availability--ranking trade-off with a three-candidate score-competition model and fix $\beta$ from a separate development AH sweep rather than by a closed-form optimum.
 A zero-margin hinge objective on $\beta\in(0,1]$ is uninformative for this choice: its rank term vanishes for all $\beta<1$.
 
 \begin{table}[t]
 \centering
-\caption{Gap-ratio statistics on LegalEp $M{=}3000$ stores (exact-channel query proxy; strongest measured non-session distractor). Default $\beta$ is chosen by the AH sweep in Table~\ref{tab:beta}.}
+\caption{Gap-ratio statistics on LegalEp $M{=}3000$ stores (exact-channel query proxy; strongest measured non-session distractor). Default $\beta{=}0.98$ follows the separate development sweep in Table~\ref{tab:beta}.}
 \label{tab:beta-theory}
 \compacttab\footnotesize
 \begin{tabular}{@{}lcccc@{}}
@@ -303,7 +303,7 @@ On a validation grid we also plot the soft pairwise surrogate
 \end{equation}
 with logistic $\sigma$, temperature $\tau$, and rank weight $\gamma$.
 The curve is a visualization of the availability--ranking trade-off under the measured $\rho$ pool; it is not used as a fitted optimum.
-Default $\beta{=}0.98$ is taken from the AH sweep in Table~\ref{tab:beta}, where $\{0.90,0.95,0.98\}$ form a stable high-AH band on CAIL follow-up and LegalEp paraphrase as well as exact grids.
+Default $\beta{=}0.98$ was fixed in a separate early development campaign summarized in Table~\ref{tab:beta}, where $\{0.90,0.95,0.98\}$ formed a stable high-AH band on CAIL follow-up and LegalEp paraphrase as well as exact grids; that sweep is not the primary Soft~O2 evaluation reported in Tables~\ref{tab:soft-o2-controls}--\ref{tab:lawyer_main}.
 Advice-recall uses the same default without a separate gap-ratio fit.
 
 
@@ -393,12 +393,12 @@ The ideal denominator (IDCG) is computed from all gold-relevant turns in the tar
 Answer Hit and Episode Completeness are the main Soft~O2 outcomes; nDCG is reported with the fixed gold-session IDCG so that systems remain comparable on each query.
 Hard expansion can raise nDCG when copied siblings occupy early ranks, so AH and EC are read together with nDCG.
 
-The primary hypothesis family is Soft~O2 vs FlatIP on the nine CAIL and LegalEp transfer channels; for that family we report McNemar mid-$p$ on paired per-query Answer Hit and Holm-adjusted $p$-values (Table~\ref{tab:sig}), computed from a fixed paired-hit archive reserved for significance testing.
-Appendix Soft~O2 grids report AH/EC/nDCG point estimates from the unified FlatIP rebuild without separate CI columns.
+The primary hypothesis family is Soft~O2 vs FlatIP on the nine CAIL and LegalEp transfer channels; for that family we report McNemar mid-$p$ on paired per-query Answer Hit and Holm-adjusted $p$-values (Table~\ref{tab:sig}), computed from the same unified FlatIP rebuild as the main Soft~O2 grids.
+Appendix Soft~O2 grids report AH/EC/nDCG point estimates from that rebuild without separate CI columns.
 Hard-hydration, CE, and Soft~O2-C Mix contrasts are secondary.
 
-Unless noted, Soft~O2 grids in Sections~\ref{sec:s1-strong-baselines}--\ref{sec:exp-main} and Appendix Tables~\ref{tab:cail_main}--\ref{tab:lawyer_main} use one FlatIP rebuild so that AH, EC, nDCG, and failure rates on each row come from the same per-query rankings (released metric JSON artifacts).
-Holm $\Delta$AH values in Table~\ref{tab:sig} may differ slightly from rebuild point estimates because they use that paired-hit archive; directional Soft~O2$>$FlatIP conclusions on non-exact channels agree across both sources.
+Unless noted, Soft~O2 grids in Sections~\ref{sec:s1-strong-baselines}--\ref{sec:exp-main} and Appendix Tables~\ref{tab:cail_main}--\ref{tab:lawyer_main} use one FlatIP rebuild so that AH, EC, nDCG, failure rates, and the Table~\ref{tab:sig} paired outcomes on each row come from the same per-query rankings (released metric JSON artifacts, including per-query Answer Hit vectors).
+Consequently, each $\Delta$AH in Table~\ref{tab:sig} equals the corresponding Soft~O2$-$FlatIP difference in the main Soft~O2 tables (up to ordinary rounding).
 
 Turn-level dense FlatIP (O1) is the base dense retriever.
 Soft~O2 applies soft sibling score inheritance on the episodic pathway; Soft~O2-C applies the same rule within KMeans clusters.
@@ -764,7 +764,7 @@ Behavior at roughly $10^5$ sessions is not measured, and we do not claim asympto
 BIMS-LEGAL recovers prior advice from Chinese legal consultation archives under same-domain interference with a dual store: an episodic turn index and a KMeans semantic store.
 Soft~O2 is the main algorithmic contribution: attenuated session binding completes episodes without hard score copy, while hard hydration remains a stronger unrestricted score-copy upper bound on the unified rebuild grids.
 Soft~O2-C extends the same idea to thematic clusters under Mix reconstructions as a conditional mechanism test.
-Attenuation $\beta$ is chosen by validation sweep under a three-candidate score-competition account; O1 FlatIP and O3 bulk-load are the implementation operators that make the shared-store ablations feasible.
+Attenuation $\beta{=}0.98$ follows a separate early development sweep under a three-candidate score-competition account; O1 FlatIP and O3 bulk-load are the implementation operators that make the shared-store ablations feasible.
 On CAIL multi-turn and LegalEp paraphrase~/advice-recall channels, Soft~O2 improves Answer Hit and graded nDCG over FlatIP and cuts incompleteness; hard hydration can further raise AH/EC by unrestricted score copy, while shuffled-$sid$ controls collapse Soft~O2 gains.
 Under Mix, gated Hybrid recovers additional LegalEp gold when cluster co-membership is present, while Soft~O2 remains preferable on LegalMem-MT Mix and on intact same-session gold.
 An end-to-end Soft~O2 QA audit associates complete episode retrieval with judged answerability and low wrong-session contamination, without claiming paired generation superiority over FlatIP.
@@ -829,7 +829,7 @@ LegalMem-MT / Uk & \textbf{0.793} & 0.385 \\
 
 \begin{table}[H]
 \centering
-\caption{Primary Soft~O2 vs FlatIP family: McNemar mid-$p$ on paired Answer Hit, with Holm step-down adjustment ($m{=}9$). Values come from the fixed paired-hit archive released with the paper artifacts.}
+\caption{Primary Soft~O2 vs FlatIP family: McNemar mid-$p$ on paired Answer Hit from the unified FlatIP rebuild, with Holm step-down adjustment ($m{=}9$). Each $\Delta$AH matches Soft~O2$-$FlatIP in the main Soft~O2 tables; paired outcomes are released with the paper artifacts.}
 \label{tab:sig}
 \compacttab\footnotesize
 \begin{tabular}{@{}llccc@{}}
@@ -876,7 +876,7 @@ LegalEp-Lawyer / advice & O2 vs FlatIP & +0.140 & 1.18e-10 & 5.89e-10 \\
 
 \begin{table}[H]
 \centering
-\caption{Soft~O2 AH@10 versus $\beta$ on the primary shared-corpus evaluation. Peak performance lies in $\{0.9,0.95,0.98\}$; aggressive attenuation ($\beta{=}0.5$) weakens binding.}
+\caption{Soft~O2 AH@10 versus $\beta$ from a separate early development campaign (not the primary Soft~O2 evaluation grids). Peak performance lies in $\{0.9,0.95,0.98\}$; aggressive attenuation ($\beta{=}0.5$) weakens binding. Absolute AH values are not comparable to Tables~\ref{tab:soft-o2-controls}--\ref{tab:lawyer_main}.}
 \label{tab:beta}
 \compacttab\footnotesize
 \begin{tabular}{@{}lcccccc@{}}
