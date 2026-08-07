@@ -415,12 +415,11 @@ The ideal denominator (IDCG) is computed from all gold-relevant turns in the tar
 Answer Hit and Episode Completeness are the main Soft~O2 outcomes; nDCG is reported with the fixed gold-session IDCG so that systems remain comparable on each query.
 Hard expansion can raise nDCG when copied siblings occupy early ranks, so AH and EC are read together with nDCG.
 
-The primary hypothesis family is Soft~O2 vs FlatIP on the nine CAIL and LegalEp transfer channels; for that family we report McNemar mid-$p$ on paired per-query Answer Hit and Holm-adjusted $p$-values (Table~\ref{tab:sig}), computed from the same unified FlatIP rebuild as the main Soft~O2 grids.
+The primary hypothesis family is Soft~O2 vs FlatIP on the nine CAIL and LegalEp transfer channels; for that family we report McNemar mid-$p$ on paired per-query Answer Hit and Holm-adjusted $p$-values (Table~\ref{tab:sig}).
+The Soft~O2 point estimates in Sections~\ref{sec:s1-strong-baselines}--\ref{sec:exp-main} and Appendix Tables~\ref{tab:cail_main}--\ref{tab:lawyer_main} come from one FlatIP rebuild (released \texttt{corrected\_metrics\_*.json}).
+Paired McNemar/Holm outcomes are taken from the \texttt{per\_query\_ah} fields of those artifacts once exported, so Table~\ref{tab:sig} $\Delta$AH tracks Soft~O2$-$FlatIP on the Soft~O2 grids.
 Appendix Soft~O2 grids report AH/EC/nDCG point estimates from that rebuild without separate CI columns.
 Hard-hydration, CE, and Soft~O2-C Mix contrasts are secondary.
-
-Unless noted, Soft~O2 grids in Sections~\ref{sec:s1-strong-baselines}--\ref{sec:exp-main} and Appendix Tables~\ref{tab:cail_main}--\ref{tab:lawyer_main} use one FlatIP rebuild so that AH, EC, nDCG, failure rates, and the Table~\ref{tab:sig} paired outcomes on each row come from the same per-query rankings (released metric JSON artifacts, including per-query Answer Hit vectors).
-Consequently, each $\Delta$AH in Table~\ref{tab:sig} equals the corresponding Soft~O2$-$FlatIP difference in the main Soft~O2 tables (up to ordinary rounding).
 
 Turn-level dense FlatIP (O1) is the base dense retriever.
 Soft~O2 applies soft sibling score inheritance on the episodic pathway; Soft~O2-C applies the same rule within KMeans clusters.
@@ -855,7 +854,7 @@ LegalMem-MT / Uk & \textbf{0.793} & 0.385 \\
 
 \begin{table}[H]
 \centering
-\caption{Primary Soft~O2 vs FlatIP family: McNemar mid-$p$ on paired Answer Hit from the unified FlatIP rebuild, with Holm step-down adjustment ($m{=}9$). Each $\Delta$AH matches Soft~O2$-$FlatIP in the main Soft~O2 tables; paired outcomes are released with the paper artifacts.}
+\caption{Primary Soft~O2 vs FlatIP family: McNemar mid-$p$ on paired Answer Hit with Holm step-down adjustment ($m{=}9$). $\Delta$AH and $p$-values are computed from the released \texttt{per\_query\_ah} vectors in the Soft~O2 metric JSON artifacts.}
 \label{tab:sig}
 \compacttab\footnotesize
 \begin{tabular}{@{}llccc@{}}
