@@ -37,43 +37,46 @@ def main() -> None:
         "disc_exact_o2": ah(disc, "exact", "dense_o2"),
         "disc_para_flat": ah(disc, "u_para", "dense_flat"),
         "disc_para_o2": ah(disc, "u_para", "dense_o2"),
+        "disc_adv_flat": ah(disc, "advice_recall", "dense_flat"),
+        "disc_adv_o2": ah(disc, "advice_recall", "dense_o2"),
         "law_exact_flat": ah(lawyer, "exact", "dense_flat"),
         "law_exact_o2": ah(lawyer, "exact", "dense_o2"),
         "law_para_flat": ah(lawyer, "u_para", "dense_flat"),
         "law_para_o2": ah(lawyer, "u_para", "dense_o2"),
+        "law_adv_flat": ah(lawyer, "advice_recall", "dense_flat"),
+        "law_adv_o2": ah(lawyer, "advice_recall", "dense_o2"),
     }
     tex = TEX.read_text(encoding="utf-8")
 
     replacements = [
         (
-            r"Soft~O2 lifts Answer Hit over FlatIP on every channel under the unified rebuild \(U1 \$[0-9.]+\$ vs \$[0-9.]+\$; Uk \$[0-9.]+\$ vs \$[0-9.]+\$; U-last \$[0-9.]+\$ vs \$[0-9.]+\$\)\.",
-            f"Soft~O2 lifts Answer Hit over FlatIP on every channel under the unified rebuild "
+            r"Soft~O2 raises Answer Hit over FlatIP on every channel \(U1 \$[0-9.]+\$ vs \$[0-9.]+\$; Uk \$[0-9.]+\$ vs \$[0-9.]+\$; U-last \$[0-9.]+\$ vs \$[0-9.]+\$\)\.",
+            f"Soft~O2 raises Answer Hit over FlatIP on every channel "
             f"(U1 ${vals['cail_u1_o2']}$ vs ${vals['cail_u1_flat']}$; "
             f"Uk ${vals['cail_uk_o2']}$ vs ${vals['cail_uk_flat']}$; "
             f"U-last ${vals['cail_ul_o2']}$ vs ${vals['cail_ul_flat']}$).",
         ),
         (
-            r"Hard expansion can raise AH further by unrestricted score copy \(e\.g\., Uk \$[0-9.]+\$ vs Soft~O2 \$[0-9.]+\$\)\.",
-            f"Hard expansion can raise AH further by unrestricted score copy "
+            r"Hard hydration can raise AH further by copying sibling scores without attenuation \(e\.g\., Uk \$[0-9.]+\$ vs Soft~O2 \$[0-9.]+\$\)\.",
+            f"Hard hydration can raise AH further by copying sibling scores without attenuation "
             f"(e.g., Uk ${vals['cail_uk_hard']}$ vs Soft~O2 ${vals['cail_uk_o2']}$).",
         ),
         (
-            r"Under the unified rebuild Soft~O2 also lifts exact replay \(DISC \$[0-9.]+\$ vs FlatIP \$[0-9.]+\$; Lawyer \$[0-9.]+\$ vs \$[0-9.]+\$\)",
-            f"Under the unified rebuild Soft~O2 also lifts exact replay "
+            r"Soft~O2 also raises exact replay \(DISC \$[0-9.]+\$ vs FlatIP \$[0-9.]+\$; Lawyer \$[0-9.]+\$ vs \$[0-9.]+\$\)",
+            f"Soft~O2 also raises exact replay "
             f"(DISC ${vals['disc_exact_o2']}$ vs FlatIP ${vals['disc_exact_flat']}$; "
             f"Lawyer ${vals['law_exact_o2']}$ vs ${vals['law_exact_flat']}$)",
         ),
         (
-            r"Paraphrase yields large Soft~O2 gains over FlatIP: \$[0-9.]+\$ vs \$[0-9.]+\$ on DISC and \$[0-9.]+\$ vs \$[0-9.]+\$ on Lawyer\.",
-            f"Paraphrase yields large Soft~O2 gains over FlatIP: "
+            r"Paraphrase gains are large: \$[0-9.]+\$ vs \$[0-9.]+\$ on DISC and \$[0-9.]+\$ vs \$[0-9.]+\$ on Lawyer\.",
+            f"Paraphrase gains are large: "
             f"${vals['disc_para_o2']}$ vs ${vals['disc_para_flat']}$ on DISC and "
             f"${vals['law_para_o2']}$ vs ${vals['law_para_flat']}$ on Lawyer.",
         ),
         (
-            r"On CAIL under the unified rebuild, Soft~O2 raises Answer Hit by large margins over FlatIP \(Uk \$[0-9.]+\$ vs \$[0-9.]+\$; U-last \$[0-9.]+\$ vs \$[0-9.]+\$\)",
-            f"On CAIL under the unified rebuild, Soft~O2 raises Answer Hit by large margins over FlatIP "
-            f"(Uk ${vals['cail_uk_o2']}$ vs ${vals['cail_uk_flat']}$; "
-            f"U-last ${vals['cail_ul_o2']}$ vs ${vals['cail_ul_flat']}$)",
+            r"Advice-recall rises to \$[0-9.]+\$ from FlatIP \$[0-9.]+\$ on DISC and to \$[0-9.]+\$ from \$[0-9.]+\$ on Lawyer\.",
+            f"Advice-recall rises to ${vals['disc_adv_o2']}$ from FlatIP ${vals['disc_adv_flat']}$ on DISC "
+            f"and to ${vals['law_adv_o2']}$ from ${vals['law_adv_flat']}$ on Lawyer.",
         ),
     ]
 

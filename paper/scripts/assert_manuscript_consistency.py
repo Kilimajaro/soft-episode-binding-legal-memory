@@ -40,10 +40,18 @@ PROSE_SPOTS = [
     ("cail", "uk_followup", "dense_flat", "cail_uk_flat"),
     ("cail", "u_last", "dense_o2", "cail_ul_o2"),
     ("cail", "u_last", "dense_flat", "cail_ul_flat"),
+    ("disc", "exact", "dense_o2", "disc_exact_o2"),
+    ("disc", "exact", "dense_flat", "disc_exact_flat"),
     ("disc", "u_para", "dense_o2", "disc_para_o2"),
     ("disc", "u_para", "dense_flat", "disc_para_flat"),
+    ("disc", "advice_recall", "dense_o2", "disc_adv_o2"),
+    ("disc", "advice_recall", "dense_flat", "disc_adv_flat"),
+    ("lawyer", "exact", "dense_o2", "law_exact_o2"),
+    ("lawyer", "exact", "dense_flat", "law_exact_flat"),
     ("lawyer", "u_para", "dense_o2", "law_para_o2"),
     ("lawyer", "u_para", "dense_flat", "law_para_flat"),
+    ("lawyer", "advice_recall", "dense_o2", "law_adv_o2"),
+    ("lawyer", "advice_recall", "dense_flat", "law_adv_flat"),
 ]
 
 
@@ -105,6 +113,17 @@ def main() -> None:
         errors.append("residual 'early development campaign' wording found")
     if "paired-hit archive" in tex.lower():
         errors.append("residual paired-hit archive disclaimer found")
+
+    if not (FIG / "beta_selection_grid.json").exists():
+        errors.append("missing beta_selection_grid.json provenance artifact")
+    else:
+        beta = json.loads((FIG / "beta_selection_grid.json").read_text(encoding="utf-8"))
+        if beta.get("held_out_validation") is not False:
+            errors.append("beta_selection_grid.json must set held_out_validation=false")
+        if not beta.get("overlap_with_primary_test_queries"):
+            errors.append("beta_selection_grid.json must declare overlap_with_primary_test_queries")
+    if "held-out validation split" not in tex and "not held-out" not in tex.lower():
+        errors.append("missing held-out vs evaluation-pool disclosure for beta selection")
 
     if errors:
         print("MANUSCRIPT CONSISTENCY FAILED:")
