@@ -50,7 +50,8 @@ bash scripts/build_publication_packages.sh
 | Claim | Primary artifact |
 |-------|------------------|
 | O1+O2 ablation ($M{=}400$) | `BIMS-LEGAL-dataset/primary_results/legal_scaled_o1o2/` |
-| Soft O2 on CAIL / LegalEp ($M{\approx}3000$) | `paper/ipm/figures/corrected_metrics_*.json` only (tables + Fig.~3/4 + Holm) |
+| Soft O2 on CAIL / LegalEp ($M{\approx}3000$) | `paper/ipm/figures/corrected_metrics_*.json` only (tables + Fig.~3/4); Holm / paired AH from same files via `holm_primary_family.json` + `paired_ah_primary_family.json` |
+| β selection grid | Table A.4 numbers come from LegalMem-MT β sweeps under `results/.../beta_sweep` (selection/sensitivity; not interchangeable with unified Soft O2 grids) |
 | Same-store Soft O2 vs Soft O2-C | `BIMS-LEGAL-dataset/primary_results/bims_legal_cluster_o2/` |
 | Fair Mix Soft O2-C / Hybrid (post-gate) | `BIMS-LEGAL-dataset/primary_results/bims_legal_csce_mix/` + `csce_mix/` |
 | QA audit ($N{=}270$) | `BIMS-LEGAL-dataset/release_summaries/qa/` |

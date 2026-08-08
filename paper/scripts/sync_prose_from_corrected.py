@@ -53,12 +53,12 @@ def main() -> None:
             f"U-last ${vals['cail_ul_o2']}$ vs ${vals['cail_ul_flat']}$).",
         ),
         (
-            r"Hard expansion can raise AH further by unrestricted score copy \(e\.g\., Uk \$[0-9.]+\$ vs Soft~O2 \$[0-9.]\$+\)\.",
+            r"Hard expansion can raise AH further by unrestricted score copy \(e\.g\., Uk \$[0-9.]+\$ vs Soft~O2 \$[0-9.]+\$\)\.",
             f"Hard expansion can raise AH further by unrestricted score copy "
             f"(e.g., Uk ${vals['cail_uk_hard']}$ vs Soft~O2 ${vals['cail_uk_o2']}$).",
         ),
         (
-            r"Under the unified rebuild Soft~O2 also lifts exact replay \(DISC \$[0-9.]+\$ vs FlatIP \$[0-9.]+\$; Lawyer \$[0-9.]+\$ vs \$[0-9.]\$+\)",
+            r"Under the unified rebuild Soft~O2 also lifts exact replay \(DISC \$[0-9.]+\$ vs FlatIP \$[0-9.]+\$; Lawyer \$[0-9.]+\$ vs \$[0-9.]+\$\)",
             f"Under the unified rebuild Soft~O2 also lifts exact replay "
             f"(DISC ${vals['disc_exact_o2']}$ vs FlatIP ${vals['disc_exact_flat']}$; "
             f"Lawyer ${vals['law_exact_o2']}$ vs ${vals['law_exact_flat']}$)",
@@ -70,7 +70,7 @@ def main() -> None:
             f"${vals['law_para_o2']}$ vs ${vals['law_para_flat']}$ on Lawyer.",
         ),
         (
-            r"On CAIL under the unified rebuild, Soft~O2 raises Answer Hit by large margins over FlatIP \(Uk \$[0-9.]+\$ vs \$[0-9.]+\$; U-last \$[0-9.]+\$ vs \$[0-9.]\$+\)",
+            r"On CAIL under the unified rebuild, Soft~O2 raises Answer Hit by large margins over FlatIP \(Uk \$[0-9.]+\$ vs \$[0-9.]+\$; U-last \$[0-9.]+\$ vs \$[0-9.]+\$\)",
             f"On CAIL under the unified rebuild, Soft~O2 raises Answer Hit by large margins over FlatIP "
             f"(Uk ${vals['cail_uk_o2']}$ vs ${vals['cail_uk_flat']}$; "
             f"U-last ${vals['cail_ul_o2']}$ vs ${vals['cail_ul_flat']}$)",

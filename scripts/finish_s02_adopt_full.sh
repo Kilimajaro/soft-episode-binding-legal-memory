@@ -83,8 +83,8 @@ PY
   python3 ../scripts/make_anonymous_tex.py
   tectonic --keep-logs ipm-article-anonymous.tex
 )
-python3 paper/scripts/verify_manuscript_consistency.py
 
+python3 paper/scripts/assert_manuscript_consistency.py
 
 python3 - <<'PY'
 import json

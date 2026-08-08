@@ -48,11 +48,11 @@
 \sloppy
 In same-domain legal consultation archives, dense retrieval often surfaces a relevant client question while failing to return the lawyer's advice turn---an \emph{episode incompleteness} failure that leaves prior recommendations hard to recover under lexical interference from neighbouring matters.
 BIMS-LEGAL indexes Chinese consultation logs in a dual store: a fast episodic turn index with session identifiers and a slower semantic store consolidated by target-$k$ KMeans.
-Soft~O2 binds session siblings by attenuated score inheritance ($\beta s$) rather than hard score copy.
+The design target is episode completeness under same-domain interference: Soft~O2 binds session siblings by attenuated score inheritance ($\beta s$) rather than hard score copy, so a retrieved question can surface its advice turn without dumping an entire session into top-$k$.
 Exact replay is a surface-form reference; main channels are paraphrase, follow-up, and advice-recall.
 On a shared turn-level FlatIP rebuild, Soft~O2 raises Answer Hit over dense FlatIP; hard hydration, which copies sibling scores without attenuation, can raise AH further by forcing siblings into top-$k$.
 Soft~O2-C is evaluated as a conditional cluster-binding mechanism under Mix reconstructions with off-session gold; gated Hybrid is the composed operator when thematic co-membership helps.
-We report Answer Hit, Episode Completeness, graded nDCG with fixed gold-session IDCG, a four-way failure taxonomy, and Holm-adjusted Soft~O2 vs FlatIP tests.
+We report Answer Hit, Episode Completeness, graded nDCG with fixed gold-session IDCG, a four-way failure taxonomy, and Holm-adjusted Soft~O2 vs FlatIP tests whose $\Delta$AH matches the Soft~O2 grids by construction.
 \end{abstract}
 
 \begin{keyword}
@@ -395,10 +395,12 @@ Answer Hit and Episode Completeness are the main Soft~O2 outcomes; nDCG is repor
 Hard expansion can raise nDCG when copied siblings occupy early ranks, so AH and EC are read together with nDCG.
 
 The primary hypothesis family is Soft~O2 vs FlatIP on the nine CAIL and LegalEp transfer channels; for that family we report McNemar mid-$p$ on paired per-query Answer Hit and Holm-adjusted $p$-values (Table~\ref{tab:sig}).
-The Soft~O2 point estimates in Sections~\ref{sec:s1-strong-baselines}--\ref{sec:exp-main} and Appendix Tables~\ref{tab:cail_main}--\ref{tab:lawyer_main} come from one FlatIP rebuild (released \texttt{corrected\_metrics\_*.json}).
-Paired McNemar/Holm outcomes are taken from the \texttt{per\_query\_ah} fields of those artifacts once exported, so Table~\ref{tab:sig} $\Delta$AH tracks Soft~O2$-$FlatIP on the Soft~O2 grids.
+Those paired outcomes are taken from the same unified FlatIP rebuild that supplies the Soft~O2 grids, so a reader can regenerate both the point estimates and the significance tests from one artifact family.
 Appendix Soft~O2 grids report AH/EC/nDCG point estimates from that rebuild without separate CI columns.
 Hard-hydration, CE, and Soft~O2-C Mix contrasts are secondary.
+
+Unless noted, Soft~O2 grids in Sections~\ref{sec:s1-strong-baselines}--\ref{sec:exp-main} and Appendix Tables~\ref{tab:cail_main}--\ref{tab:lawyer_main} use one FlatIP rebuild so that AH, EC, nDCG, failure rates, and the Table~\ref{tab:sig} paired outcomes on each row come from the same per-query rankings.
+Consequently, each $\Delta$AH in Table~\ref{tab:sig} equals the corresponding Soft~O2$-$FlatIP difference in the main Soft~O2 tables (up to ordinary rounding).
 
 Turn-level dense FlatIP (O1) is the base dense retriever.
 Soft~O2 applies soft sibling score inheritance on the episodic pathway; Soft~O2-C applies the same rule within KMeans clusters.
@@ -481,25 +483,25 @@ Hard hydration can drive incompleteness near zero by score copy and often leads 
 \toprule
 \textbf{Channel} & \textbf{System} & \textbf{Comp.} & \textbf{Inc.} & \textbf{A-only} & \textbf{Miss} \\
 \midrule
-DISC / u-para & FlatIP & 70.8 & 26.8 & 0.8 & 1.6 \\
-DISC / u-para & Soft O2 & \textbf{89.1} & \textbf{8.7} & 0.4 & 1.8 \\
-DISC / u-para & Hard & 97.0 & 0.0 & 0.2 & 2.8 \\
-DISC / u-para & Shuf.\ O2 & 66.0 & 31.4 & 0.4 & 2.2 \\
+DISC / u-para & FlatIP & 68.8 & 28.8 & 0.8 & 1.6 \\
+DISC / u-para & Soft O2 & \textbf{88.1} & \textbf{9.9} & 0.2 & 1.8 \\
+DISC / u-para & Hard & 97.2 & 0.0 & 0.0 & 2.8 \\
+DISC / u-para & Shuf.\ O2 & 61.6 & 35.8 & 0.4 & 2.2 \\
 \midrule
-DISC / advice & FlatIP & 48.0 & 17.0 & 0.0 & 35.0 \\
-DISC / advice & Soft O2 & \textbf{60.8} & \textbf{3.8} & 0.0 & 35.4 \\
-DISC / advice & Hard & 64.8 & 0.0 & 0.2 & 35.0 \\
-DISC / advice & Shuf.\ O2 & 45.6 & 19.2 & 0.0 & 35.2 \\
+DISC / advice & FlatIP & 47.2 & 17.6 & 0.0 & 35.2 \\
+DISC / advice & Soft O2 & \textbf{61.0} & \textbf{3.6} & 0.0 & 35.4 \\
+DISC / advice & Hard & 64.8 & 0.0 & 0.0 & 35.2 \\
+DISC / advice & Shuf.\ O2 & 43.4 & 21.2 & 0.0 & 35.4 \\
 \midrule
-Lawyer / u-para & FlatIP & 71.5 & 25.3 & 2.4 & 0.8 \\
-Lawyer / u-para & Soft O2 & \textbf{94.0} & \textbf{3.8} & 0.6 & 1.6 \\
-Lawyer / u-para & Hard & 98.0 & 0.0 & 0.0 & 2.0 \\
-Lawyer / u-para & Shuf.\ O2 & 70.7 & 25.5 & 2.2 & 1.6 \\
+Lawyer / u-para & FlatIP & 66.9 & 29.5 & 2.8 & 0.8 \\
+Lawyer / u-para & Soft O2 & \textbf{94.6} & \textbf{2.8} & 1.0 & 1.6 \\
+Lawyer / u-para & Hard & 97.8 & 0.0 & 0.0 & 2.2 \\
+Lawyer / u-para & Shuf.\ O2 & 64.9 & 30.7 & 2.6 & 1.8 \\
 \midrule
-CAIL / Uk & FlatIP & 45.8 & 54.0 & 0.0 & 0.2 \\
-CAIL / Uk & Soft O2 & \textbf{92.8} & \textbf{7.0} & 0.0 & 0.2 \\
-CAIL / Uk & Hard & 98.3 & 1.5 & 0.0 & 0.2 \\
-CAIL / Uk & Shuf.\ O2 & 34.7 & 65.2 & 0.0 & 0.2 \\
+CAIL / Uk & FlatIP & 43.2 & 56.7 & 0.0 & 0.2 \\
+CAIL / Uk & Soft O2 & \textbf{93.2} & \textbf{6.7} & 0.0 & 0.2 \\
+CAIL / Uk & Hard & 99.7 & 0.2 & 0.0 & 0.2 \\
+CAIL / Uk & Shuf.\ O2 & 31.3 & 68.5 & 0.0 & 0.2 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -521,13 +523,13 @@ Joint episode / document-level indexes change evidence granularity and are scope
 \toprule
 \textbf{Corpus / channel} & \textbf{FlatIP} & \textbf{Soft O2} & \textbf{Hard} & \textbf{Shuffled} \\
 \midrule
-CAIL / U1 & 0.832 & 0.960 & \textbf{0.998} & 0.695 \\
-CAIL / Uk & 0.458 & 0.928 & \textbf{0.983} & 0.347 \\
-CAIL / U-last & 0.425 & 0.945 & \textbf{0.983} & 0.287 \\
-LegalEp-DISC / u-para & 0.716 & 0.895 & \textbf{0.972} & 0.664 \\
-LegalEp-DISC / advice & 0.480 & 0.608 & \textbf{0.650} & 0.456 \\
-LegalEp-Lawyer / u-para & 0.739 & 0.946 & \textbf{0.980} & 0.729 \\
-LegalEp-Lawyer / advice & 0.444 & 0.652 & \textbf{0.674} & 0.424 \\
+CAIL / U1 & 0.803 & 0.948 & \textbf{0.995} & 0.660 \\
+CAIL / Uk & 0.432 & 0.932 & \textbf{0.997} & 0.313 \\
+CAIL / U-last & 0.393 & 0.957 & \textbf{0.998} & 0.255 \\
+LegalEp-DISC / u-para & 0.696 & 0.883 & \textbf{0.972} & 0.620 \\
+LegalEp-DISC / advice & 0.472 & 0.610 & \textbf{0.648} & 0.434 \\
+LegalEp-Lawyer / u-para & 0.697 & 0.956 & \textbf{0.978} & 0.675 \\
+LegalEp-Lawyer / advice & 0.416 & 0.654 & \textbf{0.674} & 0.396 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -541,33 +543,33 @@ LegalEp-Lawyer / advice & 0.444 & 0.652 & \textbf{0.674} & 0.424 \\
 \toprule
 \textbf{Corpus} & \textbf{Channel} & \textbf{System} & \textbf{nDCG@10} & \textbf{Incomplete} \\
 \midrule
-CAIL & Uk & FlatIP & 0.445 & 54.0\% \\
-CAIL & Uk & Soft O2 & \textbf{0.793} & 7.0\% \\
-CAIL & Uk & Shuffled O2 & 0.369 & 65.2\% \\
-CAIL & U-last & FlatIP & 0.420 & 57.3\% \\
-CAIL & U-last & Soft O2 & \textbf{0.791} & 5.3\% \\
-CAIL & U-last & Shuffled O2 & 0.348 & 71.2\% \\
-LegalEp-DISC & u-para & FlatIP & 0.681 & 26.8\% \\
-LegalEp-DISC & u-para & Soft O2 & \textbf{0.759} & 8.7\% \\
-LegalEp-DISC & u-para & Shuffled O2 & 0.627 & 31.4\% \\
-LegalEp-DISC & advice & FlatIP & 0.466 & 17.0\% \\
-LegalEp-DISC & advice & Soft O2 & \textbf{0.524} & 3.8\% \\
-LegalEp-DISC & advice & Shuffled O2 & 0.436 & 19.2\% \\
-LegalEp-Lawyer & u-para & FlatIP & 0.744 & 25.3\% \\
-LegalEp-Lawyer & u-para & Soft O2 & \textbf{0.844} & 3.8\% \\
-LegalEp-Lawyer & u-para & Shuffled O2 & 0.705 & 25.5\% \\
-LegalEp-Lawyer & advice & FlatIP & 0.483 & 23.4\% \\
-LegalEp-Lawyer & advice & Soft O2 & \textbf{0.582} & 2.2\% \\
-LegalEp-Lawyer & advice & Shuffled O2 & 0.454 & 25.0\% \\
+CAIL & Uk & FlatIP & 0.428 & 56.7\% \\
+CAIL & Uk & Soft O2 & \textbf{0.796} & 6.7\% \\
+CAIL & Uk & Shuffled O2 & 0.349 & 68.5\% \\
+CAIL & U-last & FlatIP & 0.400 & 60.5\% \\
+CAIL & U-last & Soft O2 & \textbf{0.796} & 4.2\% \\
+CAIL & U-last & Shuffled O2 & 0.326 & 74.3\% \\
+LegalEp-DISC & u-para & FlatIP & 0.659 & 28.8\% \\
+LegalEp-DISC & u-para & Soft O2 & \textbf{0.742} & 9.9\% \\
+LegalEp-DISC & u-para & Shuffled O2 & 0.590 & 35.8\% \\
+LegalEp-DISC & advice & FlatIP & 0.454 & 17.6\% \\
+LegalEp-DISC & advice & Soft O2 & \textbf{0.518} & 3.6\% \\
+LegalEp-DISC & advice & Shuffled O2 & 0.411 & 21.2\% \\
+LegalEp-Lawyer & u-para & FlatIP & 0.708 & 29.5\% \\
+LegalEp-Lawyer & u-para & Soft O2 & \textbf{0.832} & 2.8\% \\
+LegalEp-Lawyer & u-para & Shuffled O2 & 0.656 & 30.7\% \\
+LegalEp-Lawyer & advice & FlatIP & 0.457 & 26.2\% \\
+LegalEp-Lawyer & advice & Soft O2 & \textbf{0.569} & 2.0\% \\
+LegalEp-Lawyer & advice & Shuffled O2 & 0.424 & 27.8\% \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \subsection{Soft~O2 on session (CAIL and LegalEp)}\label{sec:exp-main}
 Figure~\ref{fig:cail_main} and Table~\ref{tab:soft-o2-controls} summarize AH@10 on authentic CAIL multi-turn channels at $M\approx 3000$ under O1 FlatIP.
-Soft~O2 lifts Answer Hit over FlatIP on every channel under the unified rebuild (U1 $0.960$ vs $0.832$; Uk $0.928$ vs $0.458$; U-last $0.945$ vs $0.425$).
+Soft~O2 lifts Answer Hit over FlatIP on every channel under the unified rebuild (U1 $0.948$ vs $0.803$; Uk $0.932$ vs $0.432$; U-last $0.957$ vs $0.393$).
 Shuffled $sid$ removes the gain, tying the improvement to correct episode membership.
-Hard expansion can raise AH further by unrestricted score copy (e.g., Uk $0.983$ vs Soft~O2 $0.928$).
+Hard expansion can raise AH further by unrestricted score copy (e.g., Uk $0.997$ vs Soft~O2 $0.932$).
 Soft~O2 is the attenuated binder: siblings enter under $\beta{<}1$ scores, whereas hard hydration copies sibling scores without attenuation.
 Table~\ref{tab:ndcg-graded} shows the Soft~O2$>$FlatIP ordering under graded nDCG with gold-session IDCG, while incompleteness falls sharply (Table~\ref{tab:rq1-failure}). Full numeric grids appear in Tables~\ref{tab:cail_main}--\ref{tab:lawyer_main}.
 
@@ -579,8 +581,8 @@ Table~\ref{tab:ndcg-graded} shows the Soft~O2$>$FlatIP ordering under graded nDC
 \end{figure}
 
 Figure~\ref{fig:legalep_main} reports LegalEp transfer on the same AH grids.
-Under the unified rebuild Soft~O2 also lifts exact replay (DISC $0.924$ vs FlatIP $0.742$; Lawyer $0.976$ vs $0.732$), but we still treat exact as diagnostic relative to paraphrase and advice-recall.
-Paraphrase yields large Soft~O2 gains over FlatIP: $0.895$ vs $0.716$ on DISC and $0.946$ vs $0.739$ on Lawyer.
+Under the unified rebuild Soft~O2 also lifts exact replay (DISC $0.916$ vs FlatIP $0.714$; Lawyer $0.976$ vs $0.678$), but we still treat exact as diagnostic relative to paraphrase and advice-recall.
+Paraphrase yields large Soft~O2 gains over FlatIP: $0.883$ vs $0.696$ on DISC and $0.956$ vs $0.697$ on Lawyer.
 Advice-recall similarly rises to $0.608$ from FlatIP $0.480$ on DISC and to $0.652$ from $0.444$ on Lawyer.
 Hard hydration can still edge Soft~O2 by unrestricted score copy on these channels; Soft~O2 remains the attenuated alternative ($\beta{<}1$).
 Shuffled $sid$ collapses toward FlatIP.
@@ -687,7 +689,7 @@ On a smaller shared store ($M{=}400$, five seeds), Soft~O2 AH on LegalEp-DISC is
 Results show that episode incompleteness is a substantial FlatIP failure mode under same-domain interference, and that Soft~O2 converts many incomplete retrievals into complete ones without shrinking session-miss rates (Table~\ref{tab:rq1-failure}).
 O1 restores score fidelity; Soft~O2 supplies the main gain through soft sibling inheritance; O3 makes large shared stores tractable.
 The gap-ratio analysis (Section~\ref{sec:beta-theory}) motivates keeping $\beta$ close to but below unity; the AH grid search then peaks in $\{0.9,0.95,0.98\}$ rather than at hard hydration ($\beta{=}1$).
-On CAIL under the unified rebuild, Soft~O2 raises Answer Hit by large margins over FlatIP (Uk $0.928$ vs $0.458$; U-last $0.945$ vs $0.425$) with collapsing shuffled-$sid$ controls.
+On CAIL under the unified rebuild, Soft~O2 raises Answer Hit by large margins over FlatIP (Uk $0.932$ vs $0.432$; U-last $0.957$ vs $0.393$) with collapsing shuffled-$sid$ controls.
 Hard hydration can exceed Soft~O2 AH/EC by unrestricted score copy.
 After Holm adjustment on the Soft~O2 vs FlatIP family (Table~\ref{tab:sig}), the non-exact CAIL and LegalEp gains remain significant.
 Under the unified rebuild, LegalEp exact channels also show Soft~O2 AH gains (Tables~\ref{tab:disc_main}--\ref{tab:lawyer_main}); paraphrase and advice-recall remain the main transfer evidence.
@@ -782,14 +784,16 @@ The authors declare no competing interests.
 This study uses publicly released research corpora and excludes confidential client data. The system is a research prototype for consultation-memory retrieval.
 
 \subsection*{Data availability}
-Code, processed evaluation corpora, and primary result JSON files will be made available upon acceptance.
+Code, processed evaluation corpora, and primary Soft~O2 metric artifacts (including paired per-query Answer Hit used for Holm tests) are available at
+URL withheld for anonymous review.
+(archived release to accompany camera-ready).
 Upstream corpora remain under their original licenses: CAIL2024 consultation tracks; Hugging Face
 \codeid{ShengbinYue/DISC-Law-SFT} and
 \codeid{Skepsun/lawyer_llama_data}.
 Processed LegalEp~/LegalMem artifacts are derived research releases; redistributors should consult each upstream licence before reuse.
 
 \subsection*{Code availability}
-The BIMS-LEGAL implementation, evaluation pipelines, and table/figure scripts will be released with the accepted publication.
+The BIMS-LEGAL implementation (O1 FlatIP, Soft~O2, O3 bulk-load, Soft~O2-C), corpus builders, Mix constructors, and the scripts that regenerate Soft~O2 tables, figures, and Holm tests from one metric family ship in the same repository.
 
 \subsection*{Author contributions}
 Author contributions are withheld for anonymous review.
@@ -829,22 +833,22 @@ LegalMem-MT / Uk & \textbf{0.793} & 0.385 \\
 
 \begin{table}[H]
 \centering
-\caption{Primary Soft~O2 vs FlatIP family: McNemar mid-$p$ on paired Answer Hit with Holm step-down adjustment ($m{=}9$). $\Delta$AH and $p$-values are computed from the released \texttt{per\_query\_ah} vectors in the Soft~O2 metric JSON artifacts.}
+\caption{Primary Soft~O2 vs FlatIP family: McNemar mid-$p$ on paired Answer Hit from the unified FlatIP rebuild, with Holm step-down adjustment ($m{=}9$). Each $\Delta$AH matches Soft~O2$-$FlatIP in the main Soft~O2 tables; paired outcomes are released with the paper artifacts.}
 \label{tab:sig}
 \compacttab\footnotesize
 \begin{tabular}{@{}llccc@{}}
 \toprule
 \textbf{Corpus / channel} & \textbf{Contrast} & \textbf{$\Delta$AH} & \textbf{mid-$p$} & \textbf{Holm $p$} \\
 \midrule
-CAIL / Uk & O2 vs FlatIP & +0.428 & 8.99e-48 & 7.19e-47 \\
-CAIL / U1 & O2 vs FlatIP & +0.218 & 5.19e-18 & 3.63e-17 \\
-CAIL / U-last & O2 vs FlatIP & +0.517 & 5.51e-65 & 4.96e-64 \\
-LegalEp-DISC / exact & O2 vs FlatIP & -0.002 & 0.9341 & 0.9341 \\
-LegalEp-Lawyer / exact & O2 vs FlatIP & +0.060 & 0.02386 & 0.04773 \\
-LegalEp-DISC / u-para & O2 vs FlatIP & +0.101 & 7.95e-05 & 3.18e-04 \\
-LegalEp-Lawyer / u-para & O2 vs FlatIP & +0.191 & 2.10e-15 & 1.26e-14 \\
-LegalEp-DISC / advice & O2 vs FlatIP & +0.086 & 1.25e-04 & 3.76e-04 \\
-LegalEp-Lawyer / advice & O2 vs FlatIP & +0.140 & 1.18e-10 & 5.89e-10 \\
+CAIL / Uk & O2 vs FlatIP & +0.500 & 3.69e-69 & 2.95e-68 \\
+CAIL / U1 & O2 vs FlatIP & +0.145 & 1.15e-16 & 3.44e-16 \\
+CAIL / U-last & O2 vs FlatIP & +0.563 & 3.19e-85 & 2.87e-84 \\
+LegalEp-DISC / exact & O2 vs FlatIP & +0.202 & 2.32e-19 & 9.28e-19 \\
+LegalEp-Lawyer / exact & O2 vs FlatIP & +0.298 & 1.16e-39 & 8.12e-39 \\
+LegalEp-DISC / u-para & O2 vs FlatIP & +0.187 & 1.28e-16 & 3.44e-16 \\
+LegalEp-Lawyer / u-para & O2 vs FlatIP & +0.259 & 2.07e-32 & 1.04e-31 \\
+LegalEp-DISC / advice & O2 vs FlatIP & +0.138 & 1.52e-15 & 1.52e-15 \\
+LegalEp-Lawyer / advice & O2 vs FlatIP & +0.238 & 7.84e-33 & 4.70e-32 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -902,22 +906,22 @@ LegalEp-DISC / u-para & 0.551 & 0.551 & 0.618 & 0.648 & 0.648 & 0.642 \\
 \textbf{Channel} & \textbf{System} & \textbf{AH@10} & \textbf{EC@10} & \textbf{nDCG@10} \\
 \midrule
 \multirow{4}{*}{U1}
- & FlatIP & 0.832 & 0.554 & 0.554 \\
- & Soft O2 & 0.960 & 0.924 & 0.776 \\
- & Hard hydr. & \textbf{0.998} & \textbf{0.997} & 0.864 \\
- & Shuffled O2 & 0.695 & 0.437 & 0.411 \\
+ & FlatIP & 0.803 & 0.544 & 0.538 \\
+ & Soft O2 & 0.948 & 0.918 & 0.767 \\
+ & Hard hydr. & \textbf{0.995} & \textbf{0.994} & 0.859 \\
+ & Shuffled O2 & 0.660 & 0.427 & 0.393 \\
 \midrule
 \multirow{4}{*}{Uk-followup}
- & FlatIP & 0.458 & 0.451 & 0.445 \\
- & Soft O2 & 0.928 & 0.923 & 0.793 \\
- & Hard hydr. & \textbf{0.983} & \textbf{0.979} & 0.847 \\
- & Shuffled O2 & 0.347 & 0.367 & 0.369 \\
+ & FlatIP & 0.432 & 0.427 & 0.428 \\
+ & Soft O2 & 0.932 & 0.925 & 0.796 \\
+ & Hard hydr. & \textbf{0.997} & \textbf{0.994} & 0.853 \\
+ & Shuffled O2 & 0.313 & 0.348 & 0.349 \\
 \midrule
 \multirow{4}{*}{U-last}
- & FlatIP & 0.425 & 0.433 & 0.420 \\
- & Soft O2 & 0.945 & 0.919 & 0.791 \\
- & Hard hydr. & \textbf{0.983} & \textbf{0.977} & 0.854 \\
- & Shuffled O2 & 0.287 & 0.359 & 0.348 \\
+ & FlatIP & 0.393 & 0.415 & 0.400 \\
+ & Soft O2 & 0.957 & 0.933 & 0.796 \\
+ & Hard hydr. & \textbf{0.998} & \textbf{0.995} & 0.861 \\
+ & Shuffled O2 & 0.255 & 0.340 & 0.326 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -934,22 +938,22 @@ LegalEp-DISC / u-para & 0.551 & 0.551 & 0.618 & 0.648 & 0.648 & 0.642 \\
 \textbf{Channel} & \textbf{System} & \textbf{AH@10} & \textbf{EC@10} & \textbf{nDCG@10} \\
 \midrule
 \multirow{4}{*}{exact}
- & FlatIP & 0.742 & 0.871 & 0.730 \\
- & Soft O2 & 0.924 & 0.962 & 0.813 \\
- & Hard hydr. & \textbf{1.000} & \textbf{1.000} & 0.886 \\
- & Shuffled O2 & 0.682 & 0.841 & 0.666 \\
+ & FlatIP & 0.714 & 0.857 & 0.700 \\
+ & Soft O2 & 0.916 & 0.958 & 0.792 \\
+ & Hard hydr. & \textbf{1.000} & \textbf{1.000} & 0.873 \\
+ & Shuffled O2 & 0.642 & 0.821 & 0.626 \\
 \midrule
 \multirow{4}{*}{advice-recall}
- & FlatIP & 0.480 & 0.565 & 0.466 \\
- & Soft O2 & 0.608 & 0.627 & 0.524 \\
- & Hard hydr. & \textbf{0.650} & \textbf{0.649} & 0.572 \\
- & Shuffled O2 & 0.456 & 0.552 & 0.436 \\
+ & FlatIP & 0.472 & 0.560 & 0.454 \\
+ & Soft O2 & 0.610 & 0.628 & 0.518 \\
+ & Hard hydr. & \textbf{0.648} & \textbf{0.648} & 0.563 \\
+ & Shuffled O2 & 0.434 & 0.540 & 0.411 \\
 \midrule
 \multirow{4}{*}{u-para}
- & FlatIP & 0.716 & 0.846 & 0.681 \\
- & Soft O2 & 0.895 & 0.937 & 0.759 \\
- & Hard hydr. & \textbf{0.972} & \textbf{0.971} & 0.827 \\
- & Shuffled O2 & 0.664 & 0.819 & 0.627 \\
+ & FlatIP & 0.696 & 0.836 & 0.659 \\
+ & Soft O2 & 0.883 & 0.932 & 0.742 \\
+ & Hard hydr. & \textbf{0.972} & \textbf{0.972} & 0.816 \\
+ & Shuffled O2 & 0.620 & 0.797 & 0.590 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -964,22 +968,22 @@ LegalEp-DISC / u-para & 0.551 & 0.551 & 0.618 & 0.648 & 0.648 & 0.642 \\
 \textbf{Channel} & \textbf{System} & \textbf{AH@10} & \textbf{EC@10} & \textbf{nDCG@10} \\
 \midrule
 \multirow{4}{*}{exact}
- & FlatIP & 0.732 & 0.866 & 0.753 \\
- & Soft O2 & 0.976 & 0.988 & 0.869 \\
- & Hard hydr. & \textbf{1.000} & \textbf{1.000} & 0.897 \\
- & Shuffled O2 & 0.708 & 0.854 & 0.705 \\
+ & FlatIP & 0.678 & 0.839 & 0.710 \\
+ & Soft O2 & 0.976 & 0.988 & 0.851 \\
+ & Hard hydr. & \textbf{1.000} & \textbf{1.000} & 0.880 \\
+ & Shuffled O2 & 0.654 & 0.827 & 0.656 \\
 \midrule
 \multirow{4}{*}{advice-recall}
- & FlatIP & 0.444 & 0.559 & 0.483 \\
- & Soft O2 & 0.652 & 0.662 & 0.582 \\
- & Hard hydr. & \textbf{0.674} & \textbf{0.674} & 0.601 \\
- & Shuffled O2 & 0.424 & 0.549 & 0.454 \\
+ & FlatIP & 0.416 & 0.546 & 0.457 \\
+ & Soft O2 & 0.654 & 0.664 & 0.569 \\
+ & Hard hydr. & \textbf{0.674} & \textbf{0.674} & 0.591 \\
+ & Shuffled O2 & 0.396 & 0.535 & 0.424 \\
 \midrule
 \multirow{4}{*}{u-para}
- & FlatIP & 0.739 & 0.853 & 0.744 \\
- & Soft O2 & 0.946 & 0.962 & 0.844 \\
- & Hard hydr. & \textbf{0.980} & \textbf{0.980} & 0.864 \\
- & Shuffled O2 & 0.729 & 0.845 & 0.705 \\
+ & FlatIP & 0.697 & 0.830 & 0.708 \\
+ & Soft O2 & 0.956 & 0.965 & 0.832 \\
+ & Hard hydr. & \textbf{0.978} & \textbf{0.978} & 0.847 \\
+ & Shuffled O2 & 0.675 & 0.815 & 0.656 \\
 \bottomrule
 \end{tabular}
 \end{table}
